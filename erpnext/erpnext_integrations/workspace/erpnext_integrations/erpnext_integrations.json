@@ -90,16 +90,16 @@
    "type": "Link"
   }
  ],
- "modified": "2022-01-13 17:35:35.508718",
- "modified_by": "Administrator",
+ "modified": "2023-04-14 22:58:48.456763",
+ "modified_by": "Mohammed M Elkady",
  "module": "ERPNext Integrations",
- "name": "ERPNext Integrations",
+ "name": "Ehsan Integrations",
  "owner": "Administrator",
- "parent_page": "",
+ "parent_page": "Customization",
  "public": 1,
  "restrict_to_domain": "",
  "roles": [],
  "sequence_id": 10.0,
  "shortcuts": [],
- "title": "ERPNext Integrations"
+ "title": "Ehsan Integrations"
 }

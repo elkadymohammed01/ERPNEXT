@@ -8,14 +8,14 @@
  "hide_custom": 0,
  "icon": "setting",
  "idx": 0,
- "label": "ERPNext Settings",
+ "label": "Ehsan Settings",
  "links": [],
- "modified": "2022-06-27 16:53:07.056620",
- "modified_by": "Administrator",
+ "modified": "2023-04-14 22:58:48.456763",
+ "modified_by": "Mohammed M Elkady",
  "module": "Setup",
- "name": "ERPNext Settings",
+ "name": "Ehsan Settings",
  "owner": "Administrator",
- "parent_page": "",
+ "parent_page": "Customization",
  "public": 1,
  "quick_lists": [],
  "restrict_to_domain": "",
@@ -91,5 +91,5 @@
    "type": "DocType"
   }
  ],
- "title": "ERPNext Settings"
+ "title": "Ehsan Settings"
 }
