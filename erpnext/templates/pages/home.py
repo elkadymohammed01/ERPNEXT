@@ -53,4 +53,4 @@ def get_context(context):
 	context.metatags.image = homepage.hero_image or None
 	context.metatags.description = homepage.description or None
 
-	context.explore_link = "/all-products"
+	context.explore_link = "/app"
