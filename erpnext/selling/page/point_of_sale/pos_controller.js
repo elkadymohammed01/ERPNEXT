@@ -652,24 +652,24 @@ erpnext.PointOfSale.Controller = class {
 		const bold_item_code = item_row.item_code.bold();
 		const bold_warehouse = warehouse.bold();
 		const bold_available_qty = available_qty.toString().bold()
-		if (!(available_qty > 0)) {
-			if (is_stock_item) {
-				frappe.model.clear_doc(item_row.doctype, item_row.name);
-				frappe.throw({
-					title: __("Not Available"),
-					message: __('Item Code: {0} is not available under warehouse {1}.', [bold_item_code, bold_warehouse])
-				});
-			} else {
-				return;
-			}
-		} else if (is_stock_item && available_qty < qty_needed) {
-			frappe.throw({
-				message: __('Stock quantity not enough for Item Code: {0} under warehouse {1}. Available quantity {2}.', [bold_item_code, bold_warehouse, bold_available_qty]),
-				indicator: 'orange'
-			});
-			frappe.utils.play_sound("error");
-		}
-		frappe.dom.freeze();
+	// 	if (!(available_qty > 0)) {
+	// 		if (is_stock_item) {
+	// 			frappe.model.clear_doc(item_row.doctype, item_row.name);
+	// 			frappe.throw({
+	// 				title: __("Not Available"),
+	// 				message: __('Item Code: {0} is not available under warehouse {1}.', [bold_item_code, bold_warehouse])
+	// 			});
+	// 		} else {
+	// 			return;
+	// 		}
+	// 	} else if (is_stock_item && available_qty < qty_needed) {
+	// 		frappe.throw({
+	// 			message: __('Stock quantity not enough for Item Code: {0} under warehouse {1}. Available quantity {2}.', [bold_item_code, bold_warehouse, bold_available_qty]),
+	// 			indicator: 'orange'
+	// 		});
+	// 		frappe.utils.play_sound("error");
+	// 	}
+	// 	frappe.dom.freeze();
 	}
 
 	async check_serial_no_availablilty(item_code, warehouse, serial_no) {

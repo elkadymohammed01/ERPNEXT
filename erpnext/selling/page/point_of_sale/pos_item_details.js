@@ -250,12 +250,12 @@ erpnext.PointOfSale.ItemDetails = class {
 								me.warehouse_control.set_value(this.value);
 							})
 						} else if (available_qty === 0 && is_stock_item) {
-							me.warehouse_control.set_value('');
-							const bold_item_code = me.item_row.item_code.bold();
-							const bold_warehouse = this.value.bold();
-							frappe.throw(
-								__('Item Code: {0} is not available under warehouse {1}.', [bold_item_code, bold_warehouse])
-							);
+							// me.warehouse_control.set_value('');
+							// const bold_item_code = me.item_row.item_code.bold();
+							// const bold_warehouse = this.value.bold();
+							// frappe.throw(
+							// 	__('Item Code: {0} is not available under warehouse {1}.', [bold_item_code, bold_warehouse])
+							// );
 						}
 						me.actual_qty_control.set_value(available_qty);
 					});
