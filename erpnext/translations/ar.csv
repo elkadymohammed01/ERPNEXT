@@ -9708,7 +9708,7 @@ Creating Purchase Order ...,إنشاء أمر شراء ...
 "Select a Supplier from the Default Suppliers of the items below. On selection, a Purchase Order will be made against items belonging to the selected Supplier only.",حدد موردًا من الموردين الافتراضيين للعناصر أدناه. عند التحديد ، سيتم إجراء طلب الشراء مقابل العناصر التي تنتمي إلى المورد المحدد فقط.
 Row #{}: You must select {} serial numbers for item {}.,الصف # {}: يجب تحديد {} الأرقام التسلسلية للعنصر {}.
 Unit of Measure (UOM),وحدة القياس (UOM)
-ERPNext,مذهل
+ERPNext,إحسان
 Search or by type a command (Ctrl + G),ابحث أو اكتب الأمر (Ctrl + G)
 Bank Reconciliation Tool,أداة تسوية الحساب البنكي
 Cost Center Allocation,تخصيص التكلفة
@@ -9835,7 +9835,7 @@ Phone:,هاتف:
 Email: info@muthel.com,البريد الإلكتروني: info@muthel.com
 Ehsan,Ehsan-ar
 Your email address,عنوان بريدك  الإلكتروني
-Login to Ehsan,تسجيل الدخول إلى مذهل
+Login to Ehsan,تسجيل الدخول إلى إحسان
 ar,en
 العربية,English
 Accounts Type,أنواع الحسابات
