@@ -583,8 +583,8 @@ Condition,الحالة
 Configure,تهيئة
 Configure {0},تكوين {0}
 Confirmed orders from Customers.,طلبات مؤكدة من الزبائن.
-Connect Amazon with Ehsan,ربط امازون مع مارفيل
-Connect Shopify with Ehsan,ربط شوبيفي مع مارفيل
+Connect Amazon with Ehsan,ربط امازون مع إحسان
+Connect Shopify with Ehsan,ربط شوبيفي مع إحسان
 Connect to Quickbooks,الربط مع كويك بوكس
 Connected to QuickBooks,متصل مع كويك بوكس
 Connecting to QuickBooks,الاتصال مع QuickBooks
@@ -892,8 +892,8 @@ Duplicate {0} found in the table,مكرر {0} موجود في الجدول
 Duration in Days,المدة في أيام
 Duties and Taxes,الرسوم والضرائب
 E-Invoicing Information Missing,الفواتير الإلكترونية معلومات مفقودة
-Ehsan Demo,مارفيل تجريبي
-Ehsan Settings,إعدادات مارفيل
+Ehsan Demo,إحسان تجريبي
+Ehsan Settings,إعدادات إحسان
 Earliest,أولا
 Earnest Money,العربون
 Earning,مستحق
@@ -1147,7 +1147,7 @@ Get from Patient Encounter,الحصول على من لقاء المريض
 Getting Started,ابدء
 GitHub Sync ID,معرف مزامنة جيثب
 Global settings for all manufacturing processes.,إعدادات العالمية لجميع عمليات التصنيع.
-Go to the Desktop and start using Ehsan,اذهب إلى سطح المكتب وابدء في استخدام مارفيل
+Go to the Desktop and start using Ehsan,اذهب إلى سطح المكتب وابدء في استخدام إحسان
 GoCardless SEPA Mandate,GoCardless SEPA التكليف
 GoCardless payment gateway settings,إعدادات بوابة الدفع GoCardless
 Goal and Procedure,الهدف والإجراءات
@@ -2293,7 +2293,7 @@ Raw Materials,مواد أولية
 Raw Materials cannot be blank.,لا يمكن ترك المواد الخام فارغة.
 Re-open,اعادة فتح
 Read blog,قراءة بلوق
-Read the Ehsan Manual,اقرا دليل مستخدم  مارفيل
+Read the Ehsan Manual,اقرا دليل مستخدم  إحسان
 Reading Uploaded File,قراءة ملف تم الرفع
 Real Estate,العقارات
 Reason For Putting On Hold,سبب لوضع في الانتظار
@@ -2696,7 +2696,7 @@ Setup SMS gateway settings,قم بإعداد إعدادات بوابة الرس�
 Setup cheque dimensions for printing,أبعاد الاختيار الإعداد للطباعة
 Setup default values for POS Invoices,إعداد القيم الافتراضية لفواتير نقاط البيع
 Setup mode of POS (Online / Offline),وضع الإعداد ملف نقطة البيع (الانترنت / غير متصل)
-Setup your Institute in Ehsan,إعداد المعهد الخاص بك في مارفيل
+Setup your Institute in Ehsan,إعداد المعهد الخاص بك في إحسان
 Share Balance,رصيد الأسهم
 Share Ledger,القيود المحاسبية للأسهم
 Share Management,إدارة الأسهم
@@ -2997,7 +2997,7 @@ This is a root item group and cannot be edited.,هذه هي مجموعة الب�
 This is a root sales person and cannot be edited.,هذا موظف المبيعات الاساسي و لا يمكن تحريره.
 This is a root supplier group and cannot be edited.,هذه مجموعة المورِّدين الأساسية ولا يمكن تحريرها.
 This is a root territory and cannot be edited.,هذا هو الاقليم الأساسي ولا يمكن تحريره.
-This is an example website auto-generated from Ehsan,هذا مثال على موقع ويب تم إنشاؤه تلقائيًا من مارفيل
+This is an example website auto-generated from Ehsan,هذا مثال على موقع ويب تم إنشاؤه تلقائيًا من إحسان
 This is based on logs against this Vehicle. See timeline below for details,وذلك بناء على السجلات مقابل هذه المركبة. للمزيد انظر التسلسل الزمني أدناه
 This is based on stock movement. See {0} for details,ويستند هذا على حركة المخزون. راجع {0} لمزيد من التفاصيل
 This is based on the Time Sheets created against this project,يعتمد هذا على جداول الوقت التي تم إنشاؤها مقابل هذا المشروع
@@ -3666,8 +3666,8 @@ Compare List function takes on list arguments,تأخذ وظيفة قائمة ا�
 Complete,أكمال
 Completed,أكتمل
 Completed Quantity,الكمية المكتملة
-Connect your Exotel Account to Ehsan and track call logs,قم بتوصيل حساب Exotel الخاص بك بـمارفيل وتتبع سجلات المكالمات
-Connect your bank accounts to Ehsan,قم بتوصيل حساباتك المصرفية بـمارفيل
+Connect your Exotel Account to Ehsan and track call logs,قم بتوصيل حساب Exotel الخاص بك بـإحسان وتتبع سجلات المكالمات
+Connect your bank accounts to Ehsan,قم بتوصيل حساباتك المصرفية بـإحسان
 Contact Seller,تواصل مع البائع
 Continue,استمر
 Cost Center: {0} does not exist,مركز التكلفة: {0} غير موجود
@@ -3718,7 +3718,7 @@ Duplicate project has been created,تم إنشاء مشروع مكرر
 E-Way Bill JSON can only be generated from a submitted document,لا يمكن إنشاء الفاتورة الإلكترونية JSON إلا من وثيقة مقدمة
 E-Way Bill JSON can only be generated from submitted document,لا يمكن إنشاء فاتورة JSON الإلكترونية إلا من المستند المقدم
 E-Way Bill JSON cannot be generated for Sales Return as of now,لا يمكن إنشاء الفاتورة الإلكترونية JSON لعائد المبيعات اعتبارًا من الآن
-Ehsan could not find any matching payment entry,تعذر على مارفيل العثور على أي إدخال دفع مطابق
+Ehsan could not find any matching payment entry,تعذر على إحسان العثور على أي إدخال دفع مطابق
 Earliest Age,أقدم عمر
 Edit Details,عدل التفاصيل
 Edit Profile,تعديل الملف الشخصي
@@ -4091,7 +4091,7 @@ The selected payment entry should be linked with a debtor bank transaction,يج�
 The total allocated amount ({0}) is greated than the paid amount ({1}).,إجمالي المبلغ المخصص ({0}) أكبر من المبلغ المدفوع ({1}).
 There are no vacancies under staffing plan {0},لا توجد وظائف شاغرة في إطار خطة التوظيف {0}
 This Service Level Agreement is specific to Customer {0},اتفاقية مستوى الخدمة هذه تخص العميل {0}
-This action will unlink this account from any external service integrating Ehsan with your bank accounts. It cannot be undone. Are you certain ?,سيؤدي هذا الإجراء إلى إلغاء ربط هذا الحساب بأي خدمة خارجية تدمج مارفيل مع حساباتك المصرفية. لا يمكن التراجع. هل أنت متأكد؟
+This action will unlink this account from any external service integrating Ehsan with your bank accounts. It cannot be undone. Are you certain ?,سيؤدي هذا الإجراء إلى إلغاء ربط هذا الحساب بأي خدمة خارجية تدمج إحسان مع حساباتك المصرفية. لا يمكن التراجع. هل أنت متأكد؟
 This bank account is already synchronized,هذا الحساب المصرفي متزامن بالفعل
 This bank transaction is already fully reconciled,تمت تسوية هذه الصفقة المصرفية بالفعل بالكامل
 This employee already has a log with the same timestamp.{0},هذا الموظف لديه بالفعل سجل بنفس الطابع الزمني. {0}
@@ -4352,7 +4352,7 @@ Therapy Type,نوع العلاج
 Therapy Plan,خطة العلاج
 Therapy Session,جلسة علاجية
 Motor Assessment Scale,مقياس تقييم المحرك
-[Important] [Ehsan] Auto Reorder Errors,[هام] [مارفيل] إعادة ترتيب الأخطاء تلقائيًا
+[Important] [Ehsan] Auto Reorder Errors,[هام] [إحسان] إعادة ترتيب الأخطاء تلقائيًا
 "Regards,",مع تحياتي،
 The following {0} were created: {1},تم إنشاء {0} التالية: {1}
 Work Orders,طلبات العمل
@@ -5913,7 +5913,7 @@ Studying in Same Institute,الذين يدرسون في نفس المعهد
 Student Siblings,الإخوة والأخوات الطلاب
 Topic Content,محتوى الموضوع
 Amazon MWS Settings,إعدادات Amazon MWS
-Ehsan Integrations,دمج مارفيل
+Ehsan Integrations,دمج إحسان
 Enable Amazon,تمكين أمازون
 MWS Credentials,MWS بيانات اعتماد
 Seller ID,معرف البائع
@@ -5992,7 +5992,7 @@ Default Customer,العميل الافتراضي
 Customer Group will set to selected group while syncing customers from Shopify,سيتم تعيين مجموعة العملاء على مجموعة محددة أثناء مزامنة العملاء من Shopify
 For Company,للشركة
 Cash Account will used for Sales Invoice creation,سيستخدم الحساب النقدي لإنشاء فاتورة المبيعات
-Update Price from Shopify To Ehsan Price List,تحديث السعر من شوبيفي إلى قائمة أسعار مارفيل
+Update Price from Shopify To Ehsan Price List,تحديث السعر من شوبيفي إلى قائمة أسعار إحسان
 Default Warehouse to to create Sales Order and Delivery Note,المستودع الافتراضي لإنشاء أمر مبيعات وتسليم ملاحظة
 Sales Order Series,سلسلة أوامر المبيعات
 Import Delivery Notes from Shopify on Shipment,ملاحظات التسليم من شوبيفي على الشحن
@@ -6001,7 +6001,7 @@ Import Sales Invoice from Shopify if Payment is marked,فاتورة مبيعات
 Sales Invoice Series,سلسلة فاتورة المبيعات
 Shopify Tax Account,حساب ضرائب شوبيفي
 Shopify Tax/Shipping Title,شوبيفي الضرائب / عنوان الشحن
-Ehsan Account,حساب مارفيل
+Ehsan Account,حساب إحسان
 Shopify Webhook Detail,تفاصيل الWebhook لشوبيفي
 Webhook ID,معرف Webhook
 Tally Migration,Tally Migration
@@ -6017,8 +6017,8 @@ Tally Company,شركة تالي
 Company Name as per Imported Tally Data,اسم الشركة حسب بيانات Tally المستوردة
 Default UOM,وحدة القياس الافتراضية
 UOM in case unspecified in imported data,وحدة القياس في حالة عدم تحديدها في البيانات المستوردة
-Ehsan Company,شركة مارفيل
-Your Company set in Ehsan,تم تعيين شركتك في مارفيل
+Ehsan Company,شركة إحسان
+Your Company set in Ehsan,تم تعيين شركتك في إحسان
 Processed Files,الملفات المعالجة
 Parties,حفلات
 UOMs,وحدات القياس
@@ -6437,7 +6437,7 @@ Employment Type,نوع الوظيفة
 Emergency Contact,الاتصال في حالات الطوارئ
 Emergency Contact Name,الطوارئ اسم الاتصال
 Emergency Phone,هاتف حالات الطوارئ
-Ehsan User,مستخدم مارفيل
+Ehsan User,مستخدم إحسان
 "System User (login) ID. If set, it will become default for all HR forms.",معرف مستخدم النظام (تسجيل الدخول). إذا تم تعيينه ، فسيصبح افتراضيًا لجميع أشكال الموارد البشرية.
 Create User Permission,إنشاء صلاحية المستخدم
 This will restrict user access to other employee records,سيؤدي هذا إلى تقييد وصول المستخدم لسجلات الموظفين الأخرى
@@ -9830,7 +9830,7 @@ Issue a debit note with 0 qty against an existing Sales Invoice,قم بإصدا�
 Company Tax ID,الرقم الضريبي للشركة
 Business Issues,مشاكل العمل
 a type of software that organizations use in managing day-to-day business activities such as accounting.,نوع من البرامج التي تستخدمها المؤسسات في إدارة الأنشطة التجارية اليومية مثل المحاسبة.
-all is easy at Ehsan,كل شيء سهل في مارفيل
+all is easy at Ehsan,كل شيء سهل في إحسان
 Phone:,هاتف:
 Email: info@muthel.com,البريد الإلكتروني: info@muthel.com
 Ehsan,Ehsan-ar
