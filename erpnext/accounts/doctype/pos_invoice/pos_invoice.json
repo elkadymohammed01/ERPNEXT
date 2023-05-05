@@ -220,6 +220,7 @@
    "oldfieldname": "customer",
    "oldfieldtype": "Link",
    "options": "Customer",
+   "default": "Guest",
    "print_hide": 1,
    "search_index": 1
   },
@@ -1554,8 +1555,8 @@
  "icon": "fa fa-file-text",
  "is_submittable": 1,
  "links": [],
- "modified": "2022-09-30 03:49:50.455199",
- "modified_by": "Administrator",
+ "modified": "2023-05-6 02:20:50.455199",
+ "modified_by": "Mohammed M Elkady",
  "module": "Accounts",
  "name": "POS Invoice",
  "name_case": "Title Case",
