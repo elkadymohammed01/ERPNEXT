@@ -264,6 +264,15 @@ def install(country=None):
 		{"doctype": "Market Segment", "market_segment": _("Upper Income")},
 		# Warehouse Type
 		{"doctype": "Warehouse Type", "name": "Transit"},
+
+		# Client Guest
+		{
+			"doctype": "Customer",
+			"customer_name": _("Guest"),
+			"customer_type": "Individual",
+			"customer_group": _("Individual"),
+			"territory": _("All Territories"),
+		},
 	]
 
 	for doctype, title_field, filename in (
