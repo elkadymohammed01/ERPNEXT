@@ -83,11 +83,7 @@ frappe.ui.form.on('Job Card', {
 			// and if stock mvt for WIP is required
 			if (frm.doc.work_order) {
 				frappe.db.get_value('Work Order', frm.doc.work_order, ['skip_transfer', 'status'], (result) => {
-<<<<<<< HEAD
 					if (result.skip_transfer === 1 || result.status == 'In Process' || frm.doc.transferred_qty > 0) {
-=======
-					if (result.skip_transfer === 1 || result.status == 'In Process' || frm.doc.transferred_qty > 0 || !frm.doc.items.length) {
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 						frm.trigger("prepare_timer_buttons");
 					}
 				});
@@ -415,19 +411,6 @@ frappe.ui.form.on('Job Card', {
 			}
 		});
 
-<<<<<<< HEAD
-=======
-		if (frm.doc.total_completed_qty && frm.doc.for_quantity > frm.doc.total_completed_qty) {
-			let flt_precision = precision('for_quantity', frm.doc);
-			let process_loss_qty = (
-				flt(frm.doc.for_quantity, flt_precision)
-				- flt(frm.doc.total_completed_qty, flt_precision)
-			);
-
-			frm.set_value('process_loss_qty', process_loss_qty);
-		}
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		refresh_field("total_completed_qty");
 	}
 });

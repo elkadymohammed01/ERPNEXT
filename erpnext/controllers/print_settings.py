@@ -30,23 +30,10 @@ def set_print_templates_for_taxes(doc, settings):
 	doc.print_templates.update(
 		{
 			"total": "templates/print_formats/includes/total.html",
-<<<<<<< HEAD
 			"taxes": "templates/print_formats/includes/taxes.html",
 		}
 	)
 
-=======
-		}
-	)
-
-	if not doc.should_show_taxes_as_table_in_print():
-		doc.print_templates.update(
-			{
-				"taxes": "templates/print_formats/includes/taxes.html",
-			}
-		)
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 def format_columns(display_columns, compact_fields):
 	compact_fields = compact_fields + ["image", "item_code", "item_name"]

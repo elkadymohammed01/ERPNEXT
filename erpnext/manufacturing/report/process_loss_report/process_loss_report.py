@@ -33,16 +33,10 @@ def get_data(filters: Filters) -> Data:
 			wo.name,
 			wo.status,
 			wo.production_item,
-<<<<<<< HEAD
 			wo.qty,
 			wo.produced_qty,
 			wo.process_loss_qty,
 			(wo.produced_qty - wo.process_loss_qty).as_("actual_produced_qty"),
-=======
-			wo.produced_qty,
-			wo.process_loss_qty,
-			wo.qty.as_("qty_to_manufacture"),
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			Sum(se.total_incoming_value).as_("total_fg_value"),
 			Sum(se.total_outgoing_value).as_("total_rm_value"),
 		)
@@ -50,10 +44,6 @@ def get_data(filters: Filters) -> Data:
 			(wo.process_loss_qty > 0)
 			& (wo.company == filters.company)
 			& (se.docstatus == 1)
-<<<<<<< HEAD
-=======
-			& (se.purpose == "Manufacture")
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			& (se.posting_date.between(filters.from_date, filters.to_date))
 		)
 		.groupby(se.work_order)
@@ -90,21 +80,11 @@ def get_columns() -> Columns:
 		},
 		{"label": _("Status"), "fieldname": "status", "fieldtype": "Data", "width": "100"},
 		{
-<<<<<<< HEAD
-=======
-			"label": _("Qty To Manufacture"),
-			"fieldname": "qty_to_manufacture",
-			"fieldtype": "Float",
-			"width": "150",
-		},
-		{
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			"label": _("Manufactured Qty"),
 			"fieldname": "produced_qty",
 			"fieldtype": "Float",
 			"width": "150",
 		},
-<<<<<<< HEAD
 		{"label": _("Loss Qty"), "fieldname": "process_loss_qty", "fieldtype": "Float", "width": "150"},
 		{
 			"label": _("Actual Manufactured Qty"),
@@ -113,20 +93,6 @@ def get_columns() -> Columns:
 			"width": "150",
 		},
 		{"label": _("Loss Value"), "fieldname": "total_pl_value", "fieldtype": "Float", "width": "150"},
-=======
-		{
-			"label": _("Process Loss Qty"),
-			"fieldname": "process_loss_qty",
-			"fieldtype": "Float",
-			"width": "150",
-		},
-		{
-			"label": _("Process Loss Value"),
-			"fieldname": "total_pl_value",
-			"fieldtype": "Float",
-			"width": "150",
-		},
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		{"label": _("FG Value"), "fieldname": "total_fg_value", "fieldtype": "Float", "width": "150"},
 		{
 			"label": _("Raw Material Value"),
@@ -139,9 +105,5 @@ def get_columns() -> Columns:
 
 def update_data_with_total_pl_value(data: Data) -> None:
 	for row in data:
-<<<<<<< HEAD
 		value_per_unit_fg = row["total_fg_value"] / row["actual_produced_qty"]
-=======
-		value_per_unit_fg = row["total_fg_value"] / row["qty_to_manufacture"]
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		row["total_pl_value"] = row["process_loss_qty"] * value_per_unit_fg

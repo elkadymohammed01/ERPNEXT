@@ -13,11 +13,7 @@ exemptProjects: true
 exemptMilestones: true
 
 pulls:
-<<<<<<< HEAD
   daysUntilStale: 15
-=======
-  daysUntilStale: 14
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   daysUntilClose: 3
   exemptLabels:
     - hotfix

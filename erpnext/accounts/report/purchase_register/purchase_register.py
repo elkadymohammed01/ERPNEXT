@@ -10,29 +10,17 @@ from erpnext.accounts.doctype.accounting_dimension.accounting_dimension import (
 	get_accounting_dimensions,
 	get_dimension_with_children,
 )
-<<<<<<< HEAD
-=======
-from erpnext.accounts.report.utils import get_query_columns, get_values_for_columns
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 
 def execute(filters=None):
 	return _execute(filters)
 
 
-<<<<<<< HEAD
 def _execute(filters=None, additional_table_columns=None, additional_query_columns=None):
 	if not filters:
 		filters = {}
 
 	invoice_list = get_invoices(filters, additional_query_columns)
-=======
-def _execute(filters=None, additional_table_columns=None):
-	if not filters:
-		filters = {}
-
-	invoice_list = get_invoices(filters, get_query_columns(additional_table_columns))
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	columns, expense_accounts, tax_accounts, unrealized_profit_loss_accounts = get_columns(
 		invoice_list, additional_table_columns
 	)
@@ -59,7 +47,6 @@ def _execute(filters=None, additional_table_columns=None):
 		purchase_receipt = list(set(invoice_po_pr_map.get(inv.name, {}).get("purchase_receipt", [])))
 		project = list(set(invoice_po_pr_map.get(inv.name, {}).get("project", [])))
 
-<<<<<<< HEAD
 		row = [inv.name, inv.posting_date, inv.supplier, inv.supplier_name]
 
 		if additional_query_columns:
@@ -67,14 +54,6 @@ def _execute(filters=None, additional_table_columns=None):
 				row.append(inv.get(col))
 
 		row += [
-=======
-		row = [
-			inv.name,
-			inv.posting_date,
-			inv.supplier,
-			inv.supplier_name,
-			*get_values_for_columns(additional_table_columns, inv).values(),
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			supplier_details.get(inv.supplier),  # supplier_group
 			inv.tax_id,
 			inv.credit_to,
@@ -265,12 +244,9 @@ def get_conditions(filters):
 
 
 def get_invoices(filters, additional_query_columns):
-<<<<<<< HEAD
 	if additional_query_columns:
 		additional_query_columns = ", " + ", ".join(additional_query_columns)
 
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	conditions = get_conditions(filters)
 	return frappe.db.sql(
 		"""
@@ -279,18 +255,11 @@ def get_invoices(filters, additional_query_columns):
 			remarks, base_net_total, base_grand_total, outstanding_amount,
 			mode_of_payment {0}
 		from `tabPurchase Invoice`
-<<<<<<< HEAD
 		where docstatus = 1 %s
 		order by posting_date desc, name desc""".format(
 			additional_query_columns or ""
 		)
 		% conditions,
-=======
-		where docstatus = 1 {1}
-		order by posting_date desc, name desc""".format(
-			additional_query_columns, conditions
-		),
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		filters,
 		as_dict=1,
 	)

@@ -1,9 +1,5 @@
 frappe.listview_settings['Item'] = {
-<<<<<<< HEAD
 	add_fields: ["item_name", "stock_uom", "item_group", "image", "variant_of",
-=======
-	add_fields: ["item_name", "stock_uom", "item_group", "image",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		"has_variants", "end_of_life", "disabled"],
 	filters: [["disabled", "=", "0"]],
 

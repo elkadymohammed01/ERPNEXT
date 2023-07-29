@@ -99,11 +99,7 @@ frappe.ui.form.on('Production Plan', {
 					}, __('Create'));
 				}
 
-<<<<<<< HEAD
 				if (frm.doc.mr_items && !in_list(['Material Requested', 'Closed'], frm.doc.status)) {
-=======
-				if (frm.doc.mr_items && frm.doc.mr_items.length && !in_list(['Material Requested', 'Closed'], frm.doc.status)) {
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					frm.add_custom_button(__("Material Request"), ()=> {
 						frm.trigger("make_material_request");
 					}, __('Create'));
@@ -340,13 +336,10 @@ frappe.ui.form.on('Production Plan', {
 	},
 
 	get_items_for_material_requests(frm, warehouses) {
-<<<<<<< HEAD
 		let set_fields = ['actual_qty', 'item_code','item_name', 'description', 'uom', 'from_warehouse',
 			'min_order_qty', 'required_bom_qty', 'quantity', 'sales_order', 'warehouse', 'projected_qty', 'ordered_qty',
 			'reserved_qty_for_production', 'material_request_type'];
 
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		frappe.call({
 			method: "erpnext.manufacturing.doctype.production_plan.production_plan.get_items_for_material_requests",
 			freeze: true,
@@ -359,19 +352,11 @@ frappe.ui.form.on('Production Plan', {
 					frm.set_value('mr_items', []);
 					r.message.forEach(row => {
 						let d = frm.add_child('mr_items');
-<<<<<<< HEAD
 						set_fields.forEach(field => {
 							if (row[field]) {
 								d[field] = row[field];
 							}
 						});
-=======
-						for (let field in row) {
-							if (field !== 'name') {
-								d[field] = row[field];
-							}
-						}
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					});
 				}
 				refresh_field('mr_items');
@@ -470,21 +455,10 @@ frappe.ui.form.on("Material Request Plan Item", {
 					for_warehouse: row.warehouse
 				},
 				callback: function(r) {
-<<<<<<< HEAD
 					let {projected_qty, actual_qty} = r.message;
 
 					frappe.model.set_value(cdt, cdn, 'projected_qty', projected_qty);
 					frappe.model.set_value(cdt, cdn, 'actual_qty', actual_qty);
-=======
-					if (r.message) {
-						let {projected_qty, actual_qty} = r.message[0];
-
-						frappe.model.set_value(cdt, cdn, {
-							'projected_qty': projected_qty,
-							'actual_qty': actual_qty
-						});
-					}
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				}
 			})
 		}

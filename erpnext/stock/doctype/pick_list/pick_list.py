@@ -29,21 +29,13 @@ class PickList(Document):
 		self.validate_for_qty()
 
 	def before_save(self):
-<<<<<<< HEAD
-=======
-		self.update_status()
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		self.set_item_locations()
 
 		# set percentage picked in SO
 		for location in self.get("locations"):
 			if (
 				location.sales_order
-<<<<<<< HEAD
 				and frappe.db.get_value("Sales Order", location.sales_order, "per_picked") == 100
-=======
-				and frappe.db.get_value("Sales Order", location.sales_order, "per_picked", cache=True) == 100
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			):
 				frappe.throw(
 					_("Row #{}: item {} has been picked already.").format(location.idx, location.item_code)
@@ -97,35 +89,20 @@ class PickList(Document):
 		self.update_reference_qty()
 		self.update_sales_order_picking_status()
 
-<<<<<<< HEAD
 	def update_status(self, status=None, update_modified=True):
-=======
-	def update_status(self, status=None):
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		if not status:
 			if self.docstatus == 0:
 				status = "Draft"
 			elif self.docstatus == 1:
-<<<<<<< HEAD
 				if self.status == "Draft":
 					status = "Open"
 				elif target_document_exists(self.name, self.purpose):
 					status = "Completed"
-=======
-				if target_document_exists(self.name, self.purpose):
-					status = "Completed"
-				else:
-					status = "Open"
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			elif self.docstatus == 2:
 				status = "Cancelled"
 
 		if status:
-<<<<<<< HEAD
 			frappe.db.set_value("Pick List", self.name, "status", status, update_modified=update_modified)
-=======
-			self.db_set("status", status)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	def update_reference_qty(self):
 		packed_items = []
@@ -195,13 +172,8 @@ class PickList(Document):
 			if (row.picked_qty / row.stock_qty) * 100 > over_delivery_receipt_allowance:
 				frappe.throw(
 					_(
-<<<<<<< HEAD
 						f"You are picking more than required quantity for the item {row.item_code}. Check if there is any other pick list created for the sales order {row.sales_order}."
 					)
-=======
-						"You are picking more than required quantity for the item {0}. Check if there is any other pick list created for the sales order {1}."
-					).format(row.item_code, row.sales_order)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				)
 
 	@frappe.whitelist()
@@ -292,13 +264,6 @@ class PickList(Document):
 		for item in locations:
 			if not item.item_code:
 				frappe.throw("Row #{0}: Item Code is Mandatory".format(item.idx))
-<<<<<<< HEAD
-=======
-			if not cint(
-				frappe.get_cached_value("Item", item.item_code, "is_stock_item")
-			) and not frappe.db.exists("Product Bundle", {"new_item_code": item.item_code}):
-				continue
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			item_code = item.item_code
 			reference = item.sales_order_item or item.material_request_item
 			key = (item_code, item.uom, item.warehouse, item.batch_no, reference)
@@ -390,10 +355,6 @@ class PickList(Document):
 					(pi_item.item_code.isin([x.item_code for x in items]))
 					& ((pi_item.picked_qty > 0) | (pi_item.stock_qty > 0))
 					& (pi.status != "Completed")
-<<<<<<< HEAD
-=======
-					& (pi.status != "Cancelled")
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					& (pi_item.docstatus != 2)
 				)
 				.groupby(
@@ -498,11 +459,7 @@ def get_items_with_location_and_quantity(item_doc, item_location_map, docstatus)
 		item_doc.qty if (docstatus == 1 and item_doc.stock_qty == 0) else item_doc.stock_qty
 	)
 
-<<<<<<< HEAD
 	while remaining_stock_qty > 0 and available_locations:
-=======
-	while flt(remaining_stock_qty) > 0 and available_locations:
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		item_location = available_locations.pop(0)
 		item_location = frappe._dict(item_location)
 
@@ -511,11 +468,7 @@ def get_items_with_location_and_quantity(item_doc, item_location_map, docstatus)
 		)
 		qty = stock_qty / (item_doc.conversion_factor or 1)
 
-<<<<<<< HEAD
 		uom_must_be_whole_number = frappe.db.get_value("UOM", item_doc.uom, "must_be_whole_number")
-=======
-		uom_must_be_whole_number = frappe.get_cached_value("UOM", item_doc.uom, "must_be_whole_number")
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		if uom_must_be_whole_number:
 			qty = floor(qty)
 			stock_qty = qty * item_doc.conversion_factor

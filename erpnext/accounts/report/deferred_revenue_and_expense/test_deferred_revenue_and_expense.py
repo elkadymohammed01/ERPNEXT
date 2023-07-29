@@ -10,10 +10,6 @@ from erpnext.accounts.doctype.sales_invoice.test_sales_invoice import create_sal
 from erpnext.accounts.report.deferred_revenue_and_expense.deferred_revenue_and_expense import (
 	Deferred_Revenue_and_Expense_Report,
 )
-<<<<<<< HEAD
-=======
-from erpnext.accounts.utils import get_fiscal_year
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 from erpnext.buying.doctype.supplier.test_supplier import create_supplier
 from erpnext.stock.doctype.item.test_item import create_item
 
@@ -120,11 +116,7 @@ class TestDeferredRevenueAndExpense(unittest.TestCase):
 		pda.submit()
 
 		# execute report
-<<<<<<< HEAD
 		fiscal_year = frappe.get_doc("Fiscal Year", frappe.defaults.get_user_default("fiscal_year"))
-=======
-		fiscal_year = frappe.get_doc("Fiscal Year", get_fiscal_year(date="2021-05-01"))
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		self.filters = frappe._dict(
 			{
 				"company": frappe.defaults.get_user_default("Company"),
@@ -217,11 +209,7 @@ class TestDeferredRevenueAndExpense(unittest.TestCase):
 		pda.submit()
 
 		# execute report
-<<<<<<< HEAD
 		fiscal_year = frappe.get_doc("Fiscal Year", frappe.defaults.get_user_default("fiscal_year"))
-=======
-		fiscal_year = frappe.get_doc("Fiscal Year", get_fiscal_year(date="2021-05-01"))
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		self.filters = frappe._dict(
 			{
 				"company": frappe.defaults.get_user_default("Company"),
@@ -309,11 +297,7 @@ class TestDeferredRevenueAndExpense(unittest.TestCase):
 		pda.submit()
 
 		# execute report
-<<<<<<< HEAD
 		fiscal_year = frappe.get_doc("Fiscal Year", frappe.defaults.get_user_default("fiscal_year"))
-=======
-		fiscal_year = frappe.get_doc("Fiscal Year", get_fiscal_year(date="2021-05-01"))
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		self.filters = frappe._dict(
 			{
 				"company": frappe.defaults.get_user_default("Company"),

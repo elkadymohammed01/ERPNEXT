@@ -60,15 +60,9 @@ class TestQuotation(FrappeTestCase):
 		sales_order = make_sales_order(quotation.name)
 		sales_order.currency = "USD"
 		sales_order.conversion_rate = 20.0
-<<<<<<< HEAD
 		sales_order.delivery_date = "2019-01-01"
 		sales_order.naming_series = "_T-Quotation-"
 		sales_order.transaction_date = nowdate()
-=======
-		sales_order.naming_series = "_T-Quotation-"
-		sales_order.transaction_date = nowdate()
-		sales_order.delivery_date = nowdate()
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		sales_order.insert()
 
 		self.assertEqual(sales_order.currency, "USD")
@@ -650,11 +644,8 @@ def make_quotation(**args):
 			},
 		)
 
-<<<<<<< HEAD
 	qo.delivery_date = add_days(qo.transaction_date, 10)
 
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	if not args.do_not_save:
 		qo.insert()
 		if not args.do_not_submit:

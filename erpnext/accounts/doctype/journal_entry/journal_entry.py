@@ -69,10 +69,6 @@ class JournalEntry(AccountsController):
 		self.validate_empty_accounts_table()
 		self.set_account_and_party_balance()
 		self.validate_inter_company_accounts()
-<<<<<<< HEAD
-=======
-		self.validate_depr_entry_voucher_type()
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		if self.docstatus == 0:
 			self.apply_tax_withholding()
@@ -134,16 +130,6 @@ class JournalEntry(AccountsController):
 				if self.total_credit != doc.total_debit or self.total_debit != doc.total_credit:
 					frappe.throw(_("Total Credit/ Debit Amount should be same as linked Journal Entry"))
 
-<<<<<<< HEAD
-=======
-	def validate_depr_entry_voucher_type(self):
-		if (
-			any(d.account_type == "Depreciation" for d in self.get("accounts"))
-			and self.voucher_type != "Depreciation Entry"
-		):
-			frappe.throw(_("Journal Entry type should be set as Depreciation Entry for asset depreciation"))
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def validate_stock_accounts(self):
 		stock_accounts = get_stock_accounts(self.company, self.doctype, self.name)
 		for account in stock_accounts:
@@ -247,7 +233,6 @@ class JournalEntry(AccountsController):
 			self.remove(d)
 
 	def update_asset_value(self):
-<<<<<<< HEAD
 		if self.voucher_type != "Depreciation Entry":
 			return
 
@@ -267,32 +252,6 @@ class JournalEntry(AccountsController):
 				depr_value = d.debit or d.credit
 
 				asset.db_set("value_after_depreciation", asset.value_after_depreciation - depr_value)
-=======
-		if self.flags.planned_depr_entry or self.voucher_type != "Depreciation Entry":
-			return
-
-		for d in self.get("accounts"):
-			if (
-				d.reference_type == "Asset"
-				and d.reference_name
-				and d.account_type == "Depreciation"
-				and d.debit
-			):
-				asset = frappe.get_doc("Asset", d.reference_name)
-
-				if asset.calculate_depreciation:
-					fb_idx = 1
-					if self.finance_book:
-						for fb_row in asset.get("finance_books"):
-							if fb_row.finance_book == self.finance_book:
-								fb_idx = fb_row.idx
-								break
-					fb_row = asset.get("finance_books")[fb_idx - 1]
-					fb_row.value_after_depreciation -= d.debit
-					fb_row.db_update()
-				else:
-					asset.db_set("value_after_depreciation", asset.value_after_depreciation - d.debit)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 				asset.set_status()
 
@@ -354,7 +313,6 @@ class JournalEntry(AccountsController):
 				d.db_update()
 
 	def unlink_asset_reference(self):
-<<<<<<< HEAD
 		if self.voucher_type != "Depreciation Entry":
 			return
 
@@ -387,47 +345,6 @@ class JournalEntry(AccountsController):
 					asset.db_set("value_after_depreciation", asset.value_after_depreciation + depr_value)
 
 					asset.set_status()
-=======
-		for d in self.get("accounts"):
-			if (
-				self.voucher_type == "Depreciation Entry"
-				and d.reference_type == "Asset"
-				and d.reference_name
-				and d.account_type == "Depreciation"
-				and d.debit
-			):
-				asset = frappe.get_doc("Asset", d.reference_name)
-
-				if asset.calculate_depreciation:
-					fb_idx = None
-					for s in asset.get("schedules"):
-						if s.journal_entry == self.name:
-							s.db_set("journal_entry", None)
-							fb_idx = cint(s.finance_book_id) or 1
-							break
-					if not fb_idx:
-						fb_idx = 1
-						if self.finance_book:
-							for fb_row in asset.get("finance_books"):
-								if fb_row.finance_book == self.finance_book:
-									fb_idx = fb_row.idx
-									break
-					fb_row = asset.get("finance_books")[fb_idx - 1]
-					fb_row.value_after_depreciation += d.debit
-					fb_row.db_update()
-				else:
-					asset.db_set("value_after_depreciation", asset.value_after_depreciation + d.debit)
-				asset.set_status()
-			elif self.voucher_type == "Journal Entry" and d.reference_type == "Asset" and d.reference_name:
-				journal_entry_for_scrap = frappe.db.get_value(
-					"Asset", d.reference_name, "journal_entry_for_scrap"
-				)
-
-				if journal_entry_for_scrap == self.name:
-					frappe.throw(
-						_("Journal Entry for Asset scrapping cannot be cancelled. Please restore the Asset.")
-					)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	def unlink_inter_company_jv(self):
 		if (
@@ -459,18 +376,6 @@ class JournalEntry(AccountsController):
 							d.idx, d.account
 						)
 					)
-<<<<<<< HEAD
-=======
-				elif (
-					d.party_type
-					and frappe.db.get_value("Party Type", d.party_type, "account_type") != account_type
-				):
-					frappe.throw(
-						_("Row {0}: Account {1} and Party Type {2} have different account types").format(
-							d.idx, d.account, d.party_type
-						)
-					)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	def check_credit_limit(self):
 		customers = list(
@@ -973,11 +878,6 @@ class JournalEntry(AccountsController):
 	def make_gl_entries(self, cancel=0, adv_adj=0):
 		from erpnext.accounts.general_ledger import make_gl_entries
 
-<<<<<<< HEAD
-=======
-		merge_entries = frappe.db.get_single_value("Accounts Settings", "merge_similar_account_heads")
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		gl_map = self.build_gl_map()
 		if self.voucher_type in ("Deferred Revenue", "Deferred Expense"):
 			update_outstanding = "No"
@@ -985,17 +885,7 @@ class JournalEntry(AccountsController):
 			update_outstanding = "Yes"
 
 		if gl_map:
-<<<<<<< HEAD
 			make_gl_entries(gl_map, cancel=cancel, adv_adj=adv_adj, update_outstanding=update_outstanding)
-=======
-			make_gl_entries(
-				gl_map,
-				cancel=cancel,
-				adv_adj=adv_adj,
-				merge_entries=merge_entries,
-				update_outstanding=update_outstanding,
-			)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	@frappe.whitelist()
 	def get_balance(self, difference_account=None):
@@ -1029,10 +919,6 @@ class JournalEntry(AccountsController):
 					blank_row.debit_in_account_currency = abs(diff)
 					blank_row.debit = abs(diff)
 
-<<<<<<< HEAD
-=======
-			self.set_total_debit_credit()
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			self.validate_total_debit_and_credit()
 
 	@frappe.whitelist()

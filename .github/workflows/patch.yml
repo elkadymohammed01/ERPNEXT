@@ -43,17 +43,9 @@ jobs:
           fi
 
       - name: Setup Python
-<<<<<<< HEAD
         uses: "gabrielfalcao/pyenv-action@v9"
         with:
           versions: 3.10:latest, 3.7:latest
-=======
-        uses: "actions/setup-python@v4"
-        with:
-          python-version: |
-              3.7
-              3.10
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
       - name: Setup Node
         uses: actions/setup-node@v2
@@ -100,10 +92,7 @@ jobs:
       - name: Install
         run: |
           pip install frappe-bench
-<<<<<<< HEAD
           pyenv global $(pyenv versions | grep '3.10')
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
           bash ${GITHUB_WORKSPACE}/.github/helper/install.sh
         env:
           DB: mariadb
@@ -118,10 +107,7 @@ jobs:
           git -C "apps/frappe" remote set-url upstream https://github.com/frappe/frappe.git
           git -C "apps/erpnext" remote set-url upstream https://github.com/frappe/erpnext.git
 
-<<<<<<< HEAD
           pyenv global $(pyenv versions | grep '3.7')
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
           for version in $(seq 12 13)
           do
               echo "Updating to v$version"
@@ -134,11 +120,7 @@ jobs:
               git -C "apps/erpnext" checkout -q -f $branch_name
 
               rm -rf ~/frappe-bench/env
-<<<<<<< HEAD
               bench setup env
-=======
-              bench setup env --python python3.7
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
               bench pip install -e ./apps/payments
               bench pip install -e ./apps/erpnext
 
@@ -150,14 +132,9 @@ jobs:
           git -C "apps/frappe" checkout -q -f "${GITHUB_BASE_REF:-${GITHUB_REF##*/}}"
           git -C "apps/erpnext" checkout -q -f "$GITHUB_SHA"
 
-<<<<<<< HEAD
           pyenv global $(pyenv versions | grep '3.10')
           rm -rf ~/frappe-bench/env
           bench -v setup env
-=======
-          rm -rf ~/frappe-bench/env
-          bench -v setup env --python python3.10
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
           bench pip install -e ./apps/payments
           bench pip install -e ./apps/erpnext
 

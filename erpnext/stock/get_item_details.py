@@ -35,7 +35,6 @@ purchase_doctypes = [
 
 
 @frappe.whitelist()
-<<<<<<< HEAD
 def get_item_details(
 	args,
 	doc=None,
@@ -44,9 +43,6 @@ def get_item_details(
 	return_basic_details=False,
 	basic_details=None,
 ):
-=======
-def get_item_details(args, doc=None, for_validate=False, overwrite_warehouse=True):
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	"""
 	args = {
 	        "item_code": "",
@@ -84,16 +80,12 @@ def get_item_details(args, doc=None, for_validate=False, overwrite_warehouse=Tru
 		if doc.get("doctype") == "Purchase Invoice":
 			args["bill_date"] = doc.get("bill_date")
 
-<<<<<<< HEAD
 	if not basic_details:
 		out = get_basic_details(args, item, overwrite_warehouse)
 	else:
 		out = basic_details
 
 	basic_details = out.copy()
-=======
-	out = get_basic_details(args, item, overwrite_warehouse)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	get_item_tax_template(args, item, out)
 	out["item_tax_rate"] = get_item_tax_map(
@@ -162,15 +154,11 @@ def get_item_details(args, doc=None, for_validate=False, overwrite_warehouse=Tru
 		out.amount = flt(args.qty) * flt(out.rate)
 
 	out = remove_standard_fields(out)
-<<<<<<< HEAD
 
 	if return_basic_details:
 		return out, basic_details
 	else:
 		return out
-=======
-	return out
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 
 def remove_standard_fields(details):
@@ -1536,23 +1524,11 @@ def get_so_reservation_for_item(args):
 	elif args.get("against_sales_invoice"):
 		sales_order = frappe.db.get_all(
 			"Sales Invoice Item",
-<<<<<<< HEAD
 			filters={"parent": args.get("against_sales_invoice"), "item_code": args.get("item_code")},
 			fields="sales_order",
 		)
 		if sales_order and sales_order[0]:
 			if get_reserved_qty_for_so(sales_order[0][0], args.get("item_code")):
-=======
-			filters={
-				"parent": args.get("against_sales_invoice"),
-				"item_code": args.get("item_code"),
-				"docstatus": 1,
-			},
-			fields="sales_order",
-		)
-		if sales_order and sales_order[0]:
-			if get_reserved_qty_for_so(sales_order[0].sales_order, args.get("item_code")):
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				reserved_so = sales_order[0]
 	elif args.get("sales_order"):
 		if get_reserved_qty_for_so(args.get("sales_order"), args.get("item_code")):

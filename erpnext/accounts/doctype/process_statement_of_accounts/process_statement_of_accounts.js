@@ -63,23 +63,6 @@ frappe.ui.form.on('Process Statement Of Accounts', {
 			frm.set_value('to_date', frappe.datetime.get_today());
 		}
 	},
-<<<<<<< HEAD
-=======
-	report: function(frm){
-		let filters = {
-			'company': frm.doc.company,
-		}
-		if(frm.doc.report == 'Accounts Receivable'){
-			filters['account_type'] = 'Receivable';
-		}
-		frm.set_query("account", function() {
-			return {
-				filters: filters
-			};
-		});
-
-	},
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	customer_collection: function(frm){
 		frm.set_value('collection_name', '');
 		if(frm.doc.customer_collection){

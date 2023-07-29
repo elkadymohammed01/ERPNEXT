@@ -252,10 +252,6 @@
    "depends_on": "eval: !parent.is_return",
    "fieldname": "rejected_warehouse",
    "fieldtype": "Link",
-<<<<<<< HEAD
-=======
-   "ignore_user_permissions": 1,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "label": "Rejected Warehouse",
    "no_copy": 1,
    "options": "Warehouse",
@@ -480,11 +476,7 @@
  "idx": 1,
  "istable": 1,
  "links": [],
-<<<<<<< HEAD
  "modified": "2022-11-16 14:21:26.125815",
-=======
- "modified": "2023-07-06 18:44:45.599761",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Subcontracting",
  "name": "Subcontracting Receipt Item",
@@ -495,8 +487,4 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)

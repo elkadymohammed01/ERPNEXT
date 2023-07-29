@@ -90,13 +90,6 @@
   "depreciation_cost_center",
   "capital_work_in_progress_account",
   "asset_received_but_not_billed",
-<<<<<<< HEAD
-=======
-  "exchange_rate_revaluation_settings_section",
-  "auto_exchange_rate_revaluation",
-  "auto_err_frequency",
-  "submit_err_jv",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   "budget_detail",
   "exception_budget_approver_role",
   "registration_info",
@@ -701,32 +694,6 @@
    "label": "Default Provisional Account",
    "no_copy": 1,
    "options": "Account"
-<<<<<<< HEAD
-=======
-  },
-  {
-   "fieldname": "exchange_rate_revaluation_settings_section",
-   "fieldtype": "Section Break",
-   "label": "Exchange Rate Revaluation Settings"
-  },
-  {
-   "default": "0",
-   "fieldname": "auto_exchange_rate_revaluation",
-   "fieldtype": "Check",
-   "label": "Auto Create Exchange Rate Revaluation"
-  },
-  {
-   "fieldname": "auto_err_frequency",
-   "fieldtype": "Select",
-   "label": "Frequency",
-   "options": "Daily\nWeekly"
-  },
-  {
-   "default": "0",
-   "fieldname": "submit_err_jv",
-   "fieldtype": "Check",
-   "label": "Submit ERR Journals?"
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   }
  ],
  "icon": "fa fa-building",
@@ -734,11 +701,7 @@
  "image_field": "company_logo",
  "is_tree": 1,
  "links": [],
-<<<<<<< HEAD
  "modified": "2022-08-16 16:09:02.327724",
-=======
- "modified": "2023-07-07 05:41:41.537256",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Setup",
  "name": "Company",
@@ -801,8 +764,4 @@
  "sort_order": "ASC",
  "states": [],
  "track_changes": 1
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)

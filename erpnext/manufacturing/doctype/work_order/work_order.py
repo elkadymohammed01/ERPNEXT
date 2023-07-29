@@ -249,13 +249,7 @@ class WorkOrder(Document):
 				status = "Not Started"
 				if flt(self.material_transferred_for_manufacturing) > 0:
 					status = "In Process"
-<<<<<<< HEAD
 				if flt(self.produced_qty) >= flt(self.qty):
-=======
-
-				total_qty = flt(self.produced_qty) + flt(self.process_loss_qty)
-				if flt(total_qty) >= flt(self.qty):
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					status = "Completed"
 		else:
 			status = "Cancelled"
@@ -564,28 +558,12 @@ class WorkOrder(Document):
 			and self.production_plan_item
 			and not self.production_plan_sub_assembly_item
 		):
-<<<<<<< HEAD
 			qty = frappe.get_value("Production Plan Item", self.production_plan_item, "ordered_qty") or 0.0
 
 			if self.docstatus == 1:
 				qty += self.qty
 			elif self.docstatus == 2:
 				qty -= self.qty
-=======
-			table = frappe.qb.DocType("Work Order")
-
-			query = (
-				frappe.qb.from_(table)
-				.select(Sum(table.qty))
-				.where(
-					(table.production_plan == self.production_plan)
-					& (table.production_plan_item == self.production_plan_item)
-					& (table.docstatus == 1)
-				)
-			).run()
-
-			qty = flt(query[0][0]) if query else 0
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 			frappe.db.set_value("Production Plan Item", self.production_plan_item, "ordered_qty", qty)
 
@@ -751,7 +729,6 @@ class WorkOrder(Document):
 		max_allowed_qty_for_wo = flt(self.qty) + (allowance_percentage / 100 * flt(self.qty))
 
 		for d in self.get("operations"):
-<<<<<<< HEAD
 			if not d.completed_qty:
 				d.status = "Pending"
 			elif flt(d.completed_qty) < flt(self.qty):
@@ -759,17 +736,6 @@ class WorkOrder(Document):
 			elif flt(d.completed_qty) == flt(self.qty):
 				d.status = "Completed"
 			elif flt(d.completed_qty) <= max_allowed_qty_for_wo:
-=======
-			precision = d.precision("completed_qty")
-			qty = flt(d.completed_qty, precision) + flt(d.process_loss_qty, precision)
-			if not qty:
-				d.status = "Pending"
-			elif flt(qty) < flt(self.qty):
-				d.status = "Work in Progress"
-			elif flt(qty) == flt(self.qty):
-				d.status = "Completed"
-			elif flt(qty) <= max_allowed_qty_for_wo:
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				d.status = "Completed"
 			else:
 				frappe.throw(_("Completed Qty cannot be greater than 'Qty to Manufacture'"))
@@ -1024,11 +990,7 @@ class WorkOrder(Document):
 			consumed_qty = frappe.db.sql(
 				"""
 				SELECT
-<<<<<<< HEAD
 					SUM(qty)
-=======
-					SUM(detail.qty)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				FROM
 					`tabStock Entry` entry,
 					`tabStock Entry Detail` detail
@@ -1514,22 +1476,12 @@ def create_pick_list(source_name, target_doc=None, for_qty=None):
 	return doc
 
 
-<<<<<<< HEAD
 def get_reserved_qty_for_production(item_code: str, warehouse: str) -> float:
-=======
-def get_reserved_qty_for_production(
-	item_code: str, warehouse: str, check_production_plan: bool = False
-) -> float:
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	"""Get total reserved quantity for any item in specified warehouse"""
 	wo = frappe.qb.DocType("Work Order")
 	wo_item = frappe.qb.DocType("Work Order Item")
 
-<<<<<<< HEAD
 	return (
-=======
-	query = (
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		frappe.qb.from_(wo)
 		.from_(wo_item)
 		.select(
@@ -1550,16 +1502,7 @@ def get_reserved_qty_for_production(
 				| (wo_item.required_qty > wo_item.consumed_qty)
 			)
 		)
-<<<<<<< HEAD
 	).run()[0][0] or 0.0
-=======
-	)
-
-	if check_production_plan:
-		query = query.where(wo.production_plan.isnotnull())
-
-	return query.run()[0][0] or 0.0
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 
 @frappe.whitelist()

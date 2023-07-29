@@ -84,10 +84,6 @@
   "installed_qty",
   "item_tax_rate",
   "column_break_atna",
-<<<<<<< HEAD
-=======
-  "packed_qty",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   "received_qty",
   "accounting_details_section",
   "expense_account",
@@ -518,12 +514,7 @@
    "oldfieldname": "batch_no",
    "oldfieldtype": "Link",
    "options": "Batch",
-<<<<<<< HEAD
    "print_hide": 1
-=======
-   "print_hide": 1,
-   "search_index": 1
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   },
   {
    "allow_on_submit": 1,
@@ -638,12 +629,7 @@
    "no_copy": 1,
    "options": "Sales Order",
    "print_hide": 1,
-<<<<<<< HEAD
    "read_only": 1
-=======
-   "read_only": 1,
-   "search_index": 1
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   },
   {
    "fieldname": "against_sales_invoice",
@@ -676,12 +662,7 @@
    "label": "Against Sales Invoice Item",
    "no_copy": 1,
    "print_hide": 1,
-<<<<<<< HEAD
    "read_only": 1
-=======
-   "read_only": 1,
-   "search_index": 1
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   },
   {
    "fieldname": "installed_qty",
@@ -867,30 +848,13 @@
    "print_hide": 1,
    "read_only": 1,
    "report_hide": 1
-<<<<<<< HEAD
-=======
-  },
-  {
-   "default": "0",
-   "depends_on": "eval: doc.packed_qty",
-   "fieldname": "packed_qty",
-   "fieldtype": "Float",
-   "label": "Packed Qty",
-   "no_copy": 1,
-   "non_negative": 1,
-   "read_only": 1
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   }
  ],
  "idx": 1,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
-<<<<<<< HEAD
  "modified": "2023-04-06 09:28:29.182053",
-=======
- "modified": "2023-07-25 11:58:28.101919",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Delivery Note Item",

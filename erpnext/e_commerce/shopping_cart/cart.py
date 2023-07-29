@@ -3,11 +3,7 @@
 
 import frappe
 import frappe.defaults
-<<<<<<< HEAD
 from frappe import _, throw
-=======
-from frappe import _, bold, throw
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 from frappe.contacts.doctype.address.address import get_address_display
 from frappe.contacts.doctype.contact.contact import get_contact_name
 from frappe.utils import cint, cstr, flt, get_fullname
@@ -205,14 +201,6 @@ def get_shopping_cart_menu(context=None):
 @frappe.whitelist()
 def add_new_address(doc):
 	doc = frappe.parse_json(doc)
-<<<<<<< HEAD
-=======
-	address_title = doc.get("address_title")
-	if frappe.db.exists("Address", {"address_title": address_title}):
-		msg = f"The address with the title {bold(address_title)} already exists. Please change the title accordingly."
-		frappe.throw(_(msg), title=_("Address Already Exists"))
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	doc.update({"doctype": "Address"})
 	address = frappe.get_doc(doc)
 	address.save(ignore_permissions=True)

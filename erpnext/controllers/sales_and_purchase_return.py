@@ -617,16 +617,6 @@ def get_filters(
 	if reference_voucher_detail_no:
 		filters["voucher_detail_no"] = reference_voucher_detail_no
 
-<<<<<<< HEAD
-=======
-	if (
-		voucher_type in ["Purchase Receipt", "Purchase Invoice"]
-		and item_row
-		and item_row.get("warehouse")
-	):
-		filters["warehouse"] = item_row.get("warehouse")
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	return filters
 
 

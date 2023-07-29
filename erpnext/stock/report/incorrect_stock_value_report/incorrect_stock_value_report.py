@@ -5,11 +5,7 @@
 import frappe
 from frappe import _
 from frappe.query_builder import Field
-<<<<<<< HEAD
 from frappe.query_builder.functions import Min, Timestamp
-=======
-from frappe.query_builder.functions import CombineDatetime, Min
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 from frappe.utils import add_days, getdate, today
 
 import erpnext
@@ -79,11 +75,7 @@ def get_data(report_filters):
 			& (sle.company == report_filters.company)
 			& (sle.is_cancelled == 0)
 		)
-<<<<<<< HEAD
 		.orderby(Timestamp(sle.posting_date, sle.posting_time), sle.creation)
-=======
-		.orderby(CombineDatetime(sle.posting_date, sle.posting_time), sle.creation)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	).run(as_dict=True)
 
 	for d in data:
@@ -92,11 +84,7 @@ def get_data(report_filters):
 	closing_date = add_days(from_date, -1)
 	for key, stock_data in voucher_wise_dict.items():
 		prev_stock_value = get_stock_value_on(
-<<<<<<< HEAD
 			posting_date=closing_date, item_code=key[0], warehouse=key[1]
-=======
-			posting_date=closing_date, item_code=key[0], warehouses=key[1]
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		)
 		for data in stock_data:
 			expected_stock_value = prev_stock_value + data.stock_value_difference

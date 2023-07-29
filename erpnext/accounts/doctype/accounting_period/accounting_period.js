@@ -20,14 +20,5 @@ frappe.ui.form.on('Accounting Period', {
 				}
 			});
 		}
-<<<<<<< HEAD
-=======
-
-		frm.set_query("document_type", "closed_documents", () => {
-			return {
-				query: "erpnext.controllers.queries.get_doctypes_for_closing",
-			}
-		});
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	}
 });

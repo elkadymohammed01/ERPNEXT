@@ -5,19 +5,11 @@
  "description": "# Create a Letter Head\n\nA Letter Head contains your organization's name, logo, address, etc which appears at the header and footer portion in documents. You can learn more about Setting up Letter Head in ERPNext here.\n",
  "docstatus": 0,
  "doctype": "Onboarding Step",
-<<<<<<< HEAD
  "idx": 0,
  "is_complete": 0,
  "is_single": 0,
  "is_skipped": 0,
  "modified": "2021-12-15 14:21:39.037742",
-=======
- "idx": 1,
- "is_complete": 0,
- "is_single": 0,
- "is_skipped": 0,
- "modified": "2023-05-15 09:18:42.995184",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "name": "Letterhead",
  "owner": "Administrator",

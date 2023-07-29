@@ -559,15 +559,8 @@ erpnext.PointOfSale.Controller = class {
 
 				item_row = this.frm.add_child('items', new_item);
 
-<<<<<<< HEAD
 				if (field === 'qty' && value !== 0 && !this.allow_negative_stock)
 					await this.check_stock_availability(item_row, value, this.frm.doc.set_warehouse);
-=======
-				if (field === 'qty' && value !== 0 && !this.allow_negative_stock) {
-					const qty_needed = value * item_row.conversion_factor;
-					await this.check_stock_availability(item_row, qty_needed, this.frm.doc.set_warehouse);
-				}
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 				await this.trigger_new_item_events(item_row);
 
@@ -659,7 +652,6 @@ erpnext.PointOfSale.Controller = class {
 		const bold_item_code = item_row.item_code.bold();
 		const bold_warehouse = warehouse.bold();
 		const bold_available_qty = available_qty.toString().bold()
-<<<<<<< HEAD
 	// 	if (!(available_qty > 0)) {
 	// 		if (is_stock_item) {
 	// 			frappe.model.clear_doc(item_row.doctype, item_row.name);
@@ -678,26 +670,6 @@ erpnext.PointOfSale.Controller = class {
 	// 		frappe.utils.play_sound("error");
 	// 	}
 	// 	frappe.dom.freeze();
-=======
-		if (!(available_qty > 0)) {
-			if (is_stock_item) {
-				frappe.model.clear_doc(item_row.doctype, item_row.name);
-				frappe.throw({
-					title: __("Not Available"),
-					message: __('Item Code: {0} is not available under warehouse {1}.', [bold_item_code, bold_warehouse])
-				});
-			} else {
-				return;
-			}
-		} else if (is_stock_item && available_qty < qty_needed) {
-			frappe.throw({
-				message: __('Stock quantity not enough for Item Code: {0} under warehouse {1}. Available quantity {2}.', [bold_item_code, bold_warehouse, bold_available_qty]),
-				indicator: 'orange'
-			});
-			frappe.utils.play_sound("error");
-		}
-		frappe.dom.freeze();
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	}
 
 	async check_serial_no_availablilty(item_code, warehouse, serial_no) {

@@ -11,29 +11,17 @@ from erpnext.accounts.doctype.accounting_dimension.accounting_dimension import (
 	get_accounting_dimensions,
 	get_dimension_with_children,
 )
-<<<<<<< HEAD
-=======
-from erpnext.accounts.report.utils import get_query_columns, get_values_for_columns
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 
 def execute(filters=None):
 	return _execute(filters)
 
 
-<<<<<<< HEAD
 def _execute(filters, additional_table_columns=None, additional_query_columns=None):
 	if not filters:
 		filters = frappe._dict({})
 
 	invoice_list = get_invoices(filters, additional_query_columns)
-=======
-def _execute(filters, additional_table_columns=None):
-	if not filters:
-		filters = frappe._dict({})
-
-	invoice_list = get_invoices(filters, get_query_columns(additional_table_columns))
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	columns, income_accounts, tax_accounts, unrealized_profit_loss_accounts = get_columns(
 		invoice_list, additional_table_columns
 	)
@@ -66,7 +54,6 @@ def _execute(filters, additional_table_columns=None):
 			"posting_date": inv.posting_date,
 			"customer": inv.customer,
 			"customer_name": inv.customer_name,
-<<<<<<< HEAD
 		}
 
 		if additional_query_columns:
@@ -91,24 +78,6 @@ def _execute(filters, additional_table_columns=None):
 			}
 		)
 
-=======
-			**get_values_for_columns(additional_table_columns, inv),
-			"customer_group": inv.get("customer_group"),
-			"territory": inv.get("territory"),
-			"tax_id": inv.get("tax_id"),
-			"receivable_account": inv.debit_to,
-			"mode_of_payment": ", ".join(mode_of_payments.get(inv.name, [])),
-			"project": inv.project,
-			"owner": inv.owner,
-			"remarks": inv.remarks,
-			"sales_order": ", ".join(sales_order),
-			"delivery_note": ", ".join(delivery_note),
-			"cost_center": ", ".join(cost_center),
-			"warehouse": ", ".join(warehouse),
-			"currency": company_currency,
-		}
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		# map income values
 		base_net_total = 0
 		for income_acc in income_accounts:
@@ -433,12 +402,9 @@ def get_conditions(filters):
 
 
 def get_invoices(filters, additional_query_columns):
-<<<<<<< HEAD
 	if additional_query_columns:
 		additional_query_columns = ", " + ", ".join(additional_query_columns)
 
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	conditions = get_conditions(filters)
 	return frappe.db.sql(
 		"""
@@ -447,17 +413,10 @@ def get_invoices(filters, additional_query_columns):
 		base_net_total, base_grand_total, base_rounded_total, outstanding_amount,
 		is_internal_customer, represents_company, company {0}
 		from `tabSales Invoice`
-<<<<<<< HEAD
 		where docstatus = 1 %s order by posting_date desc, name desc""".format(
 			additional_query_columns or ""
 		)
 		% conditions,
-=======
-		where docstatus = 1 {1}
-		order by posting_date desc, name desc""".format(
-			additional_query_columns, conditions
-		),
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		filters,
 		as_dict=1,
 	)

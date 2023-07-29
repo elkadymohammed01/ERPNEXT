@@ -157,11 +157,7 @@
   "party_account_currency",
   "inter_company_order_reference",
   "is_old_subcontracting_flow",
-<<<<<<< HEAD
   "dashboard"
-=======
-  "connections_tab"
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  ],
  "fields": [
   {
@@ -499,10 +495,6 @@
    "allow_bulk_edit": 1,
    "fieldname": "items",
    "fieldtype": "Table",
-<<<<<<< HEAD
-=======
-   "label": "Items",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "oldfieldname": "po_details",
    "oldfieldtype": "Table",
    "options": "Purchase Order Item",
@@ -1108,12 +1100,8 @@
   {
    "fieldname": "before_items_section",
    "fieldtype": "Section Break",
-<<<<<<< HEAD
    "hide_border": 1,
    "label": "Items"
-=======
-   "hide_border": 1
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   },
   {
    "fieldname": "items_col_break",
@@ -1197,15 +1185,12 @@
    "label": "More Info"
   },
   {
-<<<<<<< HEAD
    "fieldname": "dashboard",
    "fieldtype": "Tab Break",
    "label": "Dashboard",
    "show_dashboard": 1
   },
   {
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "fieldname": "column_break_7",
    "fieldtype": "Column Break"
   },
@@ -1280,26 +1265,13 @@
    "fieldname": "shipping_address_section",
    "fieldtype": "Section Break",
    "label": "Shipping Address"
-<<<<<<< HEAD
-=======
-  },
-  {
-   "fieldname": "connections_tab",
-   "fieldtype": "Tab Break",
-   "label": "Connections",
-   "show_dashboard": 1
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   }
  ],
  "icon": "fa fa-file-text",
  "idx": 105,
  "is_submittable": 1,
  "links": [],
-<<<<<<< HEAD
  "modified": "2023-01-28 18:59:16.322824",
-=======
- "modified": "2023-05-24 11:16:41.195340",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Buying",
  "name": "Purchase Order",

@@ -9,21 +9,7 @@ import frappe
 from frappe import _
 from frappe.model.mapper import get_mapped_doc
 from frappe.query_builder.functions import Sum
-<<<<<<< HEAD
 from frappe.utils import cint, comma_or, cstr, flt, format_time, formatdate, getdate, nowdate
-=======
-from frappe.utils import (
-	cint,
-	comma_or,
-	cstr,
-	flt,
-	format_time,
-	formatdate,
-	getdate,
-	month_diff,
-	nowdate,
-)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 import erpnext
 from erpnext.accounts.general_ledger import process_gl_map
@@ -144,10 +130,6 @@ class StockEntry(StockController):
 		self.validate_fg_completed_qty()
 		self.validate_difference_account()
 		self.set_job_card_data()
-<<<<<<< HEAD
-=======
-		self.validate_job_card_item()
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		self.set_purpose_for_stock_entry()
 		self.clean_serial_nos()
 		self.validate_duplicate_serial_no()
@@ -171,44 +153,6 @@ class StockEntry(StockController):
 			self.reset_default_field_value("from_warehouse", "items", "s_warehouse")
 			self.reset_default_field_value("to_warehouse", "items", "t_warehouse")
 
-<<<<<<< HEAD
-=======
-	def submit(self):
-		if self.is_enqueue_action():
-			frappe.msgprint(
-				_(
-					"The task has been enqueued as a background job. In case there is any issue on processing in background, the system will add a comment about the error on this Stock Reconciliation and revert to the Draft stage"
-				)
-			)
-			self.queue_action("submit", timeout=2000)
-		else:
-			self._submit()
-
-	def cancel(self):
-		if self.is_enqueue_action():
-			frappe.msgprint(
-				_(
-					"The task has been enqueued as a background job. In case there is any issue on processing in background, the system will add a comment about the error on this Stock Reconciliation and revert to the Submitted stage"
-				)
-			)
-			self.queue_action("cancel", timeout=2000)
-		else:
-			self._cancel()
-
-	def is_enqueue_action(self, force=False) -> bool:
-		if force:
-			return True
-
-		if frappe.flags.in_test:
-			return False
-
-		# If line items are more than 100 or record is older than 6 months
-		if len(self.items) > 100 or month_diff(nowdate(), self.posting_date) > 6:
-			return True
-
-		return False
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def on_submit(self):
 		self.update_stock_ledger()
 
@@ -270,27 +214,6 @@ class StockEntry(StockController):
 			self.from_bom = 1
 			self.bom_no = data.bom_no
 
-<<<<<<< HEAD
-=======
-	def validate_job_card_item(self):
-		if not self.job_card:
-			return
-
-		if cint(frappe.db.get_single_value("Manufacturing Settings", "job_card_excess_transfer")):
-			return
-
-		for row in self.items:
-			if row.job_card_item or not row.s_warehouse:
-				continue
-
-			msg = f"""Row #{row.idx}: The job card item reference
-				is missing. Kindly create the stock entry
-				from the job card. If you have added the row manually
-				then you won't be able to add job card item reference."""
-
-			frappe.throw(_(msg))
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def validate_work_order_status(self):
 		pro_doc = frappe.get_doc("Work Order", self.work_order)
 		if pro_doc.status == "Completed":
@@ -446,11 +369,7 @@ class StockEntry(StockController):
 						transferred_materials = frappe.db.sql(
 							"""
 									select
-<<<<<<< HEAD
 										sum(qty) as qty
-=======
-										sum(sed.qty) as qty
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 									from `tabStock Entry` se,`tabStock Entry Detail` sed
 									where
 										se.name = sed.parent and se.docstatus=1 and
@@ -472,23 +391,13 @@ class StockEntry(StockController):
 		if self.purpose == "Manufacture" and self.work_order:
 			for d in self.items:
 				if d.is_finished_item:
-<<<<<<< HEAD
-=======
-					if self.process_loss_qty:
-						d.qty = self.fg_completed_qty - self.process_loss_qty
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					item_wise_qty.setdefault(d.item_code, []).append(d.qty)
 
 		precision = frappe.get_precision("Stock Entry Detail", "qty")
 		for item_code, qty_list in item_wise_qty.items():
 			total = flt(sum(qty_list), precision)
 
-<<<<<<< HEAD
 			if (self.fg_completed_qty - total) > 0:
-=======
-			if (self.fg_completed_qty - total) > 0 and not self.process_loss_qty:
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				self.process_loss_qty = flt(self.fg_completed_qty - total, precision)
 				self.process_loss_percentage = flt(self.process_loss_qty * 100 / self.fg_completed_qty)
 
@@ -618,13 +527,7 @@ class StockEntry(StockController):
 
 		for d in prod_order.get("operations"):
 			total_completed_qty = flt(self.fg_completed_qty) + flt(prod_order.produced_qty)
-<<<<<<< HEAD
 			completed_qty = d.completed_qty + (allowance_percentage / 100 * d.completed_qty)
-=======
-			completed_qty = (
-				d.completed_qty + d.process_loss_qty + (allowance_percentage / 100 * d.completed_qty)
-			)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			if total_completed_qty > flt(completed_qty):
 				job_card = frappe.db.get_value("Job Card", {"operation_id": d.name}, "name")
 				if not job_card:
@@ -1606,48 +1509,16 @@ class StockEntry(StockController):
 		if self.purpose not in ("Manufacture", "Repack"):
 			return
 
-<<<<<<< HEAD
 		self.process_loss_qty = 0.0
 		if not self.process_loss_percentage:
-=======
-		precision = self.precision("process_loss_qty")
-		if self.work_order:
-			data = frappe.get_all(
-				"Work Order Operation",
-				filters={"parent": self.work_order},
-				fields=["max(process_loss_qty) as process_loss_qty"],
-			)
-
-			if data and data[0].process_loss_qty is not None:
-				process_loss_qty = data[0].process_loss_qty
-				if flt(self.process_loss_qty, precision) != flt(process_loss_qty, precision):
-					self.process_loss_qty = flt(process_loss_qty, precision)
-
-					frappe.msgprint(
-						_("The Process Loss Qty has reset as per job cards Process Loss Qty"), alert=True
-					)
-
-		if not self.process_loss_percentage and not self.process_loss_qty:
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			self.process_loss_percentage = frappe.get_cached_value(
 				"BOM", self.bom_no, "process_loss_percentage"
 			)
 
-<<<<<<< HEAD
 		if self.process_loss_percentage:
 			self.process_loss_qty = flt(
 				(flt(self.fg_completed_qty) * flt(self.process_loss_percentage)) / 100
 			)
-=======
-		if self.process_loss_percentage and not self.process_loss_qty:
-			self.process_loss_qty = flt(
-				(flt(self.fg_completed_qty) * flt(self.process_loss_percentage)) / 100
-			)
-		elif self.process_loss_qty and not self.process_loss_percentage:
-			self.process_loss_percentage = flt(
-				(flt(self.process_loss_qty) / flt(self.fg_completed_qty)) * 100
-			)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	def set_work_order_details(self):
 		if not getattr(self, "pro_doc", None):
@@ -2466,11 +2337,7 @@ def move_sample_to_retention_warehouse(company, items):
 						"basic_rate": item.get("valuation_rate"),
 						"uom": item.get("uom"),
 						"stock_uom": item.get("stock_uom"),
-<<<<<<< HEAD
 						"conversion_factor": 1.0,
-=======
-						"conversion_factor": item.get("conversion_factor") or 1.0,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 						"serial_no": sample_serial_nos,
 						"batch_no": item.get("batch_no"),
 					},
@@ -2482,11 +2349,7 @@ def move_sample_to_retention_warehouse(company, items):
 @frappe.whitelist()
 def make_stock_in_entry(source_name, target_doc=None):
 	def set_missing_values(source, target):
-<<<<<<< HEAD
 		target.set_stock_entry_type()
-=======
-		target.stock_entry_type = "Material Transfer"
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		target.set_missing_values()
 
 	def update_item(source_doc, target_doc, source_parent):

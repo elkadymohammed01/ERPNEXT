@@ -24,12 +24,6 @@ class DeliveryTrip(Document):
 		)
 
 	def validate(self):
-<<<<<<< HEAD
-=======
-		if self._action == "submit" and not self.driver:
-			frappe.throw(_("A driver must be set to submit."))
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		self.validate_stop_addresses()
 
 	def on_submit(self):

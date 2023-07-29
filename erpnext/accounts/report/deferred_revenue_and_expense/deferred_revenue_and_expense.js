@@ -48,11 +48,7 @@ function get_filters() {
 			"label": __("Start Year"),
 			"fieldtype": "Link",
 			"options": "Fiscal Year",
-<<<<<<< HEAD
 			"default": frappe.defaults.get_user_default("fiscal_year"),
-=======
-			"default": erpnext.utils.get_fiscal_year(frappe.datetime.get_today()),
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			"reqd": 1
 		},
 		{
@@ -60,11 +56,7 @@ function get_filters() {
 			"label": __("End Year"),
 			"fieldtype": "Link",
 			"options": "Fiscal Year",
-<<<<<<< HEAD
 			"default": frappe.defaults.get_user_default("fiscal_year"),
-=======
-			"default": erpnext.utils.get_fiscal_year(frappe.datetime.get_today()),
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			"reqd": 1
 		},
 		{
@@ -108,11 +100,7 @@ frappe.query_reports["Deferred Revenue and Expense"] = {
 		return default_formatter(value, row, column, data);
 	},
 	onload: function(report){
-<<<<<<< HEAD
 		let fiscal_year = frappe.defaults.get_user_default("fiscal_year");
-=======
-		let fiscal_year = erpnext.utils.get_fiscal_year(frappe.datetime.get_today());
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		frappe.model.with_doc("Fiscal Year", fiscal_year, function(r) {
 			var fy = frappe.model.get_doc("Fiscal Year", fiscal_year);

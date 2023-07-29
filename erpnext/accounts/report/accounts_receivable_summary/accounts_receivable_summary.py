@@ -31,10 +31,7 @@ class AccountsReceivableSummary(ReceivablePayableReport):
 
 	def get_data(self, args):
 		self.data = []
-<<<<<<< HEAD
 
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		self.receivables = ReceivablePayableReport(self.filters).run(args)[1]
 
 		self.get_party_total(args)
@@ -45,10 +42,6 @@ class AccountsReceivableSummary(ReceivablePayableReport):
 				self.filters.report_date,
 				self.filters.show_future_payments,
 				self.filters.company,
-<<<<<<< HEAD
-=======
-				party=self.filters.get(scrub(self.party_type)),
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			)
 			or {}
 		)
@@ -81,12 +74,6 @@ class AccountsReceivableSummary(ReceivablePayableReport):
 				row.gl_balance = gl_balance_map.get(party)
 				row.diff = flt(row.outstanding) - flt(row.gl_balance)
 
-<<<<<<< HEAD
-=======
-			if self.filters.show_future_payments:
-				row.remaining_balance = flt(row.outstanding) - flt(row.future_amount)
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			self.data.append(row)
 
 	def get_party_total(self, args):
@@ -119,10 +106,6 @@ class AccountsReceivableSummary(ReceivablePayableReport):
 					"range4": 0.0,
 					"range5": 0.0,
 					"total_due": 0.0,
-<<<<<<< HEAD
-=======
-					"future_amount": 0.0,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					"sales_person": [],
 				}
 			),
@@ -168,13 +151,6 @@ class AccountsReceivableSummary(ReceivablePayableReport):
 
 		self.setup_ageing_columns()
 
-<<<<<<< HEAD
-=======
-		if self.filters.show_future_payments:
-			self.add_column(label=_("Future Payment Amount"), fieldname="future_amount")
-			self.add_column(label=_("Remaining Balance"), fieldname="remaining_balance")
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		if self.party_type == "Customer":
 			self.add_column(
 				label=_("Territory"), fieldname="territory", fieldtype="Link", options="Territory"

@@ -264,7 +264,6 @@ def install(country=None):
 		{"doctype": "Market Segment", "market_segment": _("Upper Income")},
 		# Warehouse Type
 		{"doctype": "Warehouse Type", "name": "Transit"},
-<<<<<<< HEAD
 
 		# Client Guest
 		{
@@ -274,8 +273,6 @@ def install(country=None):
 			"customer_group": _("Individual"),
 			"territory": _("All Territories"),
 		},
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	]
 
 	for doctype, title_field, filename in (
@@ -474,17 +471,11 @@ def install_defaults(args=None):  # nosemgrep
 
 def set_global_defaults(args):
 	global_defaults = frappe.get_doc("Global Defaults", "Global Defaults")
-<<<<<<< HEAD
 	current_fiscal_year = frappe.get_all("Fiscal Year")[0]
 
 	global_defaults.update(
 		{
 			"current_fiscal_year": current_fiscal_year.name,
-=======
-
-	global_defaults.update(
-		{
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			"default_currency": args.get("currency"),
 			"default_company": args.get("company_name"),
 			"country": args.get("country"),

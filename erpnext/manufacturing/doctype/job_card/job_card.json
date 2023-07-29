@@ -38,10 +38,6 @@
   "time_logs",
   "section_break_13",
   "total_completed_qty",
-<<<<<<< HEAD
-=======
-  "process_loss_qty",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   "column_break_15",
   "total_time_in_mins",
   "section_break_8",
@@ -439,24 +435,11 @@
    "fieldname": "expected_end_date",
    "fieldtype": "Datetime",
    "label": "Expected End Date"
-<<<<<<< HEAD
-=======
-  },
-  {
-   "fieldname": "process_loss_qty",
-   "fieldtype": "Float",
-   "label": "Process Loss Qty",
-   "read_only": 1
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   }
  ],
  "is_submittable": 1,
  "links": [],
-<<<<<<< HEAD
  "modified": "2022-11-09 15:02:44.490731",
-=======
- "modified": "2023-06-09 12:04:55.534264",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Manufacturing",
  "name": "Job Card",
@@ -514,8 +497,4 @@
  "states": [],
  "title_field": "operation",
  "track_changes": 1
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)

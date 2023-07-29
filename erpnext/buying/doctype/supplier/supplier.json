@@ -457,11 +457,7 @@
    "link_fieldname": "party"
   }
  ],
-<<<<<<< HEAD
  "modified": "2022-11-09 18:02:59.075203",
-=======
- "modified": "2023-05-09 15:34:13.408932",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Buying",
  "name": "Supplier",

@@ -76,10 +76,6 @@ def execute(filters=None):
 				bin.ordered_qty,
 				bin.reserved_qty,
 				bin.reserved_qty_for_production,
-<<<<<<< HEAD
-=======
-				bin.reserved_qty_for_production_plan,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				bin.reserved_qty_for_sub_contract,
 				reserved_qty_for_pos,
 				bin.projected_qty,
@@ -178,16 +174,6 @@ def get_columns():
 			"convertible": "qty",
 		},
 		{
-<<<<<<< HEAD
-=======
-			"label": _("Reserved for Production Plan"),
-			"fieldname": "reserved_qty_for_production_plan",
-			"fieldtype": "Float",
-			"width": 100,
-			"convertible": "qty",
-		},
-		{
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			"label": _("Reserved for Sub Contracting"),
 			"fieldname": "reserved_qty_for_sub_contract",
 			"fieldtype": "Float",
@@ -246,10 +232,6 @@ def get_bin_list(filters):
 			bin.reserved_qty,
 			bin.reserved_qty_for_production,
 			bin.reserved_qty_for_sub_contract,
-<<<<<<< HEAD
-=======
-			bin.reserved_qty_for_production_plan,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			bin.projected_qty,
 		)
 		.orderby(bin.item_code, bin.warehouse)

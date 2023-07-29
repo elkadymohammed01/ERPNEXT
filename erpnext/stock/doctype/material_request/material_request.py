@@ -121,13 +121,8 @@ class MaterialRequest(BuyingController):
 			self.title = _("{0} Request for {1}").format(self.material_request_type, items)[:100]
 
 	def on_submit(self):
-<<<<<<< HEAD
 		self.update_requested_qty()
 		self.update_requested_qty_in_production_plan()
-=======
-		self.update_requested_qty_in_production_plan()
-		self.update_requested_qty()
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		if self.material_request_type == "Purchase":
 			self.validate_budget()
 
@@ -186,13 +181,8 @@ class MaterialRequest(BuyingController):
 				)
 
 	def on_cancel(self):
-<<<<<<< HEAD
 		self.update_requested_qty()
 		self.update_requested_qty_in_production_plan()
-=======
-		self.update_requested_qty_in_production_plan()
-		self.update_requested_qty()
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	def get_mr_items_ordered_qty(self, mr_items):
 		mr_items_ordered_qty = {}
@@ -283,17 +273,7 @@ class MaterialRequest(BuyingController):
 				item_wh_list.append([d.item_code, d.warehouse])
 
 		for item_code, warehouse in item_wh_list:
-<<<<<<< HEAD
 			update_bin_qty(item_code, warehouse, {"indented_qty": get_indented_qty(item_code, warehouse)})
-=======
-			update_bin_qty(
-				item_code,
-				warehouse,
-				{
-					"indented_qty": get_indented_qty(item_code, warehouse),
-				},
-			)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	def update_requested_qty_in_production_plan(self):
 		production_plans = []
@@ -639,25 +619,9 @@ def make_stock_entry(source_name, target_doc=None):
 		target.set_transfer_qty()
 		target.set_actual_qty()
 		target.calculate_rate_and_amount(raise_error_if_no_rate=False)
-<<<<<<< HEAD
 		target.set_stock_entry_type()
 		target.set_job_card_data()
 
-=======
-		target.stock_entry_type = target.purpose
-		target.set_job_card_data()
-
-		if source.job_card:
-			job_card_details = frappe.get_all(
-				"Job Card", filters={"name": source.job_card}, fields=["bom_no", "for_quantity"]
-			)
-
-			if job_card_details and job_card_details[0]:
-				target.bom_no = job_card_details[0].bom_no
-				target.fg_completed_qty = job_card_details[0].for_quantity
-				target.from_bom = 1
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	doclist = get_mapped_doc(
 		"Material Request",
 		source_name,

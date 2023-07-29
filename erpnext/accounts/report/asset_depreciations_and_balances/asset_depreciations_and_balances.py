@@ -114,7 +114,6 @@ def get_assets(filters):
 			   sum(results.depreciation_eliminated_during_the_period) as depreciation_eliminated_during_the_period,
 			   sum(results.depreciation_amount_during_the_period) as depreciation_amount_during_the_period
 		from (SELECT a.asset_category,
-<<<<<<< HEAD
 				   ifnull(sum(case when ds.schedule_date < %(from_date)s and (ifnull(a.disposal_date, 0) = 0 or a.disposal_date >= %(from_date)s) then
 								   ds.depreciation_amount
 							  else
@@ -137,8 +136,6 @@ def get_assets(filters):
 			group by a.asset_category
 			union
 			SELECT a.asset_category,
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				   ifnull(sum(case when gle.posting_date < %(from_date)s and (ifnull(a.disposal_date, 0) = 0 or a.disposal_date >= %(from_date)s) then
 								   gle.debit
 							  else
@@ -163,11 +160,7 @@ def get_assets(filters):
 				aca.parent = a.asset_category and aca.company_name = %(company)s
 			join `tabCompany` company on
 				company.name = %(company)s
-<<<<<<< HEAD
 			where a.docstatus=1 and a.company=%(company)s and a.calculate_depreciation=0 and a.purchase_date <= %(to_date)s and gle.debit != 0 and gle.is_cancelled = 0 and gle.account = ifnull(aca.depreciation_expense_account, company.depreciation_expense_account)
-=======
-			where a.docstatus=1 and a.company=%(company)s and a.purchase_date <= %(to_date)s and gle.debit != 0 and gle.is_cancelled = 0 and gle.account = ifnull(aca.depreciation_expense_account, company.depreciation_expense_account)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			group by a.asset_category
 			union
 			SELECT a.asset_category,

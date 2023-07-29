@@ -289,12 +289,7 @@
    "fieldtype": "Link",
    "label": "Company",
    "options": "Company",
-<<<<<<< HEAD
    "remember_last_selected_value": 1
-=======
-   "remember_last_selected_value": 1,
-   "reqd": 1
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   },
   {
    "fieldname": "column_break_28",

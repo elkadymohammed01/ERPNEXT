@@ -6,10 +6,6 @@ import frappe
 from frappe import _
 from frappe.utils import cstr, flt
 
-<<<<<<< HEAD
-=======
-from erpnext.accounts.doctype.accounting_dimension.accounting_dimension import get_dimensions
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 from erpnext.accounts.report.financial_statements import (
 	filter_accounts,
 	filter_out_zero_value_rows,
@@ -20,19 +16,10 @@ value_fields = ("income", "expense", "gross_profit_loss")
 
 
 def execute(filters=None):
-<<<<<<< HEAD
 	if not filters.get("based_on"):
 		filters["based_on"] = "Cost Center"
 
 	based_on = filters.based_on.replace(" ", "_").lower()
-=======
-	if filters.get("based_on") == "Accounting Dimension" and not filters.get("accounting_dimension"):
-		frappe.throw(_("Select Accounting Dimension."))
-
-	based_on = (
-		filters.based_on if filters.based_on != "Accounting Dimension" else filters.accounting_dimension
-	)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	validate_filters(filters)
 	accounts = get_accounts_data(based_on, filters.get("company"))
 	data = get_data(accounts, filters, based_on)
@@ -41,22 +28,14 @@ def execute(filters=None):
 
 
 def get_accounts_data(based_on, company):
-<<<<<<< HEAD
 	if based_on == "cost_center":
-=======
-	if based_on == "Cost Center":
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		return frappe.db.sql(
 			"""select name, parent_cost_center as parent_account, cost_center_name as account_name, lft, rgt
 			from `tabCost Center` where company=%s order by name""",
 			company,
 			as_dict=True,
 		)
-<<<<<<< HEAD
 	elif based_on == "project":
-=======
-	elif based_on == "Project":
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		return frappe.get_all("Project", fields=["name"], filters={"company": company}, order_by="name")
 	else:
 		filters = {}
@@ -77,24 +56,11 @@ def get_data(accounts, filters, based_on):
 
 	gl_entries_by_account = {}
 
-<<<<<<< HEAD
-=======
-	accounting_dimensions = get_dimensions(with_cost_center_and_project=True)[0]
-	fieldname = ""
-	for dimension in accounting_dimensions:
-		if dimension["document_type"] == based_on:
-			fieldname = dimension["fieldname"]
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	set_gl_entries_by_account(
 		filters.get("company"),
 		filters.get("from_date"),
 		filters.get("to_date"),
-<<<<<<< HEAD
 		based_on,
-=======
-		fieldname,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		gl_entries_by_account,
 		ignore_closing_entries=not flt(filters.get("with_period_closing_entry")),
 	)

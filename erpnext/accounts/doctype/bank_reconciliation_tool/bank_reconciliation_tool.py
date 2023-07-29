@@ -10,10 +10,6 @@ from frappe.model.document import Document
 from frappe.query_builder.custom import ConstantColumn
 from frappe.utils import cint, flt
 
-<<<<<<< HEAD
-=======
-from erpnext import get_default_cost_center
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 from erpnext.accounts.doctype.bank_transaction.bank_transaction import get_total_allocated_amount
 from erpnext.accounts.report.bank_reconciliation_statement.bank_reconciliation_statement import (
 	get_amounts_not_reflected_in_system,
@@ -144,12 +140,6 @@ def create_journal_entry_bts(
 					second_account
 				)
 			)
-<<<<<<< HEAD
-=======
-
-	company = frappe.get_value("Account", company_account, "company")
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	accounts = []
 	# Multi Currency?
 	accounts.append(
@@ -159,10 +149,6 @@ def create_journal_entry_bts(
 			"debit_in_account_currency": bank_transaction.withdrawal,
 			"party_type": party_type,
 			"party": party,
-<<<<<<< HEAD
-=======
-			"cost_center": get_default_cost_center(company),
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		}
 	)
 
@@ -172,18 +158,11 @@ def create_journal_entry_bts(
 			"bank_account": bank_transaction.bank_account,
 			"credit_in_account_currency": bank_transaction.withdrawal,
 			"debit_in_account_currency": bank_transaction.deposit,
-<<<<<<< HEAD
 		}
 	)
 
 	company = frappe.get_value("Account", company_account, "company")
 
-=======
-			"cost_center": get_default_cost_center(company),
-		}
-	)
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	journal_entry_dict = {
 		"voucher_type": entry_type,
 		"company": company,

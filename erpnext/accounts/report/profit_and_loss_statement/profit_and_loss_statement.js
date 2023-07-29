@@ -10,7 +10,6 @@ frappe.require("assets/erpnext/js/financial_statements.js", function() {
 
 	frappe.query_reports["Profit and Loss Statement"]["filters"].push(
 		{
-<<<<<<< HEAD
 			"fieldname": "project",
 			"label": __("Project"),
 			"fieldtype": "MultiSelectList",
@@ -19,8 +18,6 @@ frappe.require("assets/erpnext/js/financial_statements.js", function() {
 			}
 		},
 		{
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			"fieldname": "include_default_book_entries",
 			"label": __("Include Default Book Entries"),
 			"fieldtype": "Check",

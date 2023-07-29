@@ -2,14 +2,7 @@
 # For license information, please see license.txt
 
 import frappe
-<<<<<<< HEAD
 from frappe.contacts.address_and_contact import load_address_and_contact
-=======
-from frappe.contacts.address_and_contact import (
-	delete_contact_and_address,
-	load_address_and_contact,
-)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 from frappe.model.mapper import get_mapped_doc
 
 from erpnext.crm.utils import CRMNote, copy_comments, link_communications, link_open_events
@@ -23,11 +16,7 @@ class Prospect(CRMNote):
 		self.link_with_lead_contact_and_address()
 
 	def on_trash(self):
-<<<<<<< HEAD
 		self.unlink_dynamic_links()
-=======
-		delete_contact_and_address(self.doctype, self.name)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	def after_insert(self):
 		carry_forward_communication_and_comments = frappe.db.get_single_value(
@@ -65,7 +54,6 @@ class Prospect(CRMNote):
 					linked_doc.append("links", {"link_doctype": self.doctype, "link_name": self.name})
 					linked_doc.save(ignore_permissions=True)
 
-<<<<<<< HEAD
 	def unlink_dynamic_links(self):
 		links = frappe.get_all(
 			"Dynamic Link",
@@ -87,8 +75,6 @@ class Prospect(CRMNote):
 					linked_doc.remove(to_remove)
 					linked_doc.save(ignore_permissions=True)
 
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 @frappe.whitelist()
 def make_customer(source_name, target_doc=None):

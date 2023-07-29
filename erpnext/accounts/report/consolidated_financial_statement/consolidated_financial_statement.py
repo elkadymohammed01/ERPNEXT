@@ -118,10 +118,7 @@ def get_balance_sheet_data(fiscal_year, companies, columns, filters):
 		liability,
 		equity,
 		provisional_profit_loss,
-<<<<<<< HEAD
 		total_credit,
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		company_currency,
 		filters,
 		True,
@@ -659,11 +656,7 @@ def set_gl_entries_by_account(
 		if filters and filters.get("presentation_currency") != d.default_currency:
 			currency_info["company"] = d.name
 			currency_info["company_currency"] = d.default_currency
-<<<<<<< HEAD
 			convert_to_presentation_currency(gl_entries, currency_info, filters.get("company"))
-=======
-			convert_to_presentation_currency(gl_entries, currency_info)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		for entry in gl_entries:
 			if entry.account_number:

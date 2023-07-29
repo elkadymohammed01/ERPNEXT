@@ -1,18 +1,13 @@
 {
  "actions": [],
  "allow_import": 1,
-<<<<<<< HEAD
  "creation": "2013-03-07 18:50:32",
-=======
- "creation": "2023-05-29 13:02:17.121296",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "description": "A logical Warehouse against which stock entries are made.",
  "doctype": "DocType",
  "document_type": "Setup",
  "engine": "InnoDB",
  "field_order": [
   "warehouse_detail",
-<<<<<<< HEAD
   "warehouse_name",
   "column_break_3",
   "warehouse_type",
@@ -23,16 +18,6 @@
   "account",
   "company",
   "disabled",
-=======
-  "disabled",
-  "warehouse_name",
-  "column_break_3",
-  "is_group",
-  "parent_warehouse",
-  "column_break_4",
-  "account",
-  "company",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   "address_and_contact",
   "address_html",
   "column_break_10",
@@ -47,13 +32,6 @@
   "city",
   "state",
   "pin",
-<<<<<<< HEAD
-=======
-  "transit_section",
-  "warehouse_type",
-  "column_break_qajx",
-  "default_in_transit_warehouse",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   "tree_details",
   "lft",
   "rgt",
@@ -80,11 +58,7 @@
    "fieldname": "is_group",
    "fieldtype": "Check",
    "in_list_view": 1,
-<<<<<<< HEAD
    "label": "Is Group"
-=======
-   "label": "Is Group Warehouse"
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   },
   {
    "fieldname": "company",
@@ -104,11 +78,7 @@
    "default": "0",
    "fieldname": "disabled",
    "fieldtype": "Check",
-<<<<<<< HEAD
    "in_list_view": 1,
-=======
-   "hidden": 1,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "label": "Disabled"
   },
   {
@@ -194,10 +164,7 @@
   {
    "fieldname": "city",
    "fieldtype": "Data",
-<<<<<<< HEAD
    "in_list_view": 1,
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "label": "City",
    "oldfieldname": "city",
    "oldfieldtype": "Data"
@@ -271,30 +238,13 @@
    "fieldtype": "Link",
    "label": "Default In-Transit Warehouse",
    "options": "Warehouse"
-<<<<<<< HEAD
-=======
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "transit_section",
-   "fieldtype": "Section Break",
-   "label": "Transit"
-  },
-  {
-   "fieldname": "column_break_qajx",
-   "fieldtype": "Column Break"
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   }
  ],
  "icon": "fa fa-building",
  "idx": 1,
  "is_tree": 1,
  "links": [],
-<<<<<<< HEAD
  "modified": "2022-03-01 02:37:48.034944",
-=======
- "modified": "2023-05-29 13:10:43.333160",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Warehouse",
@@ -311,10 +261,7 @@
    "read": 1,
    "report": 1,
    "role": "Item Manager",
-<<<<<<< HEAD
    "set_user_permissions": 1,
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "share": 1,
    "write": 1
   },

@@ -50,23 +50,13 @@ class AccountingDimension(Document):
 		if frappe.flags.in_test:
 			make_dimension_in_accounting_doctypes(doc=self)
 		else:
-<<<<<<< HEAD
 			frappe.enqueue(make_dimension_in_accounting_doctypes, doc=self, queue="long")
-=======
-			frappe.enqueue(
-				make_dimension_in_accounting_doctypes, doc=self, queue="long", enqueue_after_commit=True
-			)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	def on_trash(self):
 		if frappe.flags.in_test:
 			delete_accounting_dimension(doc=self)
 		else:
-<<<<<<< HEAD
 			frappe.enqueue(delete_accounting_dimension, doc=self, queue="long")
-=======
-			frappe.enqueue(delete_accounting_dimension, doc=self, queue="long", enqueue_after_commit=True)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	def set_fieldname_and_label(self):
 		if not self.label:
@@ -279,15 +269,6 @@ def get_dimensions(with_cost_center_and_project=False):
 		as_dict=1,
 	)
 
-<<<<<<< HEAD
-=======
-	if isinstance(with_cost_center_and_project, str):
-		if with_cost_center_and_project.lower().strip() == "true":
-			with_cost_center_and_project = True
-		else:
-			with_cost_center_and_project = False
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	if with_cost_center_and_project:
 		dimension_filters.extend(
 			[

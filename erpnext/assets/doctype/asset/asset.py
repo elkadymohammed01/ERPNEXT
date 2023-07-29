@@ -26,10 +26,6 @@ from erpnext.accounts.general_ledger import make_reverse_gl_entries
 from erpnext.assets.doctype.asset.depreciation import (
 	get_depreciation_accounts,
 	get_disposal_account_and_cost_center,
-<<<<<<< HEAD
-=======
-	is_first_day_of_the_month,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	is_last_day_of_the_month,
 )
 from erpnext.assets.doctype.asset_category.asset_category import get_asset_category_account
@@ -341,7 +337,6 @@ class Asset(AccountsController):
 				if should_get_last_day:
 					schedule_date = get_last_day(schedule_date)
 
-<<<<<<< HEAD
 				# schedule date will be a year later from start date
 				# so monthly schedule date is calculated by removing 11 months from it
 				monthly_schedule_date = add_months(schedule_date, -finance_book.frequency_of_depreciation + 1)
@@ -349,11 +344,6 @@ class Asset(AccountsController):
 			# if asset is being sold
 			if date_of_disposal:
 				from_date = self.get_from_date(finance_book.finance_book)
-=======
-			# if asset is being sold
-			if date_of_disposal:
-				from_date = self.get_from_date_for_disposal(finance_book)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				depreciation_amount, days, months = self.get_pro_rata_amt(
 					finance_book,
 					depreciation_amount,
@@ -374,15 +364,9 @@ class Asset(AccountsController):
 
 			# For first row
 			if (
-<<<<<<< HEAD
 				(has_pro_rata or has_wdv_or_dd_non_yearly_pro_rata)
 				and not self.opening_accumulated_depreciation
 				and n == 0
-=======
-				n == 0
-				and (has_pro_rata or has_wdv_or_dd_non_yearly_pro_rata)
-				and not self.opening_accumulated_depreciation
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			):
 				from_date = add_days(
 					self.available_for_use_date, -1
@@ -394,33 +378,10 @@ class Asset(AccountsController):
 					finance_book.depreciation_start_date,
 					has_wdv_or_dd_non_yearly_pro_rata,
 				)
-<<<<<<< HEAD
 
 				# For first depr schedule date will be the start date
 				# so monthly schedule date is calculated by removing month difference between use date and start date
 				monthly_schedule_date = add_months(finance_book.depreciation_start_date, -months + 1)
-=======
-			elif n == 0 and has_wdv_or_dd_non_yearly_pro_rata and self.opening_accumulated_depreciation:
-				if not is_first_day_of_the_month(getdate(self.available_for_use_date)):
-					from_date = get_last_day(
-						add_months(
-							getdate(self.available_for_use_date),
-							((self.number_of_depreciations_booked - 1) * finance_book.frequency_of_depreciation),
-						)
-					)
-				else:
-					from_date = add_months(
-						getdate(add_days(self.available_for_use_date, -1)),
-						(self.number_of_depreciations_booked * finance_book.frequency_of_depreciation),
-					)
-				depreciation_amount, days, months = self.get_pro_rata_amt(
-					finance_book,
-					depreciation_amount,
-					from_date,
-					finance_book.depreciation_start_date,
-					has_wdv_or_dd_non_yearly_pro_rata,
-				)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 			# For last row
 			elif has_pro_rata and n == cint(number_of_pending_depreciations) - 1:
@@ -445,13 +406,9 @@ class Asset(AccountsController):
 					depreciation_amount_without_pro_rata, depreciation_amount, finance_book.finance_book
 				)
 
-<<<<<<< HEAD
 				monthly_schedule_date = add_months(schedule_date, 1)
 				schedule_date = add_days(schedule_date, days)
 				last_schedule_date = schedule_date
-=======
-				schedule_date = add_days(schedule_date, days)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 			if not depreciation_amount:
 				continue
@@ -468,11 +425,7 @@ class Asset(AccountsController):
 				depreciation_amount += value_after_depreciation - finance_book.expected_value_after_useful_life
 				skip_row = True
 
-<<<<<<< HEAD
 			if depreciation_amount > 0:
-=======
-			if flt(depreciation_amount, self.precision("gross_purchase_amount")) > 0:
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				self._add_depreciation_row(
 					schedule_date,
 					depreciation_amount,
@@ -547,29 +500,16 @@ class Asset(AccountsController):
 
 		return start
 
-<<<<<<< HEAD
 	def get_from_date(self, finance_book):
 		if not self.get("schedules"):
 			return self.available_for_use_date
-=======
-	def get_from_date_for_disposal(self, finance_book):
-		if not self.get("schedules"):
-			return add_months(
-				getdate(self.available_for_use_date),
-				(self.number_of_depreciations_booked * finance_book.frequency_of_depreciation),
-			)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		if len(self.finance_books) == 1:
 			return self.schedules[-1].schedule_date
 
 		from_date = ""
 		for schedule in self.get("schedules"):
-<<<<<<< HEAD
 			if schedule.finance_book == finance_book:
-=======
-			if schedule.finance_book == finance_book.finance_book:
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				from_date = schedule.schedule_date
 
 		if from_date:
@@ -1347,17 +1287,9 @@ def get_straight_line_or_manual_depr_amount(asset, row):
 		)
 	# if the Depreciation Schedule is being prepared for the first time
 	else:
-<<<<<<< HEAD
 		return (flt(asset.gross_purchase_amount) - flt(row.expected_value_after_useful_life)) / flt(
 			row.total_number_of_depreciations
 		)
-=======
-		return (
-			flt(asset.gross_purchase_amount)
-			- flt(asset.opening_accumulated_depreciation)
-			- flt(row.expected_value_after_useful_life)
-		) / flt(row.total_number_of_depreciations - asset.number_of_depreciations_booked)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 
 def get_wdv_or_dd_depr_amount(
@@ -1465,11 +1397,6 @@ def create_new_asset_after_split(asset, split_qty):
 	)
 
 	new_asset.gross_purchase_amount = new_gross_purchase_amount
-<<<<<<< HEAD
-=======
-	if asset.purchase_receipt_amount:
-		new_asset.purchase_receipt_amount = new_gross_purchase_amount
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	new_asset.opening_accumulated_depreciation = opening_accumulated_depreciation
 	new_asset.asset_quantity = split_qty
 	new_asset.split_from = asset.name

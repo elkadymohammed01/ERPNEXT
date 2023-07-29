@@ -181,19 +181,6 @@ class ReceivablePayableReport(object):
 				return
 
 		key = (ple.against_voucher_type, ple.against_voucher_no, ple.party)
-<<<<<<< HEAD
-=======
-
-		# If payment is made against credit note
-		# and credit note is made against a Sales Invoice
-		# then consider the payment against original sales invoice.
-		if ple.against_voucher_type in ("Sales Invoice", "Purchase Invoice"):
-			if ple.against_voucher_no in self.return_entries:
-				return_against = self.return_entries.get(ple.against_voucher_no)
-				if return_against:
-					key = (ple.against_voucher_type, return_against, ple.party)
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		row = self.voucher_balance.get(key)
 
 		if not row:
@@ -623,11 +610,7 @@ class ReceivablePayableReport(object):
 
 	def get_return_entries(self):
 		doctype = "Sales Invoice" if self.party_type == "Customer" else "Purchase Invoice"
-<<<<<<< HEAD
 		filters = {"is_return": 1, "docstatus": 1}
-=======
-		filters = {"is_return": 1, "docstatus": 1, "company": self.filters.company}
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		party_field = scrub(self.filters.party_type)
 		if self.filters.get(party_field):
 			filters.update({party_field: self.filters.get(party_field)})

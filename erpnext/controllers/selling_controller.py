@@ -43,10 +43,7 @@ class SellingController(StockController):
 		self.validate_auto_repeat_subscription_dates()
 
 	def set_missing_values(self, for_validate=False):
-<<<<<<< HEAD
 
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		super(SellingController, self).set_missing_values(for_validate)
 
 		# set contact and address details for customer, if they are not mentioned
@@ -65,11 +62,7 @@ class SellingController(StockController):
 		elif self.doctype == "Quotation" and self.party_name:
 			if self.quotation_to == "Customer":
 				customer = self.party_name
-<<<<<<< HEAD
 			else:
-=======
-			elif self.quotation_to == "Lead":
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				lead = self.party_name
 
 		if customer:
@@ -178,11 +171,7 @@ class SellingController(StockController):
 			self.round_floats_in(sales_person)
 
 			sales_person.allocated_amount = flt(
-<<<<<<< HEAD
 				self.amount_eligible_for_commission * sales_person.allocated_percentage / 100.0,
-=======
-				flt(self.amount_eligible_for_commission) * sales_person.allocated_percentage / 100.0,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				self.precision("allocated_amount", sales_person),
 			)
 

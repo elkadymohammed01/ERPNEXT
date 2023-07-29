@@ -6,11 +6,7 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 from frappe.model.naming import make_autoname, revert_series_if_last
-<<<<<<< HEAD
 from frappe.query_builder.functions import CurDate, Sum, Timestamp
-=======
-from frappe.query_builder.functions import CombineDatetime, CurDate, Sum
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 from frappe.utils import cint, flt, get_link_to_form, nowtime
 from frappe.utils.data import add_days
 from frappe.utils.jinja import render_template
@@ -196,12 +192,7 @@ def get_batch_qty(
 				posting_time = nowtime()
 
 			query = query.where(
-<<<<<<< HEAD
 				Timestamp(sle.posting_date, sle.posting_time) <= Timestamp(posting_date, posting_time)
-=======
-				CombineDatetime(sle.posting_date, sle.posting_time)
-				<= CombineDatetime(posting_date, posting_time)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			)
 
 		out = query.run(as_list=True)[0][0] or 0
@@ -385,11 +376,7 @@ def get_pos_reserved_batch_qty(filters):
 
 	p = frappe.qb.DocType("POS Invoice").as_("p")
 	item = frappe.qb.DocType("POS Invoice Item").as_("item")
-<<<<<<< HEAD
 	sum_qty = frappe.query_builder.functions.Sum(item.qty).as_("qty")
-=======
-	sum_qty = frappe.query_builder.functions.Sum(item.stock_qty).as_("qty")
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	reserved_batch_qty = (
 		frappe.qb.from_(p)

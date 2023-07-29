@@ -3,14 +3,7 @@
 
 import frappe
 from frappe import _
-<<<<<<< HEAD
 from frappe.contacts.address_and_contact import load_address_and_contact
-=======
-from frappe.contacts.address_and_contact import (
-	delete_contact_and_address,
-	load_address_and_contact,
-)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 from frappe.email.inbox import link_communication_to_document
 from frappe.model.mapper import get_mapped_doc
 from frappe.utils import comma_and, get_link_to_form, has_gravatar, validate_email_address
@@ -50,14 +43,9 @@ class Lead(SellingController, CRMNote):
 		self.update_prospect()
 
 	def on_trash(self):
-<<<<<<< HEAD
 		frappe.db.sql("""update `tabIssue` set lead='' where lead=%s""", self.name)
 
 		self.unlink_dynamic_links()
-=======
-		frappe.db.set_value("Issue", {"lead": self.name}, "lead", None)
-		delete_contact_and_address(self.doctype, self.name)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		self.remove_link_from_prospect()
 
 	def set_full_name(self):
@@ -134,7 +122,6 @@ class Lead(SellingController, CRMNote):
 			)
 			lead_row.db_update()
 
-<<<<<<< HEAD
 	def unlink_dynamic_links(self):
 		links = frappe.get_all(
 			"Dynamic Link",
@@ -156,8 +143,6 @@ class Lead(SellingController, CRMNote):
 					linked_doc.remove(to_remove)
 					linked_doc.save(ignore_permissions=True)
 
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def remove_link_from_prospect(self):
 		prospects = self.get_linked_prospects()
 

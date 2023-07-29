@@ -28,7 +28,6 @@ class AssetMovement(Document):
 	def validate_location(self):
 		for d in self.assets:
 			if self.purpose in ["Transfer", "Issue"]:
-<<<<<<< HEAD
 				if not d.source_location:
 					d.source_location = frappe.db.get_value("Asset", d.asset, "location")
 
@@ -38,29 +37,16 @@ class AssetMovement(Document):
 				if d.source_location:
 					current_location = frappe.db.get_value("Asset", d.asset, "location")
 
-=======
-				current_location = frappe.db.get_value("Asset", d.asset, "location")
-				if d.source_location:
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					if current_location != d.source_location:
 						frappe.throw(
 							_("Asset {0} does not belongs to the location {1}").format(d.asset, d.source_location)
 						)
-<<<<<<< HEAD
-=======
-				else:
-					d.source_location = current_location
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 			if self.purpose == "Issue":
 				if d.target_location:
 					frappe.throw(
 						_(
-<<<<<<< HEAD
 							"Issuing cannot be done to a location. Please enter employee who has issued Asset {0}"
-=======
-							"Issuing cannot be done to a location. Please enter employee to issue the Asset {0} to"
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 						).format(d.asset),
 						title=_("Incorrect Movement Purpose"),
 					)
@@ -81,17 +67,12 @@ class AssetMovement(Document):
 					frappe.throw(_("Source and Target Location cannot be same"))
 
 			if self.purpose == "Receipt":
-<<<<<<< HEAD
 				# only when asset is bought and first entry is made
 				if not d.source_location and not (d.target_location or d.to_employee):
-=======
-				if not (d.source_location) and not (d.target_location or d.to_employee):
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					frappe.throw(
 						_("Target Location or To Employee is required while receiving Asset {0}").format(d.asset)
 					)
 				elif d.source_location:
-<<<<<<< HEAD
 					# when asset is received from an employee
 					if d.target_location and not d.from_employee:
 						frappe.throw(
@@ -99,23 +80,14 @@ class AssetMovement(Document):
 								d.asset
 							)
 						)
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					if d.from_employee and not d.target_location:
 						frappe.throw(
 							_("Target Location is required while receiving Asset {0} from an employee").format(d.asset)
 						)
-<<<<<<< HEAD
 					if d.to_employee and d.target_location:
 						frappe.throw(
 							_(
 								"Asset {0} cannot be received at a location and given to employee in a single movement"
-=======
-					elif d.to_employee and d.target_location:
-						frappe.throw(
-							_(
-								"Asset {0} cannot be received at a location and given to an employee in a single movement"
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 							).format(d.asset)
 						)
 
@@ -135,21 +107,12 @@ class AssetMovement(Document):
 				)
 
 	def on_submit(self):
-<<<<<<< HEAD
 		self.set_latest_location_in_asset()
 
 	def on_cancel(self):
 		self.set_latest_location_in_asset()
 
 	def set_latest_location_in_asset(self):
-=======
-		self.set_latest_location_and_custodian_in_asset()
-
-	def on_cancel(self):
-		self.set_latest_location_and_custodian_in_asset()
-
-	def set_latest_location_and_custodian_in_asset(self):
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		current_location, current_employee = "", ""
 		cond = "1=1"
 

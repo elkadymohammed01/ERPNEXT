@@ -395,12 +395,7 @@
    "no_copy": 1,
    "options": "Material Request",
    "print_hide": 1,
-<<<<<<< HEAD
    "read_only": 1
-=======
-   "read_only": 1,
-   "search_index": 1
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   },
   {
    "fieldname": "material_request_item",
@@ -576,11 +571,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
-<<<<<<< HEAD
  "modified": "2023-01-03 14:51:16.575515",
-=======
- "modified": "2023-05-09 12:41:18.210864",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Stock Entry Detail",

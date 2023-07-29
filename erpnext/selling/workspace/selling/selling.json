@@ -5,24 +5,14 @@
    "label": "Sales Order Trends"
   }
  ],
-<<<<<<< HEAD
  "content": "[{\"type\":\"onboarding\",\"data\":{\"onboarding_name\":\"Selling\",\"col\":12}},{\"type\":\"chart\",\"data\":{\"chart_name\":\"Sales Order Trends\",\"col\":12}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Access</b></span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Analytics\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order Analysis\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"Selling\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Items and Pricing\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Key Reports\",\"col\":4}},{\"type\":\"card\",\"data\":{\"card_name\":\"Other Reports\",\"col\":4}}]",
  "creation": "2020-01-28 11:49:12.092882",
-=======
- "content": "[{\"id\":\"ow595dYDrI\",\"type\":\"onboarding\",\"data\":{\"onboarding_name\":\"Selling\",\"col\":12}},{\"id\":\"vBSf8Vi9U8\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Sales Order Trends\",\"col\":12}},{\"id\":\"aW2i5R5GRP\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"1it3dCOnm6\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Access</b></span>\",\"col\":12}},{\"id\":\"x7pLl-spS4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"SSGrXWmY-H\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Order\",\"col\":3}},{\"id\":\"-5J_yLxDaS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Analytics\",\"col\":3}},{\"id\":\"6YEYpnIBKV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Point of Sale\",\"col\":3}},{\"id\":\"c_GjZuZ2oN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"oNjjNbnUHp\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"0BcePLg0g1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"uze5dJ1ipL\",\"type\":\"card\",\"data\":{\"card_name\":\"Selling\",\"col\":4}},{\"id\":\"3j2fYwMAkq\",\"type\":\"card\",\"data\":{\"card_name\":\"Point of Sale\",\"col\":4}},{\"id\":\"xImm8NepFt\",\"type\":\"card\",\"data\":{\"card_name\":\"Items and Pricing\",\"col\":4}},{\"id\":\"6MjIe7KCQo\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"lBu2EKgmJF\",\"type\":\"card\",\"data\":{\"card_name\":\"Key Reports\",\"col\":4}},{\"id\":\"1ARHrjg4kI\",\"type\":\"card\",\"data\":{\"card_name\":\"Other Reports\",\"col\":4}}]",
- "creation": "2020-01-28 11:49:12.092882",
- "custom_blocks": [],
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
  "hide_custom": 0,
  "icon": "sell",
  "idx": 0,
-<<<<<<< HEAD
-=======
- "is_hidden": 0,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "label": "Selling",
  "links": [
   {
@@ -327,18 +317,12 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-<<<<<<< HEAD
    "label": "Other Reports",
    "link_count": 12,
-=======
-   "label": "Point of Sale",
-   "link_count": 6,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "onboard": 0,
    "type": "Card Break"
   },
   {
-<<<<<<< HEAD
    "dependencies": "Lead",
    "hidden": 0,
    "is_query_report": 1,
@@ -346,19 +330,10 @@
    "link_count": 0,
    "link_to": "Lead Details",
    "link_type": "Report",
-=======
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Point-of-Sale Profile",
-   "link_count": 0,
-   "link_to": "POS Profile",
-   "link_type": "DocType",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "onboard": 0,
    "type": "Link"
   },
   {
-<<<<<<< HEAD
    "dependencies": "Address",
    "hidden": 0,
    "is_query_report": 1,
@@ -366,19 +341,10 @@
    "link_count": 0,
    "link_to": "Address And Contacts",
    "link_type": "Report",
-=======
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "POS Settings",
-   "link_count": 0,
-   "link_to": "POS Settings",
-   "link_type": "DocType",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "onboard": 0,
    "type": "Link"
   },
   {
-<<<<<<< HEAD
    "dependencies": "Item",
    "hidden": 0,
    "is_query_report": 1,
@@ -386,19 +352,10 @@
    "link_count": 0,
    "link_to": "Available Stock for Packing Items",
    "link_type": "Report",
-=======
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "POS Opening Entry",
-   "link_count": 0,
-   "link_to": "POS Opening Entry",
-   "link_type": "DocType",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "onboard": 0,
    "type": "Link"
   },
   {
-<<<<<<< HEAD
    "dependencies": "Sales Order",
    "hidden": 0,
    "is_query_report": 1,
@@ -406,19 +363,10 @@
    "link_count": 0,
    "link_to": "Pending SO Items For Purchase Request",
    "link_type": "Report",
-=======
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "POS Closing Entry",
-   "link_count": 0,
-   "link_to": "POS Closing Entry",
-   "link_type": "DocType",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "onboard": 0,
    "type": "Link"
   },
   {
-<<<<<<< HEAD
    "dependencies": "Delivery Note",
    "hidden": 0,
    "is_query_report": 1,
@@ -426,19 +374,10 @@
    "link_count": 0,
    "link_to": "Delivery Note Trends",
    "link_type": "Report",
-=======
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Loyalty Program",
-   "link_count": 0,
-   "link_to": "Loyalty Program",
-   "link_type": "DocType",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "onboard": 0,
    "type": "Link"
   },
   {
-<<<<<<< HEAD
    "dependencies": "Sales Invoice",
    "hidden": 0,
    "is_query_report": 1,
@@ -512,14 +451,6 @@
    "link_count": 0,
    "link_to": "Sales Partner Target Variance based on Item Group",
    "link_type": "Report",
-=======
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Loyalty Point Entry",
-   "link_count": 0,
-   "link_to": "Loyalty Point Entry",
-   "link_type": "DocType",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "onboard": 0,
    "type": "Link"
   },
@@ -527,11 +458,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Key Reports",
-<<<<<<< HEAD
    "link_count": 22,
-=======
-   "link_count": 9,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "onboard": 0,
    "type": "Card Break"
   },
@@ -635,7 +562,6 @@
    "type": "Link"
   },
   {
-<<<<<<< HEAD
    "dependencies": "Lead",
    "hidden": 0,
    "is_query_report": 1,
@@ -645,14 +571,6 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
-=======
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Other Reports",
-   "link_count": 11,
-   "onboard": 0,
-   "type": "Card Break"
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   },
   {
    "dependencies": "Address",
@@ -774,7 +692,6 @@
    "link_type": "Report",
    "onboard": 0,
    "type": "Link"
-<<<<<<< HEAD
   },
   {
    "hidden": 0,
@@ -799,29 +716,6 @@
  "sequence_id": 23.0,
  "shortcuts": [
   {
-=======
-  }
- ],
- "modified": "2023-05-26 16:31:53.634851",
- "modified_by": "Administrator",
- "module": "Selling",
- "name": "Selling",
- "number_cards": [],
- "owner": "Administrator",
- "parent_page": "",
- "public": 1,
- "quick_lists": [],
- "restrict_to_domain": "",
- "roles": [],
- "sequence_id": 6.0,
- "shortcuts": [
-  {
-   "label": "Point of Sale",
-   "link_to": "point-of-sale",
-   "type": "Page"
-  },
-  {
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "color": "Grey",
    "format": "{} Available",
    "label": "Item",
@@ -846,14 +740,11 @@
    "type": "Report"
   },
   {
-<<<<<<< HEAD
    "label": "Sales Order Analysis",
    "link_to": "Sales Order Analysis",
    "type": "Report"
   },
   {
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "label": "Dashboard",
    "link_to": "Selling",
    "type": "Dashboard"

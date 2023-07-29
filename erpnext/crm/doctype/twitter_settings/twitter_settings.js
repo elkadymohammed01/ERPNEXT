@@ -14,11 +14,7 @@ frappe.ui.form.on('Twitter Settings', {
 				}
 			);
 		}
-<<<<<<< HEAD
 		frm.dashboard.set_headline(__("For more information, {0}.", [`<a target='_blank' href='https://docs.erpnext.com/docs/user/manual/en/CRM/twitter-settings'>${__('Click here')}</a>`]));
-=======
-		frm.dashboard.set_headline(__("For more information, {0}.", [`<a target='_blank' href='https://docs.erpnext.com/docs/user/manual/en/CRM/twitter-settings'>${__('click here')}</a>`]));
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	},
 	refresh: function(frm) {
 		let msg, color, flag=false;

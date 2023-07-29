@@ -68,11 +68,7 @@ erpnext.timesheet.control_timer = function(frm, dialog, row, timestamp=0) {
 			// New activity if no activities found
 			var args = dialog.get_values();
 			if(!args) return;
-<<<<<<< HEAD
 			if (frm.doc.time_logs.length <= 1 && !frm.doc.time_logs[0].activity_type && !frm.doc.time_logs[0].from_time) {
-=======
-			if (frm.doc.time_logs.length == 1 && !frm.doc.time_logs[0].activity_type && !frm.doc.time_logs[0].from_time) {
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				frm.doc.time_logs = [];
 			}
 			row = frappe.model.add_child(frm.doc, "Timesheet Detail", "time_logs");

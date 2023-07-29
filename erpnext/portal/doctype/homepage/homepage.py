@@ -10,11 +10,7 @@ from frappe.website.utils import delete_page_cache
 class Homepage(Document):
 	def validate(self):
 		if not self.description:
-<<<<<<< HEAD
 			self.description = frappe._("Ehsan helps you solve all your administrative problems, as well as expand your activity and control it in an amazing way .")
-=======
-			self.description = frappe._("This is an example website auto-generated from ERPNext")
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		delete_page_cache("home")
 
 	def setup_items(self):

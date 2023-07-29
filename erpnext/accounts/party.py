@@ -2,11 +2,6 @@
 # License: GNU General Public License v3. See license.txt
 
 
-<<<<<<< HEAD
-=======
-from typing import Optional
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 import frappe
 from frappe import _, msgprint, scrub
 from frappe.contacts.doctype.address.address import (
@@ -36,10 +31,6 @@ import erpnext
 from erpnext import get_company_currency
 from erpnext.accounts.utils import get_fiscal_year
 from erpnext.exceptions import InvalidAccountCurrency, PartyDisabled, PartyFrozen
-<<<<<<< HEAD
-=======
-from erpnext.utilities.regional import temporary_flag
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 PURCHASE_TRANSACTION_TYPES = {"Purchase Order", "Purchase Receipt", "Purchase Invoice"}
 SALES_TRANSACTION_TYPES = {
@@ -268,12 +259,7 @@ def set_address_details(
 	)
 
 	if doctype in TRANSACTION_TYPES:
-<<<<<<< HEAD
 		get_regional_address_details(party_details, doctype, company)
-=======
-		with temporary_flag("company", company):
-			get_regional_address_details(party_details, doctype, company)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	return party_address, shipping_address
 
@@ -659,21 +645,12 @@ def set_taxes(
 	else:
 		args.update(get_party_details(party, party_type))
 
-<<<<<<< HEAD
 	if party_type in ("Customer", "Lead"):
 		args.update({"tax_type": "Sales"})
 
 		if party_type == "Lead":
 			args["customer"] = None
 			del args["lead"]
-=======
-	if party_type in ("Customer", "Lead", "Prospect"):
-		args.update({"tax_type": "Sales"})
-
-		if party_type in ["Lead", "Prospect"]:
-			args["customer"] = None
-			del args[frappe.scrub(party_type)]
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	else:
 		args.update({"tax_type": "Purchase"})
 
@@ -871,11 +848,7 @@ def get_dashboard_info(party_type, party, loyalty_program=None):
 	return company_wise_info
 
 
-<<<<<<< HEAD
 def get_party_shipping_address(doctype, name):
-=======
-def get_party_shipping_address(doctype: str, name: str) -> Optional[str]:
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	"""
 	Returns an Address name (best guess) for the given doctype and name for which `address_type == 'Shipping'` is true.
 	and/or `is_shipping_address = 1`.
@@ -886,7 +859,6 @@ def get_party_shipping_address(doctype: str, name: str) -> Optional[str]:
 	:param name: Party name
 	:return: String
 	"""
-<<<<<<< HEAD
 	out = frappe.db.sql(
 		"SELECT dl.parent "
 		"from `tabDynamic Link` dl join `tabAddress` ta on dl.parent=ta.name "
@@ -907,50 +879,17 @@ def get_party_shipping_address(doctype: str, name: str) -> Optional[str]:
 
 def get_partywise_advanced_payment_amount(
 	party_type, posting_date=None, future_payment=0, company=None
-=======
-	shipping_addresses = frappe.get_all(
-		"Address",
-		filters=[
-			["Dynamic Link", "link_doctype", "=", doctype],
-			["Dynamic Link", "link_name", "=", name],
-			["disabled", "=", 0],
-		],
-		or_filters=[
-			["is_shipping_address", "=", 1],
-			["address_type", "=", "Shipping"],
-		],
-		pluck="name",
-		limit=1,
-		order_by="is_shipping_address DESC",
-	)
-
-	return shipping_addresses[0] if shipping_addresses else None
-
-
-def get_partywise_advanced_payment_amount(
-	party_type, posting_date=None, future_payment=0, company=None, party=None
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 ):
 	cond = "1=1"
 	if posting_date:
 		if future_payment:
-<<<<<<< HEAD
 			cond = "posting_date <= '{0}' OR DATE(creation) <= '{0}' " "".format(posting_date)
-=======
-			cond = "(posting_date <= '{0}' OR DATE(creation) <= '{0}')" "".format(posting_date)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		else:
 			cond = "posting_date <= '{0}'".format(posting_date)
 
 	if company:
 		cond += "and company = {0}".format(frappe.db.escape(company))
 
-<<<<<<< HEAD
-=======
-	if party:
-		cond += "and party = {0}".format(frappe.db.escape(party))
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	data = frappe.db.sql(
 		""" SELECT party, sum({0}) as amount
 		FROM `tabGL Entry`
@@ -962,15 +901,11 @@ def get_partywise_advanced_payment_amount(
 		),
 		party_type,
 	)
-<<<<<<< HEAD
 
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	if data:
 		return frappe._dict(data)
 
 
-<<<<<<< HEAD
 def get_default_contact(doctype, name):
 	"""
 	Returns default contact for the given doctype and name.
@@ -996,34 +931,6 @@ def get_default_contact(doctype, name):
 			return None
 	else:
 		return None
-=======
-def get_default_contact(doctype: str, name: str) -> Optional[str]:
-	"""
-	Returns contact name only if there is a primary contact for given doctype and name.
-
-	Else returns None
-
-	:param doctype: Party Doctype
-	:param name: Party name
-	:return: String
-	"""
-	contacts = frappe.get_all(
-		"Contact",
-		filters=[
-			["Dynamic Link", "link_doctype", "=", doctype],
-			["Dynamic Link", "link_name", "=", name],
-		],
-		or_filters=[
-			["is_primary_contact", "=", 1],
-			["is_billing_contact", "=", 1],
-		],
-		pluck="name",
-		limit=1,
-		order_by="is_primary_contact DESC, is_billing_contact DESC",
-	)
-
-	return contacts[0] if contacts else None
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 
 def add_party_account(party_type, party, company, account):

@@ -4,10 +4,7 @@
 import frappe
 from frappe import _
 from frappe.utils import cstr, getdate
-<<<<<<< HEAD
 from .default_website import website_maker
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 
 def create_fiscal_year_and_company(args):
@@ -51,7 +48,6 @@ def enable_shopping_cart(args):  # nosemgrep
 	).insert()
 
 
-<<<<<<< HEAD
 def create_email_digest():
 	from frappe.utils.user import get_system_managers
 
@@ -129,8 +125,6 @@ def create_website(args):
 	website_maker(args)
 
 
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 def get_fy_details(fy_start_date, fy_end_date):
 	start_year = getdate(fy_start_date).year
 	if start_year == getdate(fy_end_date).year:

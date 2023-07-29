@@ -51,7 +51,6 @@ GL_REPOSTING_CHUNK = 100
 
 @frappe.whitelist()
 def get_fiscal_year(
-<<<<<<< HEAD
 	date=None, fiscal_year=None, label="Date", verbose=1, company=None, as_dict=False
 ):
 	return get_fiscal_years(date, fiscal_year, label, verbose, company, as_dict=as_dict)[0]
@@ -59,27 +58,6 @@ def get_fiscal_year(
 
 def get_fiscal_years(
 	transaction_date=None, fiscal_year=None, label="Date", verbose=1, company=None, as_dict=False
-=======
-	date=None, fiscal_year=None, label="Date", verbose=1, company=None, as_dict=False, boolean=False
-):
-	fiscal_years = get_fiscal_years(
-		date, fiscal_year, label, verbose, company, as_dict=as_dict, boolean=boolean
-	)
-	if boolean:
-		return fiscal_years
-	else:
-		return fiscal_years[0]
-
-
-def get_fiscal_years(
-	transaction_date=None,
-	fiscal_year=None,
-	label="Date",
-	verbose=1,
-	company=None,
-	as_dict=False,
-	boolean=False,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 ):
 	fiscal_years = frappe.cache().hget("fiscal_years", company) or []
 
@@ -143,17 +121,8 @@ def get_fiscal_years(
 	if company:
 		error_msg = _("""{0} for {1}""").format(error_msg, frappe.bold(company))
 
-<<<<<<< HEAD
 	if verbose == 1:
 		frappe.msgprint(error_msg)
-=======
-	if boolean:
-		return False
-
-	if verbose == 1:
-		frappe.msgprint(error_msg)
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	raise FiscalYearError(error_msg)
 
 
@@ -252,14 +221,11 @@ def get_balance_on(
 		if not (frappe.flags.ignore_account_permission or ignore_account_permission):
 			acc.check_permission("read")
 
-<<<<<<< HEAD
 		if report_type == "Profit and Loss":
 			# for pl accounts, get balance within a fiscal year
 			cond.append(
 				"posting_date >= '%s' and voucher_type != 'Period Closing Voucher'" % year_start_date
 			)
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		# different filter for group and ledger - improved performance
 		if acc.is_group:
 			cond.append(
@@ -454,11 +420,7 @@ def add_cc(args=None):
 	return cc.name
 
 
-<<<<<<< HEAD
 def reconcile_against_document(args):  # nosemgrep
-=======
-def reconcile_against_document(args, skip_ref_details_update_for_pe=False):  # nosemgrep
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	"""
 	Cancel PE or JV, Update against document, split if required and resubmit
 	"""
@@ -487,13 +449,7 @@ def reconcile_against_document(args, skip_ref_details_update_for_pe=False):  # n
 			if voucher_type == "Journal Entry":
 				update_reference_in_journal_entry(entry, doc, do_not_save=True)
 			else:
-<<<<<<< HEAD
 				update_reference_in_payment_entry(entry, doc, do_not_save=True)
-=======
-				update_reference_in_payment_entry(
-					entry, doc, do_not_save=True, skip_ref_details_update_for_pe=skip_ref_details_update_for_pe
-				)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		doc.save(ignore_permissions=True)
 		# re-submit advance entry
@@ -630,13 +586,7 @@ def update_reference_in_journal_entry(d, journal_entry, do_not_save=False):
 		journal_entry.save(ignore_permissions=True)
 
 
-<<<<<<< HEAD
 def update_reference_in_payment_entry(d, payment_entry, do_not_save=False):
-=======
-def update_reference_in_payment_entry(
-	d, payment_entry, do_not_save=False, skip_ref_details_update_for_pe=False
-):
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	reference_details = {
 		"reference_doctype": d.against_voucher_type,
 		"reference_name": d.against_voucher,
@@ -682,16 +632,6 @@ def update_reference_in_payment_entry(
 
 		payment_entry.set_gain_or_loss(account_details=account_details)
 
-<<<<<<< HEAD
-=======
-	payment_entry.flags.ignore_validate_update_after_submit = True
-	payment_entry.setup_party_account_field()
-	payment_entry.set_missing_values()
-	if not skip_ref_details_update_for_pe:
-		payment_entry.set_missing_ref_details()
-	payment_entry.set_amounts()
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	if not do_not_save:
 		payment_entry.save(ignore_permissions=True)
 
@@ -885,11 +825,7 @@ def get_held_invoices(party_type, party):
 
 	if party_type == "Supplier":
 		held_invoices = frappe.db.sql(
-<<<<<<< HEAD
 			"select name from `tabPurchase Invoice` where release_date IS NOT NULL and release_date > CURDATE()",
-=======
-			"select name from `tabPurchase Invoice` where on_hold = 1 and release_date IS NOT NULL and release_date > CURDATE()",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			as_dict=1,
 		)
 		held_invoices = set(d["name"] for d in held_invoices)
@@ -1148,15 +1084,6 @@ def get_autoname_with_number(number_value, doc_title, company):
 	return " - ".join(parts)
 
 
-<<<<<<< HEAD
-=======
-def parse_naming_series_variable(doc, variable):
-	if variable == "FY":
-		date = doc.get("posting_date") or doc.get("transaction_date") or getdate()
-		return get_fiscal_year(date=date, company=doc.get("company"))[0]
-
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 @frappe.whitelist()
 def get_coa(doctype, parent, is_root, chart=None):
 	from erpnext.accounts.doctype.account.chart_of_accounts.chart_of_accounts import (
@@ -1425,14 +1352,10 @@ def get_stock_and_account_balance(account=None, posting_date=None, company=None)
 		if wh_details.account == account and not wh_details.is_group
 	]
 
-<<<<<<< HEAD
 	total_stock_value = 0.0
 	for warehouse in related_warehouses:
 		value = get_stock_value_on(warehouse, posting_date)
 		total_stock_value += value
-=======
-	total_stock_value = get_stock_value_on(related_warehouses, posting_date)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	precision = frappe.get_precision("Journal Entry Account", "debit_in_account_currency")
 	return flt(account_balance, precision), flt(total_stock_value, precision), related_warehouses
@@ -1462,53 +1385,6 @@ def check_and_delete_linked_reports(report):
 			frappe.delete_doc("Desktop Icon", icon)
 
 
-<<<<<<< HEAD
-=======
-def create_err_and_its_journals(companies: list = None) -> None:
-	if companies:
-		for company in companies:
-			err = frappe.new_doc("Exchange Rate Revaluation")
-			err.company = company.name
-			err.posting_date = nowdate()
-			err.rounding_loss_allowance = 0.0
-
-			err.fetch_and_calculate_accounts_data()
-			if err.accounts:
-				err.save().submit()
-				response = err.make_jv_entries()
-
-				if company.submit_err_jv:
-					jv = response.get("revaluation_jv", None)
-					jv and frappe.get_doc("Journal Entry", jv).submit()
-					jv = response.get("zero_balance_jv", None)
-					jv and frappe.get_doc("Journal Entry", jv).submit()
-
-
-def auto_create_exchange_rate_revaluation_daily() -> None:
-	"""
-	Executed by background job
-	"""
-	companies = frappe.db.get_all(
-		"Company",
-		filters={"auto_exchange_rate_revaluation": 1, "auto_err_frequency": "Daily"},
-		fields=["name", "submit_err_jv"],
-	)
-	create_err_and_its_journals(companies)
-
-
-def auto_create_exchange_rate_revaluation_weekly() -> None:
-	"""
-	Executed by background job
-	"""
-	companies = frappe.db.get_all(
-		"Company",
-		filters={"auto_exchange_rate_revaluation": 1, "auto_err_frequency": "Weekly"},
-		fields=["name", "submit_err_jv"],
-	)
-	create_err_and_its_journals(companies)
-
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 def get_payment_ledger_entries(gl_entries, cancel=0):
 	ple_map = []
 	if gl_entries:

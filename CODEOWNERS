@@ -3,7 +3,6 @@
 # These owners will be the default owners for everything in
 # the repo. Unless a later match takes precedence,
 
-<<<<<<< HEAD
 erpnext/accounts/               @nextchamp-saqib @deepeshgarg007 @ruthra-kumar
 erpnext/assets/                 @anandbaburajan @deepeshgarg007
 erpnext/loan_management/        @nextchamp-saqib @deepeshgarg007
@@ -11,15 +10,6 @@ erpnext/regional                @nextchamp-saqib @deepeshgarg007 @ruthra-kumar
 erpnext/selling                 @nextchamp-saqib @deepeshgarg007 @ruthra-kumar
 erpnext/support/                @nextchamp-saqib @deepeshgarg007
 pos*                            @nextchamp-saqib
-=======
-erpnext/accounts/               @deepeshgarg007 @ruthra-kumar
-erpnext/assets/                 @anandbaburajan @deepeshgarg007
-erpnext/loan_management/        @deepeshgarg007
-erpnext/regional                @deepeshgarg007 @ruthra-kumar
-erpnext/selling                 @deepeshgarg007 @ruthra-kumar
-erpnext/support/                @deepeshgarg007
-pos*                            
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 erpnext/buying/                 @rohitwaghchaure @s-aga-r
 erpnext/maintenance/            @rohitwaghchaure @s-aga-r
@@ -28,7 +18,6 @@ erpnext/quality_management/     @rohitwaghchaure @s-aga-r
 erpnext/stock/                  @rohitwaghchaure @s-aga-r
 erpnext/subcontracting          @rohitwaghchaure @s-aga-r
 
-<<<<<<< HEAD
 erpnext/crm/                    @NagariaHussain 
 erpnext/education/              @rutwikhdev 
 erpnext/projects/               @ruchamahabal
@@ -37,10 +26,4 @@ erpnext/controllers/            @deepeshgarg007 @nextchamp-saqib @rohitwaghchaur
 erpnext/patches/                @deepeshgarg007 @nextchamp-saqib
 
 .github/                        @ankush
-=======
-erpnext/controllers/            @deepeshgarg007 @rohitwaghchaure
-erpnext/patches/                @deepeshgarg007 
-
-.github/                        @deepeshgarg007
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 pyproject.toml                  @ankush

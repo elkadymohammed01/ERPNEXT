@@ -93,10 +93,6 @@ class StockSettings(Document):
 			frappe.enqueue(
 				"erpnext.stock.doctype.stock_settings.stock_settings.clean_all_descriptions",
 				now=frappe.flags.in_test,
-<<<<<<< HEAD
-=======
-				enqueue_after_commit=True,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			)
 
 	def validate_pending_reposts(self):

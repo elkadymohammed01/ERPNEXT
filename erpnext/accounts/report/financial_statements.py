@@ -416,7 +416,6 @@ def set_gl_entries_by_account(
 	filters,
 	gl_entries_by_account,
 	ignore_closing_entries=False,
-<<<<<<< HEAD
 ):
 	"""Returns a dict like { "account": [gl entries], ... }"""
 
@@ -463,55 +462,6 @@ def set_gl_entries_by_account(
 
 		if filters and filters.get("presentation_currency"):
 			convert_to_presentation_currency(gl_entries, get_currency(filters), filters.get("company"))
-=======
-	ignore_opening_entries=False,
-):
-	"""Returns a dict like { "account": [gl entries], ... }"""
-	gl_entries = []
-
-	accounts_list = frappe.db.get_all(
-		"Account",
-		filters={"company": company, "is_group": 0, "lft": (">=", root_lft), "rgt": ("<=", root_rgt)},
-		pluck="name",
-	)
-
-	if accounts_list:
-		# For balance sheet
-		if not from_date:
-			from_date = filters["period_start_date"]
-			last_period_closing_voucher = frappe.db.get_all(
-				"Period Closing Voucher",
-				filters={"docstatus": 1, "company": filters.company, "posting_date": ("<", from_date)},
-				fields=["posting_date", "name"],
-				order_by="posting_date desc",
-				limit=1,
-			)
-			if last_period_closing_voucher:
-				gl_entries += get_accounting_entries(
-					"Account Closing Balance",
-					from_date,
-					to_date,
-					accounts_list,
-					filters,
-					ignore_closing_entries,
-					last_period_closing_voucher[0].name,
-				)
-				from_date = add_days(last_period_closing_voucher[0].posting_date, 1)
-				ignore_opening_entries = True
-
-		gl_entries += get_accounting_entries(
-			"GL Entry",
-			from_date,
-			to_date,
-			accounts_list,
-			filters,
-			ignore_closing_entries,
-			ignore_opening_entries=ignore_opening_entries,
-		)
-
-		if filters and filters.get("presentation_currency"):
-			convert_to_presentation_currency(gl_entries, get_currency(filters))
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		for entry in gl_entries:
 			gl_entries_by_account.setdefault(entry.account, []).append(entry)
@@ -519,7 +469,6 @@ def set_gl_entries_by_account(
 		return gl_entries_by_account
 
 
-<<<<<<< HEAD
 def get_additional_conditions(from_date, ignore_closing_entries, filters):
 	additional_conditions = []
 
@@ -530,70 +479,12 @@ def get_additional_conditions(from_date, ignore_closing_entries, filters):
 
 	if from_date:
 		additional_conditions.append("posting_date >= %(from_date)s")
-=======
-def get_accounting_entries(
-	doctype,
-	from_date,
-	to_date,
-	accounts,
-	filters,
-	ignore_closing_entries,
-	period_closing_voucher=None,
-	ignore_opening_entries=False,
-):
-	gl_entry = frappe.qb.DocType(doctype)
-	query = (
-		frappe.qb.from_(gl_entry)
-		.select(
-			gl_entry.account,
-			gl_entry.debit,
-			gl_entry.credit,
-			gl_entry.debit_in_account_currency,
-			gl_entry.credit_in_account_currency,
-			gl_entry.account_currency,
-		)
-		.where(gl_entry.company == filters.company)
-	)
-
-	if doctype == "GL Entry":
-		query = query.select(gl_entry.posting_date, gl_entry.is_opening, gl_entry.fiscal_year)
-		query = query.where(gl_entry.is_cancelled == 0)
-		query = query.where(gl_entry.posting_date <= to_date)
-
-		if ignore_opening_entries:
-			query = query.where(gl_entry.is_opening == "No")
-	else:
-		query = query.select(gl_entry.closing_date.as_("posting_date"))
-		query = query.where(gl_entry.period_closing_voucher == period_closing_voucher)
-
-	query = apply_additional_conditions(doctype, query, from_date, ignore_closing_entries, filters)
-	query = query.where(gl_entry.account.isin(accounts))
-
-	entries = query.run(as_dict=True)
-
-	return entries
-
-
-def apply_additional_conditions(doctype, query, from_date, ignore_closing_entries, filters):
-	gl_entry = frappe.qb.DocType(doctype)
-	accounting_dimensions = get_accounting_dimensions(as_list=False)
-
-	if ignore_closing_entries:
-		if doctype == "GL Entry":
-			query = query.where(gl_entry.voucher_type != "Period Closing Voucher")
-		else:
-			query = query.where(gl_entry.is_period_closing_voucher_entry == 0)
-
-	if from_date and doctype == "GL Entry":
-		query = query.where(gl_entry.posting_date >= from_date)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	if filters:
 		if filters.get("project"):
 			if not isinstance(filters.get("project"), list):
 				filters.project = frappe.parse_json(filters.get("project"))
 
-<<<<<<< HEAD
 			additional_conditions.append("project in %(project)s")
 
 		if filters.get("cost_center"):
@@ -606,31 +497,6 @@ def apply_additional_conditions(doctype, query, from_date, ignore_closing_entrie
 			)
 		else:
 			additional_conditions.append("(finance_book in (%(finance_book)s, '') OR finance_book IS NULL)")
-=======
-			query = query.where(gl_entry.project.isin(filters.project))
-
-		if filters.get("cost_center"):
-			filters.cost_center = get_cost_centers_with_children(filters.cost_center)
-			query = query.where(gl_entry.cost_center.isin(filters.cost_center))
-
-		if filters.get("include_default_book_entries"):
-			company_fb = frappe.get_cached_value("Company", filters.company, "default_finance_book")
-
-			if filters.finance_book and company_fb and cstr(filters.finance_book) != cstr(company_fb):
-				frappe.throw(
-					_("To use a different finance book, please uncheck 'Include Default Book Entries'")
-				)
-
-			query = query.where(
-				(gl_entry.finance_book.isin([cstr(filters.finance_book), cstr(company_fb), ""]))
-				| (gl_entry.finance_book.isnull())
-			)
-		else:
-			query = query.where(
-				(gl_entry.finance_book.isin([cstr(filters.finance_book), ""]))
-				| (gl_entry.finance_book.isnull())
-			)
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	if accounting_dimensions:
 		for dimension in accounting_dimensions:
@@ -639,18 +505,11 @@ def apply_additional_conditions(doctype, query, from_date, ignore_closing_entrie
 					filters[dimension.fieldname] = get_dimension_with_children(
 						dimension.document_type, filters.get(dimension.fieldname)
 					)
-<<<<<<< HEAD
 					additional_conditions.append("{0} in %({0})s".format(dimension.fieldname))
 				else:
 					additional_conditions.append("{0} in %({0})s".format(dimension.fieldname))
 
 	return " and {}".format(" and ".join(additional_conditions)) if additional_conditions else ""
-=======
-
-				query = query.where(gl_entry[dimension.fieldname].isin(filters[dimension.fieldname]))
-
-	return query
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 
 def get_cost_centers_with_children(cost_centers):

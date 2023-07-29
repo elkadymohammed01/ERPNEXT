@@ -416,10 +416,7 @@
    "fieldname": "items_section",
    "fieldtype": "Section Break",
    "hide_border": 1,
-<<<<<<< HEAD
    "label": "Items",
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "oldfieldtype": "Section Break",
    "options": "fa fa-shopping-cart"
   },
@@ -427,10 +424,6 @@
    "allow_bulk_edit": 1,
    "fieldname": "items",
    "fieldtype": "Table",
-<<<<<<< HEAD
-=======
-   "label": "Items",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "oldfieldname": "quotation_details",
    "oldfieldtype": "Table",
    "options": "Quotation Item",
@@ -1079,11 +1072,7 @@
  "idx": 82,
  "is_submittable": 1,
  "links": [],
-<<<<<<< HEAD
  "modified": "2022-12-12 18:32:28.671332",
-=======
- "modified": "2023-04-14 16:50:44.550098",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",

@@ -287,13 +287,10 @@ class TestJournalEntry(unittest.TestCase):
 		jv.submit()
 
 	def test_inter_company_jv(self):
-<<<<<<< HEAD
 		frappe.db.set_value("Account", "Sales Expenses - _TC", "inter_company_account", 1)
 		frappe.db.set_value("Account", "Buildings - _TC", "inter_company_account", 1)
 		frappe.db.set_value("Account", "Sales Expenses - _TC1", "inter_company_account", 1)
 		frappe.db.set_value("Account", "Buildings - _TC1", "inter_company_account", 1)
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		jv = make_journal_entry(
 			"Sales Expenses - _TC",
 			"Buildings - _TC",

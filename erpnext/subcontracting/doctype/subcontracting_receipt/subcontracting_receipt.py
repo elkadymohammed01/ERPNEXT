@@ -28,17 +28,6 @@ class SubcontractingReceipt(SubcontractingController):
 			},
 		]
 
-<<<<<<< HEAD
-=======
-	def onload(self):
-		self.set_onload(
-			"backflush_based_on",
-			frappe.db.get_single_value(
-				"Buying Settings", "backflush_raw_materials_of_subcontract_based_on"
-			),
-		)
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def update_status_updater_args(self):
 		if cint(self.is_return):
 			self.status_updater.extend(
@@ -124,15 +113,9 @@ class SubcontractingReceipt(SubcontractingController):
 
 	@frappe.whitelist()
 	def set_missing_values(self):
-<<<<<<< HEAD
 		self.set_missing_values_in_additional_costs()
 		self.set_missing_values_in_supplied_items()
 		self.set_missing_values_in_items()
-=======
-		self.calculate_additional_costs()
-		self.calculate_supplied_items_qty_and_amount()
-		self.calculate_items_qty_and_amount()
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	def set_available_qty_for_consumption(self):
 		supplied_items_details = {}
@@ -164,21 +147,13 @@ class SubcontractingReceipt(SubcontractingController):
 					item.rm_item_code, 0
 				)
 
-<<<<<<< HEAD
 	def set_missing_values_in_supplied_items(self):
-=======
-	def calculate_supplied_items_qty_and_amount(self):
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		for item in self.get("supplied_items") or []:
 			item.amount = item.rate * item.consumed_qty
 
 		self.set_available_qty_for_consumption()
 
-<<<<<<< HEAD
 	def set_missing_values_in_items(self):
-=======
-	def calculate_items_qty_and_amount(self):
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		rm_supp_cost = {}
 		for item in self.get("supplied_items") or []:
 			if item.reference_name in rm_supp_cost:
@@ -207,7 +182,6 @@ class SubcontractingReceipt(SubcontractingController):
 			self.total = total_amount
 
 	def validate_rejected_warehouse(self):
-<<<<<<< HEAD
 		if not self.rejected_warehouse:
 			for item in self.items:
 				if item.rejected_qty:
@@ -215,25 +189,6 @@ class SubcontractingReceipt(SubcontractingController):
 						_("Rejected Warehouse is mandatory against rejected Item {0}").format(item.item_code)
 					)
 
-=======
-		for item in self.items:
-			if flt(item.rejected_qty) and not item.rejected_warehouse:
-				if self.rejected_warehouse:
-					item.rejected_warehouse = self.rejected_warehouse
-
-				if not item.rejected_warehouse:
-					frappe.throw(
-						_("Row #{0}: Rejected Warehouse is mandatory for the rejected Item {1}").format(
-							item.idx, item.item_code
-						)
-					)
-
-			if item.get("rejected_warehouse") and (item.get("rejected_warehouse") == item.get("warehouse")):
-				frappe.throw(
-					_("Row #{0}: Accepted Warehouse and Rejected Warehouse cannot be same").format(item.idx)
-				)
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def validate_available_qty_for_consumption(self):
 		for item in self.get("supplied_items"):
 			precision = item.precision("consumed_qty")

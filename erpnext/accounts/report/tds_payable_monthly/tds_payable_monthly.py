@@ -4,10 +4,7 @@
 
 import frappe
 from frappe import _
-<<<<<<< HEAD
 from frappe.utils import flt
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 
 def execute(filters=None):
@@ -69,15 +66,12 @@ def get_result(
 			else:
 				total_amount_credited += entry.credit
 
-<<<<<<< HEAD
 		## Check if ldc is applied and show rate as per ldc
 		actual_rate = (tds_deducted / total_amount_credited) * 100
 
 		if flt(actual_rate) < flt(rate):
 			rate = actual_rate
 
-=======
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		if tds_deducted:
 			row = {
 				"pan"

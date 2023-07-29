@@ -47,11 +47,7 @@ class TestAssetMovement(unittest.TestCase):
 		if not frappe.db.exists("Location", "Test Location 2"):
 			frappe.get_doc({"doctype": "Location", "location_name": "Test Location 2"}).insert()
 
-<<<<<<< HEAD
 		movement1 = create_asset_movement(
-=======
-		create_asset_movement(
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			purpose="Transfer",
 			company=asset.company,
 			assets=[
@@ -62,11 +58,7 @@ class TestAssetMovement(unittest.TestCase):
 		)
 		self.assertEqual(frappe.db.get_value("Asset", asset.name, "location"), "Test Location 2")
 
-<<<<<<< HEAD
 		create_asset_movement(
-=======
-		movement1 = create_asset_movement(
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			purpose="Transfer",
 			company=asset.company,
 			assets=[
@@ -78,47 +70,21 @@ class TestAssetMovement(unittest.TestCase):
 		self.assertEqual(frappe.db.get_value("Asset", asset.name, "location"), "Test Location")
 
 		movement1.cancel()
-<<<<<<< HEAD
 		self.assertEqual(frappe.db.get_value("Asset", asset.name, "location"), "Test Location")
-=======
-		self.assertEqual(frappe.db.get_value("Asset", asset.name, "location"), "Test Location 2")
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		employee = make_employee("testassetmovemp@example.com", company="_Test Company")
 		create_asset_movement(
 			purpose="Issue",
 			company=asset.company,
-<<<<<<< HEAD
 			assets=[{"asset": asset.name, "source_location": "Test Location", "to_employee": employee}],
-=======
-			assets=[{"asset": asset.name, "source_location": "Test Location 2", "to_employee": employee}],
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			reference_doctype="Purchase Receipt",
 			reference_name=pr.name,
 		)
 
-<<<<<<< HEAD
 		# after issuing asset should belong to an employee not at a location
 		self.assertEqual(frappe.db.get_value("Asset", asset.name, "location"), None)
 		self.assertEqual(frappe.db.get_value("Asset", asset.name, "custodian"), employee)
 
-=======
-		# after issuing, asset should belong to an employee not at a location
-		self.assertEqual(frappe.db.get_value("Asset", asset.name, "location"), None)
-		self.assertEqual(frappe.db.get_value("Asset", asset.name, "custodian"), employee)
-
-		create_asset_movement(
-			purpose="Receipt",
-			company=asset.company,
-			assets=[{"asset": asset.name, "from_employee": employee, "target_location": "Test Location"}],
-			reference_doctype="Purchase Receipt",
-			reference_name=pr.name,
-		)
-
-		# after receiving, asset should belong to a location not at an employee
-		self.assertEqual(frappe.db.get_value("Asset", asset.name, "location"), "Test Location")
-
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def test_last_movement_cancellation(self):
 		pr = make_purchase_receipt(
 			item_code="Macbook Pro", qty=1, rate=100000.0, location="Test Location"

@@ -2,20 +2,12 @@
  "actions": [],
  "creation": "2014-10-16 14:35:41.950175",
  "doctype": "DocType",
-<<<<<<< HEAD
-=======
- "editable_grid": 1,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "engine": "InnoDB",
  "field_order": [
   "details",
   "operation",
   "status",
   "completed_qty",
-<<<<<<< HEAD
-=======
-  "process_loss_qty",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   "column_break_4",
   "bom",
   "workstation_type",
@@ -44,10 +36,6 @@
    "fieldtype": "Section Break"
   },
   {
-<<<<<<< HEAD
-=======
-   "columns": 2,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "fieldname": "operation",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -58,10 +46,6 @@
    "reqd": 1
   },
   {
-<<<<<<< HEAD
-=======
-   "columns": 2,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "fieldname": "bom",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -78,11 +62,7 @@
    "oldfieldtype": "Text"
   },
   {
-<<<<<<< HEAD
    "columns": 1,
-=======
-   "columns": 2,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "description": "Operation completed for how many finished goods?",
    "fieldname": "completed_qty",
    "fieldtype": "Float",
@@ -100,10 +80,6 @@
    "options": "Pending\nWork in Progress\nCompleted"
   },
   {
-<<<<<<< HEAD
-=======
-   "columns": 1,
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "fieldname": "workstation",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -139,11 +115,7 @@
    "fieldname": "time_in_mins",
    "fieldtype": "Float",
    "in_list_view": 1,
-<<<<<<< HEAD
    "label": "Operation Time",
-=======
-   "label": "Time",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "oldfieldname": "time_in_mins",
    "oldfieldtype": "Currency",
    "reqd": 1
@@ -231,28 +203,12 @@
    "fieldtype": "Link",
    "label": "Workstation Type",
    "options": "Workstation Type"
-<<<<<<< HEAD
-=======
-  },
-  {
-   "columns": 2,
-   "fieldname": "process_loss_qty",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Process Loss Qty",
-   "no_copy": 1,
-   "read_only": 1
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
-<<<<<<< HEAD
  "modified": "2022-11-09 01:37:56.563068",
-=======
- "modified": "2023-06-09 14:03:01.612909",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Manufacturing",
  "name": "Work Order Operation",

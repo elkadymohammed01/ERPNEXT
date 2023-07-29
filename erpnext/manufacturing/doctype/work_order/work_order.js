@@ -139,11 +139,7 @@ frappe.ui.form.on("Work Order", {
 		}
 
 		if (frm.doc.status != "Closed") {
-<<<<<<< HEAD
 			if (frm.doc.docstatus === 1
-=======
-			if (frm.doc.docstatus === 1 && frm.doc.status !== "Completed"
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				&& frm.doc.operations && frm.doc.operations.length) {
 
 				const not_completed = frm.doc.operations.filter(d => {
@@ -260,15 +256,6 @@ frappe.ui.form.on("Work Order", {
 					label: __('Batch Size'),
 					read_only: 1
 				},
-<<<<<<< HEAD
-=======
-				{
-					fieldtype: 'Int',
-					fieldname: 'sequence_id',
-					label: __('Sequence Id'),
-					read_only: 1
-				},
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			],
 			data: operations_data,
 			in_place_edit: true,
@@ -293,13 +280,8 @@ frappe.ui.form.on("Work Order", {
 
 		var pending_qty = 0;
 		frm.doc.operations.forEach(data => {
-<<<<<<< HEAD
 			if(data.completed_qty != frm.doc.qty) {
 				pending_qty = frm.doc.qty - flt(data.completed_qty);
-=======
-			if(data.completed_qty + data.process_loss_qty != frm.doc.qty) {
-				pending_qty = frm.doc.qty - flt(data.completed_qty) - flt(data.process_loss_qty);
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 				if (pending_qty) {
 					dialog.fields_dict.operations.df.data.push({
@@ -308,12 +290,7 @@ frappe.ui.form.on("Work Order", {
 						'workstation': data.workstation,
 						'batch_size': data.batch_size,
 						'qty': pending_qty,
-<<<<<<< HEAD
 						'pending_qty': pending_qty
-=======
-						'pending_qty': pending_qty,
-						'sequence_id': data.sequence_id
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					});
 				}
 			}
@@ -648,7 +625,6 @@ erpnext.work_order = {
 								// all materials transferred for manufacturing, make this primary
 								finish_btn.addClass('btn-primary');
 							}
-<<<<<<< HEAD
 						} else {
 							frappe.db.get_doc("Manufacturing Settings").then((doc) => {
 								let allowance_percentage = doc.overproduction_percentage_for_work_order;
@@ -663,20 +639,6 @@ erpnext.work_order = {
 									}
 								}
 							});
-=======
-						} else if (frm.doc.__onload && frm.doc.__onload.overproduction_percentage) {
-							let allowance_percentage = frm.doc.__onload.overproduction_percentage;
-
-							if (allowance_percentage > 0) {
-								let allowed_qty = frm.doc.qty + ((allowance_percentage / 100) * frm.doc.qty);
-
-								if ((flt(doc.produced_qty) < allowed_qty)) {
-									frm.add_custom_button(__('Finish'), function() {
-										erpnext.work_order.make_se(frm, 'Manufacture');
-									});
-								}
-							}
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 						}
 					}
 				} else {

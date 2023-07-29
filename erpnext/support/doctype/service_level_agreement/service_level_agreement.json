@@ -192,11 +192,7 @@
   }
  ],
  "links": [],
-<<<<<<< HEAD
  "modified": "2021-11-26 15:45:33.289911",
-=======
- "modified": "2023-04-21 17:16:56.192560",
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Support",
  "name": "Service Level Agreement",
@@ -216,7 +212,6 @@
    "write": 1
   },
   {
-<<<<<<< HEAD
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -227,17 +222,9 @@
    "role": "All",
    "share": 1,
    "write": 1
-=======
-   "read": 1,
-   "role": "All"
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   }
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
-<<<<<<< HEAD
-=======
- "states": [],
->>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "track_changes": 1
 }
