@@ -73,6 +73,10 @@
    "fieldname": "current_exchange_rate",
    "fieldtype": "Float",
    "label": "Current Exchange Rate",
+<<<<<<< HEAD
+=======
+   "precision": "9",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "read_only": 1
   },
   {
@@ -92,6 +96,10 @@
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "New Exchange Rate",
+<<<<<<< HEAD
+=======
+   "precision": "9",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "reqd": 1
   },
   {
@@ -147,7 +155,11 @@
  ],
  "istable": 1,
  "links": [],
+<<<<<<< HEAD
  "modified": "2022-12-29 19:38:52.915295",
+=======
+ "modified": "2023-06-22 12:39:56.446722",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Exchange Rate Revaluation Account",

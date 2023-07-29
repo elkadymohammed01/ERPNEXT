@@ -469,7 +469,11 @@
    "options": "UOM"
   },
   {
+<<<<<<< HEAD
    "description": "If rate is zero them item will be treated as \"Free Item\"",
+=======
+   "description": "If rate is zero then item will be treated as \"Free Item\"",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "fieldname": "free_item_rate",
    "fieldtype": "Currency",
    "label": "Free Item Rate"
@@ -670,4 +674,8 @@
  "sort_order": "DESC",
  "states": [],
  "title_field": "title"
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)

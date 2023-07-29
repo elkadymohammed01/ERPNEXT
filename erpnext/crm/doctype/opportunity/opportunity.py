@@ -33,7 +33,10 @@ class Opportunity(TransactionBase, CRMNote):
 	def after_insert(self):
 		if self.opportunity_from == "Lead":
 			frappe.get_doc("Lead", self.party_name).set_status(update=True)
+<<<<<<< HEAD
 			self.disable_lead()
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 			link_open_tasks(self.opportunity_from, self.party_name, self)
 			link_open_events(self.opportunity_from, self.party_name, self)
@@ -60,7 +63,11 @@ class Opportunity(TransactionBase, CRMNote):
 			if not self.get(field) and frappe.db.field_exists(self.opportunity_from, field):
 				try:
 					value = frappe.db.get_value(self.opportunity_from, self.party_name, field)
+<<<<<<< HEAD
 					self.db_set(field, value)
+=======
+					self.set(field, value)
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				except Exception:
 					continue
 
@@ -119,10 +126,13 @@ class Opportunity(TransactionBase, CRMNote):
 				prospect.flags.ignore_mandatory = True
 				prospect.save()
 
+<<<<<<< HEAD
 	def disable_lead(self):
 		if self.opportunity_from == "Lead":
 			frappe.db.set_value("Lead", self.party_name, {"disabled": 1, "docstatus": 1})
 
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def make_new_lead_if_required(self):
 		"""Set lead against new opportunity"""
 		if (not self.get("party_name")) and self.contact_email:

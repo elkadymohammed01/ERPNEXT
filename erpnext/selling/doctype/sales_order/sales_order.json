@@ -30,10 +30,13 @@
   "cost_center",
   "dimension_col_break",
   "project",
+<<<<<<< HEAD
   "column_break_77",
   "source",
   "campaign",
   "custom_dimensions_section",
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   "currency_and_price_list",
   "currency",
   "conversion_rate",
@@ -162,7 +165,13 @@
   "is_internal_customer",
   "represents_company",
   "column_break_152",
+<<<<<<< HEAD
   "inter_company_order_reference",
+=======
+  "source",
+  "inter_company_order_reference",
+  "campaign",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   "party_account_currency",
   "connections_tab"
  ],
@@ -1165,12 +1174,15 @@
    "read_only": 1
   },
   {
+<<<<<<< HEAD
    "fieldname": "column_break_77",
    "fieldtype": "Column Break",
    "hide_days": 1,
    "hide_seconds": 1
   },
   {
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "fieldname": "source",
    "fieldtype": "Link",
    "hide_days": 1,
@@ -1613,10 +1625,13 @@
    "fieldtype": "Column Break"
   },
   {
+<<<<<<< HEAD
    "fieldname": "custom_dimensions_section",
    "fieldtype": "Section Break"
   },
   {
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "collapsible": 1,
    "fieldname": "additional_info_section",
    "fieldtype": "Section Break",
@@ -1643,7 +1658,11 @@
  "idx": 105,
  "is_submittable": 1,
  "links": [],
+<<<<<<< HEAD
  "modified": "2022-12-12 18:34:00.681780",
+=======
+ "modified": "2023-04-20 11:14:01.036202",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Sales Order",

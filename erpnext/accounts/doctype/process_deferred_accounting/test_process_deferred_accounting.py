@@ -16,8 +16,15 @@ from erpnext.stock.doctype.item.test_item import create_item
 class TestProcessDeferredAccounting(unittest.TestCase):
 	def test_creation_of_ledger_entry_on_submit(self):
 		"""test creation of gl entries on submission of document"""
+<<<<<<< HEAD
 		deferred_account = create_account(
 			account_name="Deferred Revenue",
+=======
+		change_acc_settings(acc_frozen_upto="2023-05-31", book_deferred_entries_based_on="Months")
+
+		deferred_account = create_account(
+			account_name="Deferred Revenue for Accounts Frozen",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			parent_account="Current Liabilities - _TC",
 			company="_Test Company",
 		)
@@ -29,11 +36,19 @@ class TestProcessDeferredAccounting(unittest.TestCase):
 		item.save()
 
 		si = create_sales_invoice(
+<<<<<<< HEAD
 			item=item.name, update_stock=0, posting_date="2019-01-10", do_not_submit=True
 		)
 		si.items[0].enable_deferred_revenue = 1
 		si.items[0].service_start_date = "2019-01-10"
 		si.items[0].service_end_date = "2019-03-15"
+=======
+			item=item.name, rate=3000, update_stock=0, posting_date="2023-07-01", do_not_submit=True
+		)
+		si.items[0].enable_deferred_revenue = 1
+		si.items[0].service_start_date = "2023-05-01"
+		si.items[0].service_end_date = "2023-07-31"
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		si.items[0].deferred_revenue_account = deferred_account
 		si.save()
 		si.submit()
@@ -41,9 +56,15 @@ class TestProcessDeferredAccounting(unittest.TestCase):
 		process_deferred_accounting = doc = frappe.get_doc(
 			dict(
 				doctype="Process Deferred Accounting",
+<<<<<<< HEAD
 				posting_date="2019-01-01",
 				start_date="2019-01-01",
 				end_date="2019-01-31",
+=======
+				posting_date="2023-07-01",
+				start_date="2023-05-01",
+				end_date="2023-06-30",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				type="Income",
 			)
 		)
@@ -52,11 +73,24 @@ class TestProcessDeferredAccounting(unittest.TestCase):
 		process_deferred_accounting.submit()
 
 		expected_gle = [
+<<<<<<< HEAD
 			[deferred_account, 33.85, 0.0, "2019-01-31"],
 			["Sales - _TC", 0.0, 33.85, "2019-01-31"],
 		]
 
 		check_gl_entries(self, si.name, expected_gle, "2019-01-10")
+=======
+			["Debtors - _TC", 3000, 0.0, "2023-07-01"],
+			[deferred_account, 0.0, 3000, "2023-07-01"],
+			["Sales - _TC", 0.0, 1000, "2023-06-30"],
+			[deferred_account, 1000, 0.0, "2023-06-30"],
+			["Sales - _TC", 0.0, 1000, "2023-06-30"],
+			[deferred_account, 1000, 0.0, "2023-06-30"],
+		]
+
+		check_gl_entries(self, si.name, expected_gle, "2023-07-01")
+		change_acc_settings()
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	def test_pda_submission_and_cancellation(self):
 		pda = frappe.get_doc(
@@ -70,3 +104,13 @@ class TestProcessDeferredAccounting(unittest.TestCase):
 		)
 		pda.submit()
 		pda.cancel()
+<<<<<<< HEAD
+=======
+
+
+def change_acc_settings(acc_frozen_upto="", book_deferred_entries_based_on="Days"):
+	acc_settings = frappe.get_doc("Accounts Settings", "Accounts Settings")
+	acc_settings.acc_frozen_upto = acc_frozen_upto
+	acc_settings.book_deferred_entries_based_on = book_deferred_entries_based_on
+	acc_settings.save()
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)

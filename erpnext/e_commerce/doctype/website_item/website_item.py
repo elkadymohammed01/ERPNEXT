@@ -315,6 +315,10 @@ class WebsiteItem(WebsiteGenerator):
 			self.item_code, skip_quotation_creation=True
 		)
 
+<<<<<<< HEAD
+=======
+	@frappe.whitelist()
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def copy_specification_from_item_group(self):
 		self.set("website_specifications", [])
 		if self.item_group:

@@ -714,6 +714,10 @@ class Item(Document):
 						template=self,
 						now=frappe.flags.in_test,
 						timeout=600,
+<<<<<<< HEAD
+=======
+						enqueue_after_commit=True,
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					)
 
 	def validate_has_variants(self):

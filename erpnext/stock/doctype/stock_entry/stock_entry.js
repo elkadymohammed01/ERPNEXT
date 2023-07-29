@@ -101,6 +101,17 @@ frappe.ui.form.on('Stock Entry', {
 			}
 		});
 
+<<<<<<< HEAD
+=======
+		let batch_field = frm.get_docfield('items', 'batch_no');
+		if (batch_field) {
+			batch_field.get_route_options_for_new_doc = (row) => {
+				return {
+					'item': row.doc.item_code
+				}
+			};
+		}
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		frm.add_fetch("bom_no", "inspection_required", "inspection_required");
 		erpnext.accounts.dimensions.setup_dimension_filters(frm, frm.doctype);
@@ -677,6 +688,24 @@ frappe.ui.form.on('Stock Entry', {
 			});
 		}
 	},
+<<<<<<< HEAD
+=======
+
+	process_loss_qty(frm) {
+		if (frm.doc.process_loss_qty) {
+			frm.doc.process_loss_percentage = flt(frm.doc.process_loss_qty / frm.doc.fg_completed_qty * 100, precision("process_loss_qty", frm.doc));
+			refresh_field("process_loss_percentage");
+		}
+	},
+
+	process_loss_percentage(frm) {
+		debugger
+		if (frm.doc.process_loss_percentage) {
+			frm.doc.process_loss_qty = flt((frm.doc.fg_completed_qty * frm.doc.process_loss_percentage) / 100 , precision("process_loss_qty", frm.doc));
+			refresh_field("process_loss_qty");
+		}
+	}
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 });
 
 frappe.ui.form.on('Stock Entry Detail', {

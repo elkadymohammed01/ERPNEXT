@@ -67,8 +67,14 @@ def get_all_transfers(date, shareholder):
 	# 	condition = 'AND company = %(company)s '
 	return frappe.db.sql(
 		"""SELECT * FROM `tabShare Transfer`
+<<<<<<< HEAD
 		WHERE (DATE(date) <= %(date)s AND from_shareholder = %(shareholder)s {condition})
 		OR (DATE(date) <= %(date)s AND to_shareholder = %(shareholder)s {condition})
+=======
+		WHERE ((DATE(date) <= %(date)s AND from_shareholder = %(shareholder)s {condition})
+		OR (DATE(date) <= %(date)s AND to_shareholder = %(shareholder)s {condition}))
+		AND docstatus = 1
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		ORDER BY date""".format(
 			condition=condition
 		),

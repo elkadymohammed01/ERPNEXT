@@ -12,7 +12,13 @@
   "start_time",
   "end_time",
   "limits_dont_apply_on",
+<<<<<<< HEAD
   "item_based_reposting"
+=======
+  "item_based_reposting",
+  "errors_notification_section",
+  "notify_reposting_error_to_role"
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  ],
  "fields": [
   {
@@ -52,12 +58,30 @@
    "fieldname": "item_based_reposting",
    "fieldtype": "Check",
    "label": "Use Item based reposting"
+<<<<<<< HEAD
+=======
+  },
+  {
+   "fieldname": "notify_reposting_error_to_role",
+   "fieldtype": "Link",
+   "label": "Notify Reposting Error to Role",
+   "options": "Role"
+  },
+  {
+   "fieldname": "errors_notification_section",
+   "fieldtype": "Section Break",
+   "label": "Errors Notification"
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
+<<<<<<< HEAD
  "modified": "2021-11-02 01:22:45.155841",
+=======
+ "modified": "2023-05-04 16:14:29.080697",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Stock Reposting Settings",
@@ -76,5 +100,9 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
+<<<<<<< HEAD
+=======
+ "states": [],
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "track_changes": 1
 }

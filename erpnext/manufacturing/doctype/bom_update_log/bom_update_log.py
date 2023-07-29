@@ -88,12 +88,20 @@ class BOMUpdateLog(Document):
 				boms=boms,
 				timeout=40000,
 				now=frappe.flags.in_test,
+<<<<<<< HEAD
+=======
+				enqueue_after_commit=True,
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			)
 		else:
 			frappe.enqueue(
 				method="erpnext.manufacturing.doctype.bom_update_log.bom_update_log.process_boms_cost_level_wise",
 				update_doc=self,
 				now=frappe.flags.in_test,
+<<<<<<< HEAD
+=======
+				enqueue_after_commit=True,
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			)
 
 

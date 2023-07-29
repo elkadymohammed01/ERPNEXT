@@ -13,6 +13,7 @@ frappe.require("assets/erpnext/js/financial_statements.js", function() {
 
 	frappe.query_reports["Gross and Net Profit Report"]["filters"].push(
 		{
+<<<<<<< HEAD
 			"fieldname": "project",
 			"label": __("Project"),
 			"fieldtype": "MultiSelectList",
@@ -21,6 +22,8 @@ frappe.require("assets/erpnext/js/financial_statements.js", function() {
 			}
 		},
 		{
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			"fieldname": "accumulated_values",
 			"label": __("Accumulated Values"),
 			"fieldtype": "Check"

@@ -5,7 +5,11 @@
 import json
 
 import frappe
+<<<<<<< HEAD
 from frappe import _, throw
+=======
+from frappe import _, bold, throw
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 from frappe.model.workflow import get_workflow_name, is_transition_condition_satisfied
 from frappe.query_builder.functions import Abs, Sum
 from frappe.utils import (
@@ -55,6 +59,10 @@ from erpnext.stock.get_item_details import (
 	get_item_tax_map,
 	get_item_warehouse,
 )
+<<<<<<< HEAD
+=======
+from erpnext.utilities.regional import temporary_flag
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 from erpnext.utilities.transaction_base import TransactionBase
 
 
@@ -273,8 +281,13 @@ class AccountsController(TransactionBase):
 		self.validate_payment_schedule_dates()
 		self.set_due_date()
 		self.set_payment_schedule()
+<<<<<<< HEAD
 		self.validate_payment_schedule_amount()
 		if not self.get("ignore_default_payment_terms_template"):
+=======
+		if not self.get("ignore_default_payment_terms_template"):
+			self.validate_payment_schedule_amount()
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			self.validate_due_date()
 		self.validate_advance_entries()
 
@@ -392,6 +405,12 @@ class AccountsController(TransactionBase):
 				)
 
 	def validate_inter_company_reference(self):
+<<<<<<< HEAD
+=======
+		if self.get("is_return"):
+			return
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		if self.doctype not in ("Purchase Invoice", "Purchase Receipt"):
 			return
 
@@ -405,6 +424,18 @@ class AccountsController(TransactionBase):
 				msg += _("Please create purchase from internal sale or delivery document itself")
 				frappe.throw(msg, title=_("Internal Sales Reference Missing"))
 
+<<<<<<< HEAD
+=======
+			label = "Delivery Note Item" if self.doctype == "Purchase Receipt" else "Sales Invoice Item"
+
+			field = frappe.scrub(label)
+
+			for row in self.get("items"):
+				if not row.get(field):
+					msg = f"At Row {row.idx}: The field {bold(label)} is mandatory for internal transfer"
+					frappe.throw(_(msg), title=_("Internal Transfer Reference Missing"))
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def disable_pricing_rule_on_internal_transfer(self):
 		if not self.get("ignore_pricing_rule") and self.is_internal_transfer():
 			self.ignore_pricing_rule = 1
@@ -515,7 +546,10 @@ class AccountsController(TransactionBase):
 				parent_dict.update({"customer": parent_dict.get("party_name")})
 
 			self.pricing_rules = []
+<<<<<<< HEAD
 			basic_item_details_map = {}
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 			for item in self.get("items"):
 				if item.get("item_code"):
@@ -535,6 +569,7 @@ class AccountsController(TransactionBase):
 					if self.get("is_subcontracted"):
 						args["is_subcontracted"] = self.is_subcontracted
 
+<<<<<<< HEAD
 					basic_details = basic_item_details_map.get(item.item_code)
 					ret, basic_item_details = get_item_details(
 						args,
@@ -546,6 +581,9 @@ class AccountsController(TransactionBase):
 					)
 
 					basic_item_details_map.setdefault(item.item_code, basic_item_details)
+=======
+					ret = get_item_details(args, self, for_validate=True, overwrite_warehouse=False)
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 					for fieldname, value in ret.items():
 						if item.meta.get_field(fieldname) and value is not None:
@@ -757,6 +795,12 @@ class AccountsController(TransactionBase):
 			}
 		)
 
+<<<<<<< HEAD
+=======
+		with temporary_flag("company", self.company):
+			update_gl_dict_with_regional_fields(self, gl_dict)
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		accounting_dimensions = get_accounting_dimensions()
 		dimension_dict = frappe._dict()
 
@@ -915,6 +959,12 @@ class AccountsController(TransactionBase):
 
 		return is_inclusive
 
+<<<<<<< HEAD
+=======
+	def should_show_taxes_as_table_in_print(self):
+		return cint(frappe.db.get_single_value("Accounts Settings", "show_taxes_as_table_in_print"))
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def validate_advance_entries(self):
 		order_field = "sales_order" if self.doctype == "Sales Invoice" else "purchase_order"
 		order_list = list(set(d.get(order_field) for d in self.get("items") if d.get(order_field)))
@@ -1618,6 +1668,10 @@ class AccountsController(TransactionBase):
 
 		base_grand_total = self.get("base_rounded_total") or self.base_grand_total
 		grand_total = self.get("rounded_total") or self.grand_total
+<<<<<<< HEAD
+=======
+		automatically_fetch_payment_terms = 0
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		if self.doctype in ("Sales Invoice", "Purchase Invoice"):
 			base_grand_total = base_grand_total - flt(self.base_write_off_amount)
@@ -1663,6 +1717,7 @@ class AccountsController(TransactionBase):
 				)
 				self.append("payment_schedule", data)
 
+<<<<<<< HEAD
 		for d in self.get("payment_schedule"):
 			if d.invoice_portion:
 				d.payment_amount = flt(
@@ -1676,6 +1731,28 @@ class AccountsController(TransactionBase):
 				d.base_payment_amount = flt(
 					d.payment_amount * self.get("conversion_rate"), d.precision("base_payment_amount")
 				)
+=======
+		if not (
+			automatically_fetch_payment_terms
+			and self.linked_order_has_payment_terms(po_or_so, fieldname, doctype)
+		):
+			for d in self.get("payment_schedule"):
+				if d.invoice_portion:
+					d.payment_amount = flt(
+						grand_total * flt(d.invoice_portion / 100), d.precision("payment_amount")
+					)
+					d.base_payment_amount = flt(
+						base_grand_total * flt(d.invoice_portion / 100), d.precision("base_payment_amount")
+					)
+					d.outstanding = d.payment_amount
+				elif not d.invoice_portion:
+					d.base_payment_amount = flt(
+						d.payment_amount * self.get("conversion_rate"), d.precision("base_payment_amount")
+					)
+		else:
+			self.fetch_payment_terms_from_order(po_or_so, doctype)
+			self.ignore_default_payment_terms_template = 1
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	def get_order_details(self):
 		if self.doctype == "Sales Invoice":
@@ -1728,6 +1805,13 @@ class AccountsController(TransactionBase):
 				"invoice_portion": schedule.invoice_portion,
 				"mode_of_payment": schedule.mode_of_payment,
 				"description": schedule.description,
+<<<<<<< HEAD
+=======
+				"payment_amount": schedule.payment_amount,
+				"base_payment_amount": schedule.base_payment_amount,
+				"outstanding": schedule.outstanding,
+				"paid_amount": schedule.paid_amount,
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			}
 
 			if schedule.discount_type == "Percentage":
@@ -1897,12 +1981,22 @@ class AccountsController(TransactionBase):
 		reconcilation_entry.party = secondary_party
 		reconcilation_entry.reference_type = self.doctype
 		reconcilation_entry.reference_name = self.name
+<<<<<<< HEAD
 		reconcilation_entry.cost_center = self.cost_center
+=======
+		reconcilation_entry.cost_center = self.cost_center or erpnext.get_default_cost_center(
+			self.company
+		)
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		advance_entry.account = primary_account
 		advance_entry.party_type = primary_party_type
 		advance_entry.party = primary_party
+<<<<<<< HEAD
 		advance_entry.cost_center = self.cost_center
+=======
+		advance_entry.cost_center = self.cost_center or erpnext.get_default_cost_center(self.company)
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		advance_entry.is_advance = "Yes"
 
 		if self.doctype == "Sales Invoice":
@@ -2820,3 +2914,11 @@ def validate_regional(doc):
 @erpnext.allow_regional
 def validate_einvoice_fields(doc):
 	pass
+<<<<<<< HEAD
+=======
+
+
+@erpnext.allow_regional
+def update_gl_dict_with_regional_fields(doc, gl_dict):
+	pass
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)

@@ -7,6 +7,10 @@ import sys
 import frappe
 from frappe import _
 from frappe.model.document import Document
+<<<<<<< HEAD
+=======
+from frappe.query_builder.functions import Sum
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 from frappe.utils import getdate
 
 
@@ -422,6 +426,26 @@ def get_total_shipments(scorecard):
 	return data
 
 
+<<<<<<< HEAD
+=======
+def get_ordered_qty(scorecard):
+	"""Returns the total number of ordered quantity (based on Purchase Orders)"""
+
+	po = frappe.qb.DocType("Purchase Order")
+
+	return (
+		frappe.qb.from_(po)
+		.select(Sum(po.total_qty))
+		.where(
+			(po.supplier == scorecard.supplier)
+			& (po.docstatus == 1)
+			& (po.transaction_date >= scorecard.get("start_date"))
+			& (po.transaction_date <= scorecard.get("end_date"))
+		)
+	).run(as_list=True)[0][0] or 0
+
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 def get_rfq_total_number(scorecard):
 	"""Gets the total number of RFQs sent to supplier"""
 	supplier = frappe.get_doc("Supplier", scorecard.supplier)

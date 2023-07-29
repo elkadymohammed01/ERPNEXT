@@ -69,7 +69,11 @@ def get_columns(filters):
 			"label": _("Id"),
 			"fieldname": "name",
 			"fieldtype": "Link",
+<<<<<<< HEAD
 			"options": "Work Order",
+=======
+			"options": "Quality Inspection",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			"width": 100,
 		},
 		{"label": _("Report Date"), "fieldname": "report_date", "fieldtype": "Date", "width": 150},

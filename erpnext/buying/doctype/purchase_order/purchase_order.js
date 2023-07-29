@@ -286,7 +286,11 @@ erpnext.buying.PurchaseOrderController = class PurchaseOrderController extends e
 			source_name: this.frm.doc.supplier,
 			target: this.frm,
 			setters: {
+<<<<<<< HEAD
 				company: me.frm.doc.company
+=======
+				company: this.frm.doc.company
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			},
 			get_query_filters: {
 				docstatus: ["!=", 2],

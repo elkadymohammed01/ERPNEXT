@@ -87,6 +87,15 @@ frappe.query_reports["Stock Balance"] = {
 			"label": __('Show Stock Ageing Data'),
 			"fieldtype": 'Check'
 		},
+<<<<<<< HEAD
+=======
+		{
+			"fieldname": 'ignore_closing_balance',
+			"label": __('Ignore Closing Balance'),
+			"fieldtype": 'Check',
+			"default": 1
+		},
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	],
 
 	"formatter": function (value, row, column, data, default_formatter) {

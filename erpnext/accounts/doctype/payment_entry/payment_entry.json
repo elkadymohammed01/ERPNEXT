@@ -48,7 +48,12 @@
   "base_received_amount",
   "base_received_amount_after_tax",
   "section_break_14",
+<<<<<<< HEAD
   "get_outstanding_invoice",
+=======
+  "get_outstanding_invoices",
+  "get_outstanding_orders",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   "references",
   "section_break_34",
   "total_allocated_amount",
@@ -356,12 +361,15 @@
    "label": "Reference"
   },
   {
+<<<<<<< HEAD
    "depends_on": "eval:doc.docstatus==0",
    "fieldname": "get_outstanding_invoice",
    "fieldtype": "Button",
    "label": "Get Outstanding Invoice"
   },
   {
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "fieldname": "references",
    "fieldtype": "Table",
    "label": "Payment References",
@@ -728,12 +736,31 @@
    "fieldname": "section_break_60",
    "fieldtype": "Section Break",
    "hide_border": 1
+<<<<<<< HEAD
+=======
+  },
+  {
+   "depends_on": "eval:doc.docstatus==0",
+   "fieldname": "get_outstanding_invoices",
+   "fieldtype": "Button",
+   "label": "Get Outstanding Invoices"
+  },
+  {
+   "depends_on": "eval:doc.docstatus==0",
+   "fieldname": "get_outstanding_orders",
+   "fieldtype": "Button",
+   "label": "Get Outstanding Orders"
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
+<<<<<<< HEAD
  "modified": "2023-02-14 04:52:30.478523",
+=======
+ "modified": "2023-06-19 11:38:04.387219",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Payment Entry",

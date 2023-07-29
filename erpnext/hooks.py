@@ -75,7 +75,10 @@ webform_list_context = "erpnext.controllers.website_list_for_contact.get_webform
 calendars = [
 	"Task",
 	"Work Order",
+<<<<<<< HEAD
 	"Leave Application",
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	"Sales Order",
 	"Holiday List",
 ]
@@ -279,10 +282,40 @@ standard_queries = {
 	"Customer": "erpnext.controllers.queries.customer_query",
 }
 
+<<<<<<< HEAD
+=======
+period_closing_doctypes = [
+	"Sales Invoice",
+	"Purchase Invoice",
+	"Journal Entry",
+	"Bank Clearance",
+	"Stock Entry",
+	"Dunning",
+	"Invoice Discounting",
+	"Payment Entry",
+	"Period Closing Voucher",
+	"Process Deferred Accounting",
+	"Asset",
+	"Asset Capitalization",
+	"Asset Repair",
+	"Delivery Note",
+	"Landed Cost Voucher",
+	"Purchase Receipt",
+	"Stock Reconciliation",
+	"Subcontracting Receipt",
+]
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 doc_events = {
 	"*": {
 		"validate": "erpnext.support.doctype.service_level_agreement.service_level_agreement.apply",
 	},
+<<<<<<< HEAD
+=======
+	tuple(period_closing_doctypes): {
+		"validate": "erpnext.accounts.doctype.accounting_period.accounting_period.validate_accounting_period_on_doc_save",
+	},
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	"Stock Entry": {
 		"on_submit": "erpnext.stock.doctype.material_request.material_request.update_completed_and_requested_qty",
 		"on_cancel": "erpnext.stock.doctype.material_request.material_request.update_completed_and_requested_qty",
@@ -359,6 +392,14 @@ doc_events = {
 	},
 }
 
+<<<<<<< HEAD
+=======
+# function should expect the variable and doc as arguments
+naming_series_variables = {
+	"FY": "erpnext.accounts.utils.parse_naming_series_variable",
+}
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 # On cancel event Payment Entry will be exempted and all linked submittable doctype will get cancelled.
 # to maintain data integrity we exempted payment entry. it will un-link when sales invoice get cancelled.
 # if payment entry not in auto cancel exempted doctypes it will cancel payment entry.
@@ -370,6 +411,10 @@ scheduler_events = {
 	"cron": {
 		"0/15 * * * *": [
 			"erpnext.manufacturing.doctype.bom_update_log.bom_update_log.resume_bom_cost_update_jobs",
+<<<<<<< HEAD
+=======
+			"erpnext.accounts.doctype.process_payment_reconciliation.process_payment_reconciliation.trigger_reconciliation_for_queued_docs",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		],
 		"0/30 * * * *": [
 			"erpnext.utilities.doctype.video.video.update_youtube_data",
@@ -419,6 +464,13 @@ scheduler_events = {
 		"erpnext.selling.doctype.quotation.quotation.set_expired_status",
 		"erpnext.buying.doctype.supplier_quotation.supplier_quotation.set_expired_status",
 		"erpnext.accounts.doctype.process_statement_of_accounts.process_statement_of_accounts.send_auto_email",
+<<<<<<< HEAD
+=======
+		"erpnext.accounts.utils.auto_create_exchange_rate_revaluation_daily",
+	],
+	"weekly": [
+		"erpnext.accounts.utils.auto_create_exchange_rate_revaluation_weekly",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	],
 	"daily_long": [
 		"erpnext.setup.doctype.email_digest.email_digest.send",
@@ -462,6 +514,7 @@ advance_payment_doctypes = ["Sales Order", "Purchase Order"]
 
 invoice_doctypes = ["Sales Invoice", "Purchase Invoice"]
 
+<<<<<<< HEAD
 period_closing_doctypes = [
 	"Sales Invoice",
 	"Purchase Invoice",
@@ -471,6 +524,8 @@ period_closing_doctypes = [
 	"Stock Entry",
 ]
 
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 bank_reconciliation_doctypes = [
 	"Payment Entry",
 	"Journal Entry",
@@ -522,6 +577,10 @@ accounting_dimension_doctypes = [
 	"Subcontracting Order Item",
 	"Subcontracting Receipt",
 	"Subcontracting Receipt Item",
+<<<<<<< HEAD
+=======
+	"Account Closing Balance",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 ]
 
 # get matching queries for Bank Reconciliation
@@ -606,3 +665,11 @@ global_search_doctypes = {
 additional_timeline_content = {
 	"*": ["erpnext.telephony.doctype.call_log.call_log.get_linked_call_logs"]
 }
+<<<<<<< HEAD
+=======
+
+
+extend_bootinfo = [
+	"erpnext.support.doctype.service_level_agreement.service_level_agreement.add_sla_doctypes",
+]
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)

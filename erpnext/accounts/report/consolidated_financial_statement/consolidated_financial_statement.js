@@ -49,7 +49,11 @@ frappe.require("assets/erpnext/js/financial_statements.js", function() {
 				"label": __("Start Year"),
 				"fieldtype": "Link",
 				"options": "Fiscal Year",
+<<<<<<< HEAD
 				"default": frappe.defaults.get_user_default("fiscal_year"),
+=======
+				"default": erpnext.utils.get_fiscal_year(frappe.datetime.get_today()),
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				"reqd": 1,
 				on_change: () => {
 					frappe.model.with_doc("Fiscal Year", frappe.query_report.get_filter_value('from_fiscal_year'), function(r) {
@@ -65,7 +69,11 @@ frappe.require("assets/erpnext/js/financial_statements.js", function() {
 				"label": __("End Year"),
 				"fieldtype": "Link",
 				"options": "Fiscal Year",
+<<<<<<< HEAD
 				"default": frappe.defaults.get_user_default("fiscal_year"),
+=======
+				"default": erpnext.utils.get_fiscal_year(frappe.datetime.get_today()),
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				"reqd": 1,
 				on_change: () => {
 					frappe.model.with_doc("Fiscal Year", frappe.query_report.get_filter_value('to_fiscal_year'), function(r) {
@@ -139,7 +147,11 @@ frappe.require("assets/erpnext/js/financial_statements.js", function() {
 			return value;
 		},
 		onload: function() {
+<<<<<<< HEAD
 			let fiscal_year = frappe.defaults.get_user_default("fiscal_year")
+=======
+			let fiscal_year = erpnext.utils.get_fiscal_year(frappe.datetime.get_today());
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 			frappe.model.with_doc("Fiscal Year", fiscal_year, function(r) {
 				var fy = frappe.model.get_doc("Fiscal Year", fiscal_year);

@@ -637,6 +637,7 @@ class TestPurchaseInvoice(unittest.TestCase, StockTestMixin):
 			gle_filters={"account": "Stock In Hand - TCP1"},
 		)
 
+<<<<<<< HEAD
 		# assert loss booked in COGS
 		self.assertGLEs(
 			return_pi,
@@ -644,6 +645,8 @@ class TestPurchaseInvoice(unittest.TestCase, StockTestMixin):
 			gle_filters={"account": "Cost of Goods Sold - TCP1"},
 		)
 
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def test_return_with_lcv(self):
 		from erpnext.controllers.sales_and_purchase_return import make_return_doc
 		from erpnext.stock.doctype.landed_cost_voucher.test_landed_cost_voucher import (
@@ -1662,6 +1665,24 @@ class TestPurchaseInvoice(unittest.TestCase, StockTestMixin):
 
 		self.assertTrue(return_pi.docstatus == 1)
 
+<<<<<<< HEAD
+=======
+	def test_gl_entries_for_standalone_debit_note(self):
+		make_purchase_invoice(qty=5, rate=500, update_stock=True)
+
+		returned_inv = make_purchase_invoice(qty=-5, rate=5, update_stock=True, is_return=True)
+
+		# override the rate with valuation rate
+		sle = frappe.get_all(
+			"Stock Ledger Entry",
+			fields=["stock_value_difference", "actual_qty"],
+			filters={"voucher_no": returned_inv.name},
+		)[0]
+
+		rate = flt(sle.stock_value_difference) / flt(sle.actual_qty)
+		self.assertAlmostEqual(returned_inv.items[0].rate, rate)
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 def check_gl_entries(doc, voucher_no, expected_gle, posting_date):
 	gl_entries = frappe.db.sql(

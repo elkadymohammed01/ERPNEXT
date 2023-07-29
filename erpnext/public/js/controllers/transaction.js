@@ -123,6 +123,18 @@ erpnext.TransactionController = class TransactionController extends erpnext.taxe
 			this.frm.set_query("batch_no", "items", function(doc, cdt, cdn) {
 				return me.set_query_for_batch(doc, cdt, cdn);
 			});
+<<<<<<< HEAD
+=======
+
+			let batch_field = this.frm.get_docfield('items', 'batch_no');
+			if (batch_field) {
+				batch_field.get_route_options_for_new_doc = (row) => {
+					return {
+						'item': row.doc.item_code
+					}
+				};
+			}
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		}
 
 		if(
@@ -173,7 +185,13 @@ erpnext.TransactionController = class TransactionController extends erpnext.taxe
 			this.frm.set_query("expense_account", "items", function(doc) {
 				return {
 					filters: {
+<<<<<<< HEAD
 						"company": doc.company
+=======
+						"company": doc.company,
+						"report_type": "Profit and Loss",
+						"is_group": 0
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					}
 				};
 			});
@@ -494,7 +512,11 @@ erpnext.TransactionController = class TransactionController extends erpnext.taxe
 								},
 								() => {
 									// for internal customer instead of pricing rule directly apply valuation rate on item
+<<<<<<< HEAD
 									if (me.frm.doc.is_internal_customer || me.frm.doc.is_internal_supplier) {
+=======
+									if ((me.frm.doc.is_internal_customer || me.frm.doc.is_internal_supplier) && me.frm.doc.represents_company === me.frm.doc.company) {
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 										me.get_incoming_rate(item, me.frm.posting_date, me.frm.posting_time,
 											me.frm.doc.doctype, me.frm.doc.company);
 									} else {
@@ -958,6 +980,19 @@ erpnext.TransactionController = class TransactionController extends erpnext.taxe
 		this.frm.set_df_property("conversion_rate", "read_only", erpnext.stale_rate_allowed() ? 0 : 1);
 	}
 
+<<<<<<< HEAD
+=======
+	apply_discount_on_item(doc, cdt, cdn, field) {
+		var item = frappe.get_doc(cdt, cdn);
+		if(!item.price_list_rate) {
+			item[field] = 0.0;
+		} else {
+			this.price_list_rate(doc, cdt, cdn);
+		}
+		this.set_gross_profit(item);
+	}
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	shipping_rule() {
 		var me = this;
 		if(this.frm.doc.shipping_rule) {
@@ -1628,6 +1663,12 @@ erpnext.TransactionController = class TransactionController extends erpnext.taxe
 						() => {
 							if(args.items.length) {
 								me._set_values_for_item_list(r.message.children);
+<<<<<<< HEAD
+=======
+								$.each(r.message.children || [], function(i, d) {
+									me.apply_discount_on_item(d, d.doctype, d.name, 'discount_percentage');
+								});
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 							}
 						},
 						() => { me.in_apply_price_list = false; }
@@ -1920,7 +1961,11 @@ erpnext.TransactionController = class TransactionController extends erpnext.taxe
 	}
 
 	prompt_user_for_reference_date(){
+<<<<<<< HEAD
 		var me = this;
+=======
+		let me = this;
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		frappe.prompt({
 			label: __("Cheque/Reference Date"),
 			fieldname: "reference_date",
@@ -1947,7 +1992,11 @@ erpnext.TransactionController = class TransactionController extends erpnext.taxe
 		let has_payment_schedule = this.frm.doc.payment_schedule && this.frm.doc.payment_schedule.length;
 		if(!is_eligible || !has_payment_schedule) return false;
 
+<<<<<<< HEAD
 		let has_discount = this.frm.doc.payment_schedule.some(row => row.discount_date);
+=======
+		let has_discount = this.frm.doc.payment_schedule.some(row => row.discount);
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		return has_discount;
 	}
 

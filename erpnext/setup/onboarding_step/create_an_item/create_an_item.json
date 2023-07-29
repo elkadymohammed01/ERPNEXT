@@ -6,18 +6,31 @@
  "docstatus": 0,
  "doctype": "Onboarding Step",
  "form_tour": "Item General",
+<<<<<<< HEAD
  "idx": 0,
+=======
+ "idx": 1,
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "intro_video_url": "",
  "is_complete": 0,
  "is_single": 0,
  "is_skipped": 0,
+<<<<<<< HEAD
  "modified": "2021-12-15 14:19:56.297772",
+=======
+ "modified": "2023-05-23 12:43:08.484206",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "name": "Create an Item",
  "owner": "Administrator",
  "reference_document": "Item",
  "show_form_tour": 1,
+<<<<<<< HEAD
  "show_full_form": 1,
  "title": "Manage Items",
+=======
+ "show_full_form": 0,
+ "title": "Create an Item",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "validate_action": 1
 }

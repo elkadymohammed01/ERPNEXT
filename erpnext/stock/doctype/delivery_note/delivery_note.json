@@ -28,8 +28,11 @@
   "column_break_18",
   "project",
   "dimension_col_break",
+<<<<<<< HEAD
   "campaign",
   "source",
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   "custom_dimensions_section",
   "currency_and_price_list",
   "currency",
@@ -161,11 +164,20 @@
   "inter_company_reference",
   "customer_group",
   "territory",
+<<<<<<< HEAD
   "column_break5",
   "excise_page",
   "instructions",
   "connections_tab",
   "column_break_25"
+=======
+  "source",
+  "campaign",
+  "column_break5",
+  "excise_page",
+  "instructions",
+  "connections_tab"
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  ],
  "fields": [
   {
@@ -1223,7 +1235,12 @@
    "hidden": 1,
    "label": "Pick List",
    "options": "Pick List",
+<<<<<<< HEAD
    "read_only": 1
+=======
+   "read_only": 1,
+   "search_index": 1
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   },
   {
    "default": "0",
@@ -1340,10 +1357,13 @@
    "fieldtype": "Column Break"
   },
   {
+<<<<<<< HEAD
    "fieldname": "column_break_25",
    "fieldtype": "Column Break"
   },
   {
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "fieldname": "section_break_30",
    "fieldtype": "Section Break",
    "hide_border": 1
@@ -1403,7 +1423,11 @@
  "idx": 146,
  "is_submittable": 1,
  "links": [],
+<<<<<<< HEAD
  "modified": "2023-02-14 04:45:44.179670",
+=======
+ "modified": "2023-06-16 14:58:55.066602",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Delivery Note",

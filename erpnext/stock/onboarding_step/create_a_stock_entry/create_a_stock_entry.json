@@ -9,7 +9,11 @@
  "is_complete": 0,
  "is_single": 0,
  "is_skipped": 0,
+<<<<<<< HEAD
  "modified": "2021-06-18 13:57:11.434063",
+=======
+ "modified": "2023-05-29 14:39:04.066547",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "name": "Create a Stock Entry",
  "owner": "Administrator",

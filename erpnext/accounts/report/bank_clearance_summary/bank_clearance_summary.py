@@ -80,7 +80,11 @@ def get_entries(filters):
 	payment_entries = frappe.db.sql(
 		"""SELECT
 			"Payment Entry", name, posting_date, reference_no, clearance_date, party,
+<<<<<<< HEAD
 			if(paid_from=%(account)s, paid_amount * -1, received_amount)
+=======
+			if(paid_from=%(account)s, ((paid_amount * -1) - total_taxes_and_charges) , received_amount)
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		FROM
 			`tabPayment Entry`
 		WHERE
@@ -152,5 +156,9 @@ def get_entries(filters):
 
 	return sorted(
 		journal_entries + payment_entries + loan_disbursements + loan_repayments,
+<<<<<<< HEAD
 		key=lambda k: k[2] or getdate(nowdate()),
+=======
+		key=lambda k: k[2].strftime("%H%M%S") or getdate(nowdate()),
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	)

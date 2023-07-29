@@ -36,7 +36,11 @@ class TestSubcontractingController(FrappeTestCase):
 		sco.remove_empty_rows()
 		self.assertEqual((len_before - 1), len(sco.service_items))
 
+<<<<<<< HEAD
 	def test_set_missing_values_in_additional_costs(self):
+=======
+	def test_calculate_additional_costs(self):
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		sco = get_subcontracting_order(do_not_submit=1)
 
 		rate_without_additional_cost = sco.items[0].rate

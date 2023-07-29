@@ -220,7 +220,10 @@
    "oldfieldname": "customer",
    "oldfieldtype": "Link",
    "options": "Customer",
+<<<<<<< HEAD
    "default": "Guest",
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "print_hide": 1,
    "search_index": 1
   },
@@ -1555,8 +1558,13 @@
  "icon": "fa fa-file-text",
  "is_submittable": 1,
  "links": [],
+<<<<<<< HEAD
  "modified": "2023-05-6 02:20:50.455199",
  "modified_by": "Mohammed M Elkady",
+=======
+ "modified": "2022-09-30 03:49:50.455199",
+ "modified_by": "Administrator",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "module": "Accounts",
  "name": "POS Invoice",
  "name_case": "Title Case",
@@ -1610,4 +1618,8 @@
  "title_field": "title",
  "track_changes": 1,
  "track_seen": 1
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)

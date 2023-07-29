@@ -303,7 +303,11 @@ erpnext.accounts.PurchaseInvoice = class PurchaseInvoice extends erpnext.buying.
 
 	apply_tds(frm) {
 		var me = this;
+<<<<<<< HEAD
 
+=======
+		me.frm.set_value("tax_withheld_vouchers", []);
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		if (!me.frm.doc.apply_tds) {
 			me.frm.set_value("tax_withholding_category", '');
 			me.frm.set_df_property("tax_withholding_category", "hidden", 1);

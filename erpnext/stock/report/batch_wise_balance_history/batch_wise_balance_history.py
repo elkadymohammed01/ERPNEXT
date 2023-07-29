@@ -9,11 +9,24 @@ from pypika import functions as fn
 
 from erpnext.stock.doctype.warehouse.warehouse import apply_warehouse_filter
 
+<<<<<<< HEAD
+=======
+SLE_COUNT_LIMIT = 10_000
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 def execute(filters=None):
 	if not filters:
 		filters = {}
 
+<<<<<<< HEAD
+=======
+	sle_count = frappe.db.count("Stock Ledger Entry", {"is_cancelled": 0})
+
+	if sle_count > SLE_COUNT_LIMIT and not filters.get("item_code") and not filters.get("warehouse"):
+		frappe.throw(_("Please select either the Item or Warehouse filter to generate the report."))
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	if filters.from_date > filters.to_date:
 		frappe.throw(_("From Date must be before To Date"))
 

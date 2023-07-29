@@ -5,11 +5,19 @@
  "description": "# Import Data from Spreadsheet\n\nIn ERPNext, you can easily migrate your historical data using spreadsheets. You can use it for migrating not just masters (like Customer, Supplier, Items), but also for transactions like (outstanding invoices, opening stock and accounting entries, etc).",
  "docstatus": 0,
  "doctype": "Onboarding Step",
+<<<<<<< HEAD
  "idx": 0,
  "is_complete": 0,
  "is_single": 0,
  "is_skipped": 0,
  "modified": "2022-06-07 14:28:51.390813",
+=======
+ "idx": 1,
+ "is_complete": 0,
+ "is_single": 0,
+ "is_skipped": 0,
+ "modified": "2023-05-15 09:18:42.962231",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "name": "Data import",
  "owner": "Administrator",

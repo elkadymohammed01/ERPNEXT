@@ -67,6 +67,7 @@ frappe.ui.form.on('Subcontracting Receipt', {
 			}
 		});
 
+<<<<<<< HEAD
 		let batch_no_field = frm.get_docfield("items", "batch_no");
 		if (batch_no_field) {
 			batch_no_field.get_route_options_for_new_doc = function(row) {
@@ -87,6 +88,25 @@ frappe.ui.form.on('Subcontracting Receipt', {
 				});
 			}
 		});
+=======
+		frm.set_query('batch_no', 'supplied_items', function(doc, cdt, cdn) {
+			var row = locals[cdt][cdn];
+			return {
+				filters: {
+					item: row.rm_item_code
+				}
+			}
+		});
+
+		let batch_no_field = frm.get_docfield('items', 'batch_no');
+		if (batch_no_field) {
+			batch_no_field.get_route_options_for_new_doc = function(row) {
+				return {
+					'item': row.doc.item_code
+				}
+			};
+		}
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	},
 
 	refresh: (frm) => {
@@ -148,6 +168,11 @@ frappe.ui.form.on('Subcontracting Receipt', {
 					}
 				});
 			}, __('Get Items From'));
+<<<<<<< HEAD
+=======
+
+			frm.fields_dict.supplied_items.grid.update_docfield_property('consumed_qty', 'read_only', frm.doc.__onload && frm.doc.__onload.backflush_based_on === 'BOM');
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		}
 	},
 

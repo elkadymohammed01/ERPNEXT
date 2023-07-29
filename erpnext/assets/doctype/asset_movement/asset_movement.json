@@ -37,6 +37,10 @@
    "reqd": 1
   },
   {
+<<<<<<< HEAD
+=======
+   "default": "Now",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "fieldname": "transaction_date",
    "fieldtype": "Datetime",
    "in_list_view": 1,
@@ -95,10 +99,18 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
+<<<<<<< HEAD
  "modified": "2021-01-22 12:30:55.295670",
  "modified_by": "Administrator",
  "module": "Assets",
  "name": "Asset Movement",
+=======
+ "modified": "2023-06-28 16:54:26.571083",
+ "modified_by": "Administrator",
+ "module": "Assets",
+ "name": "Asset Movement",
+ "naming_rule": "Expression",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "owner": "Administrator",
  "permissions": [
   {
@@ -148,5 +160,10 @@
   }
  ],
  "sort_field": "modified",
+<<<<<<< HEAD
  "sort_order": "DESC"
+=======
+ "sort_order": "DESC",
+ "states": []
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 }

@@ -79,6 +79,10 @@
   "column_break5",
   "grand_total",
   "rounding_adjustment",
+<<<<<<< HEAD
+=======
+  "use_company_roundoff_cost_center",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   "rounded_total",
   "in_words",
   "total_advance",
@@ -319,6 +323,10 @@
   },
   {
    "default": "0",
+<<<<<<< HEAD
+=======
+   "depends_on": "eval: !doc.is_debit_note",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "fieldname": "is_return",
    "fieldtype": "Check",
    "hide_days": 1,
@@ -1958,6 +1966,10 @@
   },
   {
    "default": "0",
+<<<<<<< HEAD
+=======
+   "depends_on": "eval: !doc.is_return",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
    "description": "Issue a debit note with 0 qty against an existing Sales Invoice",
    "fieldname": "is_debit_note",
    "fieldtype": "Check",
@@ -2134,6 +2146,15 @@
    "fieldname": "only_include_allocated_payments",
    "fieldtype": "Check",
    "label": "Only Include Allocated Payments"
+<<<<<<< HEAD
+=======
+  },
+  {
+   "default": "0",
+   "fieldname": "use_company_roundoff_cost_center",
+   "fieldtype": "Check",
+   "label": "Use Company default Cost Center for Round off"
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
   }
  ],
  "icon": "fa fa-file-text",
@@ -2146,7 +2167,11 @@
    "link_fieldname": "consolidated_invoice"
   }
  ],
+<<<<<<< HEAD
  "modified": "2023-04-03 22:55:14.206473",
+=======
+ "modified": "2023-06-19 16:02:05.309332",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Sales Invoice",

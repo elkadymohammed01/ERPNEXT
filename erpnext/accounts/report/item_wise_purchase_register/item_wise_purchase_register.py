@@ -15,21 +15,33 @@ from erpnext.accounts.report.item_wise_sales_register.item_wise_sales_register i
 	get_group_by_conditions,
 	get_tax_accounts,
 )
+<<<<<<< HEAD
 from erpnext.selling.report.item_wise_sales_history.item_wise_sales_history import get_item_details
+=======
+from erpnext.accounts.report.utils import get_query_columns, get_values_for_columns
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 
 def execute(filters=None):
 	return _execute(filters)
 
 
+<<<<<<< HEAD
 def _execute(filters=None, additional_table_columns=None, additional_query_columns=None):
+=======
+def _execute(filters=None, additional_table_columns=None):
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	if not filters:
 		filters = {}
 	columns = get_columns(additional_table_columns, filters)
 
 	company_currency = erpnext.get_company_currency(filters.company)
 
+<<<<<<< HEAD
 	item_list = get_items(filters, additional_query_columns)
+=======
+	item_list = get_items(filters, get_query_columns(additional_table_columns))
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	aii_account_map = get_aii_accounts()
 	if item_list:
 		itemised_tax, tax_columns = get_tax_accounts(
@@ -40,6 +52,19 @@ def _execute(filters=None, additional_table_columns=None, additional_query_colum
 			tax_doctype="Purchase Taxes and Charges",
 		)
 
+<<<<<<< HEAD
+=======
+		scrubbed_tax_fields = {}
+
+		for tax in tax_columns:
+			scrubbed_tax_fields.update(
+				{
+					tax + " Rate": frappe.scrub(tax + " Rate"),
+					tax + " Amount": frappe.scrub(tax + " Amount"),
+				}
+			)
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	po_pr_map = get_purchase_receipts_against_purchase_order(item_list)
 
 	data = []
@@ -50,11 +75,15 @@ def _execute(filters=None, additional_table_columns=None, additional_query_colum
 	if filters.get("group_by"):
 		grand_total = get_grand_total(filters, "Purchase Invoice")
 
+<<<<<<< HEAD
 	item_details = get_item_details()
 
 	for d in item_list:
 		item_record = item_details.get(d.item_code)
 
+=======
+	for d in item_list:
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		purchase_receipt = None
 		if d.purchase_receipt:
 			purchase_receipt = d.purchase_receipt
@@ -67,13 +96,19 @@ def _execute(filters=None, additional_table_columns=None, additional_query_colum
 
 		row = {
 			"item_code": d.item_code,
+<<<<<<< HEAD
 			"item_name": item_record.item_name if item_record else d.item_name,
 			"item_group": item_record.item_group if item_record else d.item_group,
+=======
+			"item_name": d.pi_item_name if d.pi_item_name else d.i_item_name,
+			"item_group": d.pi_item_group if d.pi_item_group else d.i_item_group,
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			"description": d.description,
 			"invoice": d.parent,
 			"posting_date": d.posting_date,
 			"supplier": d.supplier,
 			"supplier_name": d.supplier_name,
+<<<<<<< HEAD
 		}
 
 		if additional_query_columns:
@@ -96,13 +131,34 @@ def _execute(filters=None, additional_table_columns=None, additional_query_colum
 			}
 		)
 
+=======
+			**get_values_for_columns(additional_table_columns, d),
+			"credit_to": d.credit_to,
+			"mode_of_payment": d.mode_of_payment,
+			"project": d.project,
+			"company": d.company,
+			"purchase_order": d.purchase_order,
+			"purchase_receipt": purchase_receipt,
+			"expense_account": expense_account,
+			"stock_qty": d.stock_qty,
+			"stock_uom": d.stock_uom,
+			"rate": d.base_net_amount / d.stock_qty if d.stock_qty else d.base_net_amount,
+			"amount": d.base_net_amount,
+		}
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		total_tax = 0
 		for tax in tax_columns:
 			item_tax = itemised_tax.get(d.name, {}).get(tax, {})
 			row.update(
 				{
+<<<<<<< HEAD
 					frappe.scrub(tax + " Rate"): item_tax.get("tax_rate", 0),
 					frappe.scrub(tax + " Amount"): item_tax.get("tax_amount", 0),
+=======
+					scrubbed_tax_fields[tax + " Rate"]: item_tax.get("tax_rate", 0),
+					scrubbed_tax_fields[tax + " Amount"]: item_tax.get("tax_amount", 0),
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				}
 			)
 			total_tax += flt(item_tax.get("tax_amount"))
@@ -241,7 +297,11 @@ def get_columns(additional_table_columns, filters):
 		},
 		{
 			"label": _("Purchase Receipt"),
+<<<<<<< HEAD
 			"fieldname": "Purchase Receipt",
+=======
+			"fieldname": "purchase_receipt",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			"fieldtype": "Link",
 			"options": "Purchase Receipt",
 			"width": 100,
@@ -312,11 +372,14 @@ def get_conditions(filters):
 def get_items(filters, additional_query_columns):
 	conditions = get_conditions(filters)
 
+<<<<<<< HEAD
 	if additional_query_columns:
 		additional_query_columns = ", " + ", ".join(additional_query_columns)
 	else:
 		additional_query_columns = ""
 
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	return frappe.db.sql(
 		"""
 		select
@@ -325,12 +388,18 @@ def get_items(filters, additional_query_columns):
 			`tabPurchase Invoice`.supplier, `tabPurchase Invoice`.remarks, `tabPurchase Invoice`.base_net_total,
 			`tabPurchase Invoice`.unrealized_profit_loss_account,
 			`tabPurchase Invoice Item`.`item_code`, `tabPurchase Invoice Item`.description,
+<<<<<<< HEAD
 			`tabPurchase Invoice Item`.`item_name`, `tabPurchase Invoice Item`.`item_group`,
+=======
+			`tabPurchase Invoice Item`.`item_name` as pi_item_name, `tabPurchase Invoice Item`.`item_group` as pi_item_group,
+			`tabItem`.`item_name` as i_item_name, `tabItem`.`item_group` as i_item_group,
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			`tabPurchase Invoice Item`.`project`, `tabPurchase Invoice Item`.`purchase_order`,
 			`tabPurchase Invoice Item`.`purchase_receipt`, `tabPurchase Invoice Item`.`po_detail`,
 			`tabPurchase Invoice Item`.`expense_account`, `tabPurchase Invoice Item`.`stock_qty`,
 			`tabPurchase Invoice Item`.`stock_uom`, `tabPurchase Invoice Item`.`base_net_amount`,
 			`tabPurchase Invoice`.`supplier_name`, `tabPurchase Invoice`.`mode_of_payment` {0}
+<<<<<<< HEAD
 		from `tabPurchase Invoice`, `tabPurchase Invoice Item`
 		where `tabPurchase Invoice`.name = `tabPurchase Invoice Item`.`parent` and
 		`tabPurchase Invoice`.docstatus = 1 %s
@@ -338,6 +407,15 @@ def get_items(filters, additional_query_columns):
 			additional_query_columns
 		)
 		% (conditions),
+=======
+		from `tabPurchase Invoice`, `tabPurchase Invoice Item`, `tabItem`
+		where `tabPurchase Invoice`.name = `tabPurchase Invoice Item`.`parent` and
+			`tabItem`.name = `tabPurchase Invoice Item`.`item_code` and
+			`tabPurchase Invoice`.docstatus = 1 {1}
+	""".format(
+			additional_query_columns, conditions
+		),
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		filters,
 		as_dict=1,
 	)

@@ -6,7 +6,11 @@ import copy
 
 import frappe
 from frappe.tests.utils import FrappeTestCase
+<<<<<<< HEAD
 from frappe.utils import cint, flt
+=======
+from frappe.utils import add_days, cint, cstr, flt, today
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 import erpnext
 from erpnext.accounts.doctype.account.test_account import get_inventory_account
@@ -26,6 +30,12 @@ from erpnext.controllers.tests.test_subcontracting_controller import (
 from erpnext.stock.doctype.item.test_item import make_item
 from erpnext.stock.doctype.purchase_receipt.test_purchase_receipt import get_gl_entries
 from erpnext.stock.doctype.stock_entry.test_stock_entry import make_stock_entry
+<<<<<<< HEAD
+=======
+from erpnext.stock.doctype.stock_reconciliation.test_stock_reconciliation import (
+	create_stock_reconciliation,
+)
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 from erpnext.subcontracting.doctype.subcontracting_order.subcontracting_order import (
 	make_subcontracting_receipt,
 )
@@ -528,6 +538,72 @@ class TestSubcontractingReceipt(FrappeTestCase):
 		# consumed_qty should be (accepted_qty * qty_consumed_per_unit) = (6 * 1) = 6
 		self.assertEqual(scr.supplied_items[0].consumed_qty, 6)
 
+<<<<<<< HEAD
+=======
+	def test_supplied_items_cost_after_reposting(self):
+		# Set Backflush Based On as "BOM"
+		set_backflush_based_on("BOM")
+
+		# Create Material Receipt for RM's
+		make_stock_entry(
+			item_code="_Test Item",
+			qty=100,
+			target="_Test Warehouse 1 - _TC",
+			basic_rate=100,
+			posting_date=add_days(today(), -2),
+		)
+		make_stock_entry(
+			item_code="_Test Item Home Desktop 100",
+			qty=100,
+			target="_Test Warehouse 1 - _TC",
+			basic_rate=100,
+		)
+
+		service_items = [
+			{
+				"warehouse": "_Test Warehouse - _TC",
+				"item_code": "Subcontracted Service Item 1",
+				"qty": 10,
+				"rate": 100,
+				"fg_item": "_Test FG Item",
+				"fg_item_qty": 10,
+			},
+		]
+
+		# Create Subcontracting Order
+		sco = get_subcontracting_order(service_items=service_items)
+
+		# Transfer RM's
+		rm_items = get_rm_items(sco.supplied_items)
+
+		itemwise_details = make_stock_in_entry(rm_items=rm_items)
+		make_stock_transfer_entry(
+			sco_no=sco.name,
+			rm_items=rm_items,
+			itemwise_details=copy.deepcopy(itemwise_details),
+		)
+
+		# Create Subcontracting Receipt
+		scr = make_subcontracting_receipt(sco.name)
+		scr.save()
+		scr.submit()
+
+		# Create Backdated Stock Reconciliation
+		sr = create_stock_reconciliation(
+			item_code=rm_items[0].get("item_code"),
+			warehouse="_Test Warehouse 1 - _TC",
+			qty=100,
+			rate=50,
+			posting_date=add_days(today(), -1),
+		)
+
+		# Cost should be updated in Subcontracting Receipt after reposting
+		prev_cost = scr.supplied_items[0].rate
+		scr.load_from_db()
+		self.assertNotEqual(scr.supplied_items[0].rate, prev_cost)
+		self.assertEqual(scr.supplied_items[0].rate, sr.items[0].valuation_rate)
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 def make_return_subcontracting_receipt(**args):
 	args = frappe._dict(args)

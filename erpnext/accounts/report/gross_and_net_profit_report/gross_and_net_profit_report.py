@@ -125,12 +125,23 @@ def get_revenue(data, period_list, include_in_gross=1):
 
 	data_to_be_removed = True
 	while data_to_be_removed:
+<<<<<<< HEAD
 		revenue, data_to_be_removed = remove_parent_with_no_child(revenue, period_list)
 	revenue = adjust_account(revenue, period_list)
 	return copy.deepcopy(revenue)
 
 
 def remove_parent_with_no_child(data, period_list):
+=======
+		revenue, data_to_be_removed = remove_parent_with_no_child(revenue)
+
+	adjust_account_totals(revenue, period_list)
+
+	return copy.deepcopy(revenue)
+
+
+def remove_parent_with_no_child(data):
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	data_to_be_removed = False
 	for parent in data:
 		if "is_group" in parent and parent.get("is_group") == 1:
@@ -147,6 +158,7 @@ def remove_parent_with_no_child(data, period_list):
 	return data, data_to_be_removed
 
 
+<<<<<<< HEAD
 def adjust_account(data, period_list, consolidated=False):
 	leaf_nodes = [item for item in data if item["is_group"] == 0]
 	totals = {}
@@ -157,6 +169,21 @@ def adjust_account(data, period_list, consolidated=False):
 			key = period if consolidated else period.key
 			d["total"] = totals[d["account"]]
 	return data
+=======
+def adjust_account_totals(data, period_list):
+	totals = {}
+	for d in reversed(data):
+		if d.get("is_group"):
+			for period in period_list:
+				# reset totals for group accounts as totals set by get_data doesn't consider include_in_gross check
+				d[period.key] = sum(
+					item[period.key] for item in data if item.get("parent_account") == d.get("account")
+				)
+		else:
+			set_total(d, d["total"], data, totals)
+
+		d["total"] = totals[d["account"]]
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 
 def set_total(node, value, complete_list, totals):
@@ -191,6 +218,12 @@ def get_profit(
 
 		if profit_loss[key]:
 			has_value = True
+<<<<<<< HEAD
+=======
+			if not profit_loss.get("total"):
+				profit_loss["total"] = 0
+			profit_loss["total"] += profit_loss[key]
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	if has_value:
 		return profit_loss
@@ -229,6 +262,12 @@ def get_net_profit(
 
 		if profit_loss[key]:
 			has_value = True
+<<<<<<< HEAD
+=======
+			if not profit_loss.get("total"):
+				profit_loss["total"] = 0
+			profit_loss["total"] += profit_loss[key]
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	if has_value:
 		return profit_loss

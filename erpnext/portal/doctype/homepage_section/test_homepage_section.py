@@ -10,6 +10,7 @@ from frappe.website.serve import get_response
 
 
 class TestHomepageSection(unittest.TestCase):
+<<<<<<< HEAD
 	def test_homepage_section_card(self):
 		try:
 			frappe.get_doc(
@@ -66,6 +67,8 @@ class TestHomepageSection(unittest.TestCase):
 		# cleanup
 		frappe.db.rollback()
 
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def test_homepage_section_custom_html(self):
 		frappe.get_doc(
 			{

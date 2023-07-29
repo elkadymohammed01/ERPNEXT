@@ -13,7 +13,11 @@ frappe.ui.form.on('Quotation', {
 		frm.set_query("quotation_to", function() {
 			return{
 				"filters": {
+<<<<<<< HEAD
 					"name": ["in", ["Customer", "Lead"]],
+=======
+					"name": ["in", ["Customer", "Lead", "Prospect"]],
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				}
 			}
 		});
@@ -160,6 +164,7 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 	}
 
 	set_dynamic_field_label(){
+<<<<<<< HEAD
 		if (this.frm.doc.quotation_to == "Customer")
 		{
 			this.frm.set_df_property("party_name", "label", "Customer");
@@ -173,6 +178,18 @@ erpnext.selling.QuotationController = class QuotationController extends erpnext.
 			this.frm.fields_dict.party_name.get_query = function() {
 				return{	query: "erpnext.controllers.queries.lead_query" }
 			}
+=======
+		if (this.frm.doc.quotation_to == "Customer") {
+			this.frm.set_df_property("party_name", "label", "Customer");
+			this.frm.fields_dict.party_name.get_query = null;
+		} else if (this.frm.doc.quotation_to == "Lead") {
+			this.frm.set_df_property("party_name", "label", "Lead");
+			this.frm.fields_dict.party_name.get_query = function() {
+				return{	query: "erpnext.controllers.queries.lead_query" }
+			}
+		} else if (this.frm.doc.quotation_to == "Prospect") {
+			this.frm.set_df_property("party_name", "label", "Prospect");
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		}
 	}
 

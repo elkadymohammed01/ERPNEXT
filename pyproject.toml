@@ -13,6 +13,11 @@ dependencies = [
     "python-stdnum~=1.16",
     "Unidecode~=1.2.0",
     "redisearch~=2.1.0",
+<<<<<<< HEAD
+=======
+    "rapidfuzz~=2.15.0",
+    "holidays~=0.28",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
     # integration dependencies
     "gocardless-pro~=1.22.0",

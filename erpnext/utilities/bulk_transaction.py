@@ -69,7 +69,11 @@ def task(doc_name, from_doctype, to_doctype):
 		"Sales Order": {
 			"Sales Invoice": sales_order.make_sales_invoice,
 			"Delivery Note": sales_order.make_delivery_note,
+<<<<<<< HEAD
 			"Advance Payment": payment_entry.get_payment_entry,
+=======
+			"Payment Entry": payment_entry.get_payment_entry,
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		},
 		"Sales Invoice": {
 			"Delivery Note": sales_invoice.make_delivery_note,
@@ -86,11 +90,18 @@ def task(doc_name, from_doctype, to_doctype):
 		"Supplier Quotation": {
 			"Purchase Order": supplier_quotation.make_purchase_order,
 			"Purchase Invoice": supplier_quotation.make_purchase_invoice,
+<<<<<<< HEAD
 			"Advance Payment": payment_entry.get_payment_entry,
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		},
 		"Purchase Order": {
 			"Purchase Invoice": purchase_order.make_purchase_invoice,
 			"Purchase Receipt": purchase_order.make_purchase_receipt,
+<<<<<<< HEAD
+=======
+			"Payment Entry": payment_entry.get_payment_entry,
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		},
 		"Purchase Invoice": {
 			"Purchase Receipt": purchase_invoice.make_purchase_receipt,
@@ -98,12 +109,20 @@ def task(doc_name, from_doctype, to_doctype):
 		},
 		"Purchase Receipt": {"Purchase Invoice": purchase_receipt.make_purchase_invoice},
 	}
+<<<<<<< HEAD
 	if to_doctype in ["Advance Payment", "Payment Entry"]:
+=======
+	if to_doctype in ["Payment Entry"]:
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		obj = mapper[from_doctype][to_doctype](from_doctype, doc_name)
 	else:
 		obj = mapper[from_doctype][to_doctype](doc_name)
 
 	obj.flags.ignore_validate = True
+<<<<<<< HEAD
+=======
+	obj.set_title_field()
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	obj.insert(ignore_mandatory=True)
 
 

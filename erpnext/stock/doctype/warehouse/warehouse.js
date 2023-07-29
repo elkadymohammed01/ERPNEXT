@@ -13,10 +13,18 @@ frappe.ui.form.on("Warehouse", {
 			};
 		});
 
+<<<<<<< HEAD
 		frm.set_query("parent_warehouse", function () {
 			return {
 				filters: {
 					is_group: 1,
+=======
+		frm.set_query("parent_warehouse", function (doc) {
+			return {
+				filters: {
+					is_group: 1,
+					company: doc.company,
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				},
 			};
 		});
@@ -39,12 +47,40 @@ frappe.ui.form.on("Warehouse", {
 			!frm.doc.__islocal
 		);
 
+<<<<<<< HEAD
 		if (!frm.doc.__islocal) {
 			frappe.contacts.render_address_and_contact(frm);
+=======
+		if (!frm.is_new()) {
+			frappe.contacts.render_address_and_contact(frm);
+
+			let enable_toggle = frm.doc.disabled ? "Enable" : "Disable";
+			frm.add_custom_button(__(enable_toggle), () => {
+				frm.set_value('disabled', 1 - frm.doc.disabled);
+				frm.save()
+			});
+
+			frm.add_custom_button(__("Stock Balance"), function () {
+				frappe.set_route("query-report", "Stock Balance", {
+					warehouse: frm.doc.name,
+				});
+			});
+
+			frm.add_custom_button(
+				frm.doc.is_group
+					? __("Convert to Ledger", null, "Warehouse")
+					: __("Convert to Group", null, "Warehouse"),
+				function () {
+					convert_to_group_or_ledger(frm);
+				},
+			);
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		} else {
 			frappe.contacts.clear_address_and_contact(frm);
 		}
 
+<<<<<<< HEAD
 		frm.add_custom_button(__("Stock Balance"), function () {
 			frappe.set_route("query-report", "Stock Balance", {
 				warehouse: frm.doc.name,
@@ -59,6 +95,8 @@ frappe.ui.form.on("Warehouse", {
 				convert_to_group_or_ledger(frm);
 			},
 		);
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		if (!frm.doc.is_group && frm.doc.__onload && frm.doc.__onload.account) {
 			frm.add_custom_button(

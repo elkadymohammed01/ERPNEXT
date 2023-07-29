@@ -145,6 +145,7 @@ erpnext.selling.SellingController = class SellingController extends erpnext.Tran
 		this.apply_discount_on_item(doc, cdt, cdn, 'discount_amount');
 	}
 
+<<<<<<< HEAD
 	apply_discount_on_item(doc, cdt, cdn, field) {
 		var item = frappe.get_doc(cdt, cdn);
 		if(!item.price_list_rate) {
@@ -155,6 +156,8 @@ erpnext.selling.SellingController = class SellingController extends erpnext.Tran
 		this.set_gross_profit(item);
 	}
 
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	commission_rate() {
 		this.calculate_commission();
 	}
@@ -299,7 +302,12 @@ erpnext.selling.SellingController = class SellingController extends erpnext.Tran
 	}
 
 	batch_no(doc, cdt, cdn) {
+<<<<<<< HEAD
 		var me = this;
+=======
+		super.batch_no(doc, cdt, cdn);
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		var item = frappe.get_doc(cdt, cdn);
 
 		if (item.serial_no) {
@@ -378,10 +386,13 @@ erpnext.selling.SellingController = class SellingController extends erpnext.Tran
 			}
 	}
 
+<<<<<<< HEAD
 	batch_no(doc, cdt, cdn) {
 		super.batch_no(doc, cdt, cdn);
 	}
 
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	qty(doc, cdt, cdn) {
 		super.qty(doc, cdt, cdn);
 

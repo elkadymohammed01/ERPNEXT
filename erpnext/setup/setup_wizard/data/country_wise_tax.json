@@ -581,6 +581,14 @@
 						"title": "Bauleistungen nach § 13b UStG",
 						"is_default": 0,
 						"taxes": []
+<<<<<<< HEAD
+=======
+					},
+					{
+						"title": "Nullsteuersatz nach § 12 Abs. 3 UStG",
+						"is_default": 0,
+						"taxes": []
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					}
 				],
 				"purchase_tax_templates": [
@@ -1339,6 +1347,14 @@
 						"title": "Bauleistungen nach § 13b UStG",
 						"is_default": 0,
 						"taxes": []
+<<<<<<< HEAD
+=======
+					},
+					{
+						"title": "Nullsteuersatz nach § 12 Abs. 3 UStG",
+						"is_default": 0,
+						"taxes": []
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					}
 				],
 				"purchase_tax_templates": [
@@ -2097,6 +2113,14 @@
 						"title": "Bauleistungen nach § 13b UStG",
 						"is_default": 0,
 						"taxes": []
+<<<<<<< HEAD
+=======
+					},
+					{
+						"title": "Nullsteuersatz nach § 12 Abs. 3 UStG",
+						"is_default": 0,
+						"taxes": []
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					}
 				],
 				"purchase_tax_templates": [
@@ -2849,6 +2873,14 @@
 						"title": "Bauleistungen nach § 13b UStG",
 						"is_default": 0,
 						"taxes": []
+<<<<<<< HEAD
+=======
+					},
+					{
+						"title": "Nullsteuersatz nach § 12 Abs. 3 UStG",
+						"is_default": 0,
+						"taxes": []
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 					}
 				],
 				"purchase_tax_templates": [

@@ -14,7 +14,10 @@ erpnext.assets.AssetCapitalization = class AssetCapitalization extends erpnext.s
 	}
 
 	refresh() {
+<<<<<<< HEAD
 		erpnext.hide_company();
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		this.show_general_ledger();
 		if ((this.frm.doc.stock_items && this.frm.doc.stock_items.length) || !this.frm.doc.target_is_fixed_asset) {
 			this.show_stock_ledger();
@@ -105,10 +108,13 @@ erpnext.assets.AssetCapitalization = class AssetCapitalization extends erpnext.s
 		return this.get_target_item_details();
 	}
 
+<<<<<<< HEAD
 	target_asset() {
 		return this.get_target_asset_details();
 	}
 
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	item_code(doc, cdt, cdn) {
 		var row = frappe.get_doc(cdt, cdn);
 		if (cdt === "Asset Capitalization Stock Item") {
@@ -223,6 +229,7 @@ erpnext.assets.AssetCapitalization = class AssetCapitalization extends erpnext.s
 		}
 	}
 
+<<<<<<< HEAD
 	get_target_asset_details() {
 		var me = this;
 
@@ -243,6 +250,8 @@ erpnext.assets.AssetCapitalization = class AssetCapitalization extends erpnext.s
 		}
 	}
 
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	get_consumed_stock_item_details(row) {
 		var me = this;
 

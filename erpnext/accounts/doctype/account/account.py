@@ -201,8 +201,16 @@ class Account(NestedSet):
 				)
 
 	def validate_account_currency(self):
+<<<<<<< HEAD
 		if not self.account_currency:
 			self.account_currency = frappe.get_cached_value("Company", self.company, "default_currency")
+=======
+		self.currency_explicitly_specified = True
+
+		if not self.account_currency:
+			self.account_currency = frappe.get_cached_value("Company", self.company, "default_currency")
+			self.currency_explicitly_specified = False
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		gl_currency = frappe.db.get_value("GL Entry", {"account": self.name}, "account_currency")
 
@@ -248,8 +256,15 @@ class Account(NestedSet):
 					{
 						"company": company,
 						# parent account's currency should be passed down to child account's curreny
+<<<<<<< HEAD
 						# if it is None, it picks it up from default company currency, which might be unintended
 						"account_currency": erpnext.get_company_currency(company),
+=======
+						# if currency explicitly specified by user, child will inherit. else, default currency will be used.
+						"account_currency": self.account_currency
+						if self.currency_explicitly_specified
+						else erpnext.get_company_currency(company),
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 						"parent_account": parent_acc_name_map[company],
 					}
 				)

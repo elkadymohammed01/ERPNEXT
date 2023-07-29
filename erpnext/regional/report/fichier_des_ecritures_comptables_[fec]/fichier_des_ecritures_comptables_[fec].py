@@ -1,13 +1,17 @@
 # Copyright (c) 2018, Frappe Technologies Pvt. Ltd. and contributors
 # For license information, please see license.txt
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 import re
 
 import frappe
 from frappe import _
 from frappe.utils import format_datetime
 
+<<<<<<< HEAD
 
 def execute(filters=None):
 	account_details = {}
@@ -26,6 +30,131 @@ def execute(filters=None):
 
 
 def validate_filters(filters, account_details):
+=======
+COLUMNS = [
+	{
+		"label": "JournalCode",
+		"fieldname": "JournalCode",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "JournalLib",
+		"fieldname": "JournalLib",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "EcritureNum",
+		"fieldname": "EcritureNum",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "EcritureDate",
+		"fieldname": "EcritureDate",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "CompteNum",
+		"fieldname": "CompteNum",
+		"fieldtype": "Link",
+		"options": "Account",
+		"width": 100,
+	},
+	{
+		"label": "CompteLib",
+		"fieldname": "CompteLib",
+		"fieldtype": "Link",
+		"options": "Account",
+		"width": 200,
+	},
+	{
+		"label": "CompAuxNum",
+		"fieldname": "CompAuxNum",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "CompAuxLib",
+		"fieldname": "CompAuxLib",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "PieceRef",
+		"fieldname": "PieceRef",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "PieceDate",
+		"fieldname": "PieceDate",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "EcritureLib",
+		"fieldname": "EcritureLib",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "Debit",
+		"fieldname": "Debit",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "Credit",
+		"fieldname": "Credit",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "EcritureLet",
+		"fieldname": "EcritureLet",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "DateLet",
+		"fieldname": "DateLet",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "ValidDate",
+		"fieldname": "ValidDate",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "Montantdevise",
+		"fieldname": "Montantdevise",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+	{
+		"label": "Idevise",
+		"fieldname": "Idevise",
+		"fieldtype": "Data",
+		"width": 90,
+	},
+]
+
+
+def execute(filters=None):
+	validate_filters(filters)
+	return COLUMNS, get_result(
+		company=filters["company"],
+		fiscal_year=filters["fiscal_year"],
+	)
+
+
+def validate_filters(filters):
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	if not filters.get("company"):
 		frappe.throw(_("{0} is mandatory").format(_("Company")))
 
@@ -33,6 +162,7 @@ def validate_filters(filters, account_details):
 		frappe.throw(_("{0} is mandatory").format(_("Fiscal Year")))
 
 
+<<<<<<< HEAD
 def set_account_currency(filters):
 
 	filters["company_currency"] = frappe.get_cached_value(
@@ -134,6 +264,98 @@ def get_result_as_list(data, filters):
 
 	for d in data:
 
+=======
+def get_gl_entries(company, fiscal_year):
+	gle = frappe.qb.DocType("GL Entry")
+	sales_invoice = frappe.qb.DocType("Sales Invoice")
+	purchase_invoice = frappe.qb.DocType("Purchase Invoice")
+	journal_entry = frappe.qb.DocType("Journal Entry")
+	payment_entry = frappe.qb.DocType("Payment Entry")
+	customer = frappe.qb.DocType("Customer")
+	supplier = frappe.qb.DocType("Supplier")
+	employee = frappe.qb.DocType("Employee")
+
+	debit = frappe.query_builder.functions.Sum(gle.debit).as_("debit")
+	credit = frappe.query_builder.functions.Sum(gle.credit).as_("credit")
+	debit_currency = frappe.query_builder.functions.Sum(gle.debit_in_account_currency).as_(
+		"debitCurr"
+	)
+	credit_currency = frappe.query_builder.functions.Sum(gle.credit_in_account_currency).as_(
+		"creditCurr"
+	)
+
+	query = (
+		frappe.qb.from_(gle)
+		.left_join(sales_invoice)
+		.on(gle.voucher_no == sales_invoice.name)
+		.left_join(purchase_invoice)
+		.on(gle.voucher_no == purchase_invoice.name)
+		.left_join(journal_entry)
+		.on(gle.voucher_no == journal_entry.name)
+		.left_join(payment_entry)
+		.on(gle.voucher_no == payment_entry.name)
+		.left_join(customer)
+		.on(gle.party == customer.name)
+		.left_join(supplier)
+		.on(gle.party == supplier.name)
+		.left_join(employee)
+		.on(gle.party == employee.name)
+		.select(
+			gle.posting_date.as_("GlPostDate"),
+			gle.name.as_("GlName"),
+			gle.account,
+			gle.transaction_date,
+			debit,
+			credit,
+			debit_currency,
+			credit_currency,
+			gle.voucher_type,
+			gle.voucher_no,
+			gle.against_voucher_type,
+			gle.against_voucher,
+			gle.account_currency,
+			gle.against,
+			gle.party_type,
+			gle.party,
+			sales_invoice.name.as_("InvName"),
+			sales_invoice.title.as_("InvTitle"),
+			sales_invoice.posting_date.as_("InvPostDate"),
+			purchase_invoice.name.as_("PurName"),
+			purchase_invoice.title.as_("PurTitle"),
+			purchase_invoice.posting_date.as_("PurPostDate"),
+			journal_entry.cheque_no.as_("JnlRef"),
+			journal_entry.posting_date.as_("JnlPostDate"),
+			journal_entry.title.as_("JnlTitle"),
+			payment_entry.name.as_("PayName"),
+			payment_entry.posting_date.as_("PayPostDate"),
+			payment_entry.title.as_("PayTitle"),
+			customer.customer_name,
+			customer.name.as_("cusName"),
+			supplier.supplier_name,
+			supplier.name.as_("supName"),
+			employee.employee_name,
+			employee.name.as_("empName"),
+		)
+		.where((gle.company == company) & (gle.fiscal_year == fiscal_year))
+		.groupby(gle.voucher_type, gle.voucher_no, gle.account)
+		.orderby(gle.posting_date, gle.voucher_no)
+	)
+
+	return query.run(as_dict=True)
+
+
+def get_result(company, fiscal_year):
+	data = get_gl_entries(company, fiscal_year)
+
+	result = []
+
+	company_currency = frappe.get_cached_value("Company", company, "default_currency")
+	accounts = frappe.get_all(
+		"Account", filters={"Company": company}, fields=["name", "account_number"]
+	)
+
+	for d in data:
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		JournalCode = re.split("-|/|[0-9]", d.get("voucher_no"))[0]
 
 		if d.get("voucher_no").startswith("{0}-".format(JournalCode)) or d.get("voucher_no").startswith(
@@ -141,9 +363,13 @@ def get_result_as_list(data, filters):
 		):
 			EcritureNum = re.split("-|/", d.get("voucher_no"))[1]
 		else:
+<<<<<<< HEAD
 			EcritureNum = re.search(
 				r"{0}(\d+)".format(JournalCode), d.get("voucher_no"), re.IGNORECASE
 			).group(1)
+=======
+			EcritureNum = re.search(r"{0}(\d+)".format(JournalCode), d.get("voucher_no"), re.IGNORECASE)[1]
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		EcritureDate = format_datetime(d.get("GlPostDate"), "yyyyMMdd")
 
@@ -185,7 +411,11 @@ def get_result_as_list(data, filters):
 
 		ValidDate = format_datetime(d.get("GlPostDate"), "yyyyMMdd")
 
+<<<<<<< HEAD
 		PieceRef = d.get("voucher_no") if d.get("voucher_no") else "Sans Reference"
+=======
+		PieceRef = d.get("voucher_no") or "Sans Reference"
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		# EcritureLib is the reference title unless it is an opening entry
 		if d.get("is_opening") == "Yes":

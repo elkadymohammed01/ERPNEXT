@@ -1,6 +1,10 @@
 # Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 # License: GNU General Public License v3. See license.txt
 
+<<<<<<< HEAD
+=======
+from collections import OrderedDict
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 import frappe
 from frappe import _, qb, scrub
@@ -250,7 +254,11 @@ def get_columns(group_wise_columns, filters):
 				"label": _("Warehouse"),
 				"fieldname": "warehouse",
 				"fieldtype": "Link",
+<<<<<<< HEAD
 				"options": "warehouse",
+=======
+				"options": "Warehouse",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				"width": 100,
 			},
 			"qty": {"label": _("Qty"), "fieldname": "qty", "fieldtype": "Float", "width": 80},
@@ -305,7 +313,12 @@ def get_columns(group_wise_columns, filters):
 			"sales_person": {
 				"label": _("Sales Person"),
 				"fieldname": "sales_person",
+<<<<<<< HEAD
 				"fieldtype": "Data",
+=======
+				"fieldtype": "Link",
+				"options": "Sales Person",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				"width": 100,
 			},
 			"allocated_amount": {
@@ -326,14 +339,22 @@ def get_columns(group_wise_columns, filters):
 				"label": _("Customer Group"),
 				"fieldname": "customer_group",
 				"fieldtype": "Link",
+<<<<<<< HEAD
 				"options": "customer",
+=======
+				"options": "Customer Group",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				"width": 100,
 			},
 			"territory": {
 				"label": _("Territory"),
 				"fieldname": "territory",
 				"fieldtype": "Link",
+<<<<<<< HEAD
 				"options": "territory",
+=======
+				"options": "Territory",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				"width": 100,
 			},
 			"monthly": {
@@ -735,7 +756,11 @@ class GrossProfitGenerator(object):
 	def load_invoice_items(self):
 		conditions = ""
 		if self.filters.company:
+<<<<<<< HEAD
 			conditions += " and company = %(company)s"
+=======
+			conditions += " and `tabSales Invoice`.company = %(company)s"
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		if self.filters.from_date:
 			conditions += " and posting_date >= %(from_date)s"
 		if self.filters.to_date:
@@ -848,6 +873,7 @@ class GrossProfitGenerator(object):
 		Turns list of Sales Invoice Items to a tree of Sales Invoices with their Items as children.
 		"""
 
+<<<<<<< HEAD
 		parents = []
 
 		for row in self.si_list:
@@ -872,6 +898,32 @@ class GrossProfitGenerator(object):
 						self.add_bundle_items(row, index)
 
 	def get_invoice_row(self, row):
+=======
+		grouped = OrderedDict()
+
+		for row in self.si_list:
+			# initialize list with a header row for each new parent
+			grouped.setdefault(row.parent, [self.get_invoice_row(row)]).append(
+				row.update(
+					{"indent": 1.0, "parent_invoice": row.parent, "invoice_or_item": row.item_code}
+				)  # descendant rows will have indent: 1.0 or greater
+			)
+
+			# if item is a bundle, add it's components as seperate rows
+			if frappe.db.exists("Product Bundle", row.item_code):
+				bundled_items = self.get_bundle_items(row)
+				for x in bundled_items:
+					bundle_item = self.get_bundle_item_row(row, x)
+					grouped.get(row.parent).append(bundle_item)
+
+		self.si_list.clear()
+
+		for items in grouped.values():
+			self.si_list.extend(items)
+
+	def get_invoice_row(self, row):
+		# header row format
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		return frappe._dict(
 			{
 				"parent_invoice": "",
@@ -900,6 +952,7 @@ class GrossProfitGenerator(object):
 			}
 		)
 
+<<<<<<< HEAD
 	def add_bundle_items(self, product_bundle, index):
 		bundle_items = self.get_bundle_items(product_bundle)
 
@@ -907,6 +960,8 @@ class GrossProfitGenerator(object):
 			bundle_item = self.get_bundle_item_row(product_bundle, item)
 			self.si_list.insert((index + i + 1), bundle_item)
 
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def get_bundle_items(self, product_bundle):
 		return frappe.get_all(
 			"Product Bundle Item", filters={"parent": product_bundle.item_code}, fields=["item_code", "qty"]

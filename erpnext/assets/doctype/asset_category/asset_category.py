@@ -96,7 +96,10 @@ class AssetCategory(Document):
 				frappe.throw(msg, title=_("Missing Account"))
 
 
+<<<<<<< HEAD
 @frappe.whitelist()
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 def get_asset_category_account(
 	fieldname, item=None, asset=None, account=None, asset_category=None, company=None
 ):

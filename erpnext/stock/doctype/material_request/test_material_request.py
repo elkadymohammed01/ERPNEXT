@@ -54,6 +54,11 @@ class TestMaterialRequest(FrappeTestCase):
 		mr.submit()
 		se = make_stock_entry(mr.name)
 
+<<<<<<< HEAD
+=======
+		self.assertEqual(se.stock_entry_type, "Material Transfer")
+		self.assertEqual(se.purpose, "Material Transfer")
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		self.assertEqual(se.doctype, "Stock Entry")
 		self.assertEqual(len(se.get("items")), len(mr.get("items")))
 
@@ -69,6 +74,11 @@ class TestMaterialRequest(FrappeTestCase):
 		in_transit_warehouse = get_in_transit_warehouse(mr.company)
 		se = make_in_transit_stock_entry(mr.name, in_transit_warehouse)
 
+<<<<<<< HEAD
+=======
+		self.assertEqual(se.stock_entry_type, "Material Transfer")
+		self.assertEqual(se.purpose, "Material Transfer")
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		self.assertEqual(se.doctype, "Stock Entry")
 		for row in se.get("items"):
 			self.assertEqual(row.t_warehouse, in_transit_warehouse)

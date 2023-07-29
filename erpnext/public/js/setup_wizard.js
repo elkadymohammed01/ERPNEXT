@@ -13,6 +13,7 @@ frappe.setup.on("before_load", function () {
 
 erpnext.setup.slides_settings = [
 	{
+<<<<<<< HEAD
 		// Brand
 		name: 'brand',
 		icon: "fa fa-bookmark",
@@ -27,6 +28,14 @@ erpnext.setup.slides_settings = [
 				align: 'center'
 			},
 			{
+=======
+		// Organization
+		name: 'organization',
+		title: __("Setup your organization"),
+		icon: "fa fa-building",
+		fields: [
+			{
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				fieldname: 'company_name',
 				label: __('Company Name'),
 				fieldtype: 'Data',
@@ -35,6 +44,7 @@ erpnext.setup.slides_settings = [
 			{
 				fieldname: 'company_abbr',
 				label: __('Company Abbreviation'),
+<<<<<<< HEAD
 				fieldtype: 'Data'
 			}
 		],
@@ -83,6 +93,11 @@ erpnext.setup.slides_settings = [
 				reqd: 1
 			},
 			{ fieldname: 'bank_account', label: __('Bank Name'), fieldtype: 'Data', reqd: 1 },
+=======
+				fieldtype: 'Data',
+				hidden: 1
+			},
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			{
 				fieldname: 'chart_of_accounts', label: __('Chart of Accounts'),
 				options: "", fieldtype: 'Select'
@@ -94,6 +109,7 @@ erpnext.setup.slides_settings = [
 		],
 
 		onload: function (slide) {
+<<<<<<< HEAD
 			this.load_chart_of_accounts(slide);
 			this.bind_events(slide);
 			this.set_fy_dates(slide);
@@ -103,10 +119,18 @@ erpnext.setup.slides_settings = [
 			let me = this;
 			let exist;
 
+=======
+			this.bind_events(slide);
+			this.load_chart_of_accounts(slide);
+			this.set_fy_dates(slide);
+		},
+		validate: function () {
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			if (!this.validate_fy_dates()) {
 				return false;
 			}
 
+<<<<<<< HEAD
 			// Validate bank name
 			if(me.values.bank_account) {
 				frappe.call({
@@ -128,6 +152,17 @@ erpnext.setup.slides_settings = [
 					}
 				});
 				return !exist; // Return False if exist = true
+=======
+			if ((this.values.company_name || "").toLowerCase() == "company") {
+				frappe.msgprint(__("Company Name cannot be Company"));
+				return false;
+			}
+			if (!this.values.company_abbr) {
+				return false;
+			}
+			if (this.values.company_abbr.length > 10) {
+				return false;
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			}
 
 			return true;
@@ -151,15 +186,25 @@ erpnext.setup.slides_settings = [
 			var country = frappe.wizard.values.country;
 
 			if (country) {
+<<<<<<< HEAD
 				var fy = erpnext.setup.fiscal_years[country];
 				var current_year = moment(new Date()).year();
 				var next_year = current_year + 1;
+=======
+				let fy = erpnext.setup.fiscal_years[country];
+				let current_year = moment(new Date()).year();
+				let next_year = current_year + 1;
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				if (!fy) {
 					fy = ["01-01", "12-31"];
 					next_year = current_year;
 				}
 
+<<<<<<< HEAD
 				var year_start_date = current_year + "-" + fy[0];
+=======
+				let year_start_date = current_year + "-" + fy[0];
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				if (year_start_date > frappe.datetime.get_today()) {
 					next_year = current_year;
 					current_year -= 1;
@@ -171,7 +216,11 @@ erpnext.setup.slides_settings = [
 
 
 		load_chart_of_accounts: function (slide) {
+<<<<<<< HEAD
 			var country = frappe.wizard.values.country;
+=======
+			let country = frappe.wizard.values.country;
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 			if (country) {
 				frappe.call({
@@ -202,12 +251,32 @@ erpnext.setup.slides_settings = [
 
 				me.charts_modal(slide, chart_template);
 			});
+<<<<<<< HEAD
+=======
+
+			slide.get_input("company_name").on("change", function () {
+				let parts = slide.get_input("company_name").val().split(" ");
+				let abbr = $.map(parts, function (p) { return p ? p.substr(0, 1) : null }).join("");
+				slide.get_field("company_abbr").set_value(abbr.slice(0, 10).toUpperCase());
+			}).val(frappe.boot.sysdefaults.company_name || "").trigger("change");
+
+			slide.get_input("company_abbr").on("change", function () {
+				if (slide.get_input("company_abbr").val().length > 10) {
+					frappe.msgprint(__("Company Abbreviation cannot have more than 5 characters"));
+					slide.get_field("company_abbr").set_value("");
+				}
+			});
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		},
 
 		charts_modal: function(slide, chart_template) {
 			let parent = __('All Accounts');
 
+<<<<<<< HEAD
 			var dialog = new frappe.ui.Dialog({
+=======
+			let dialog = new frappe.ui.Dialog({
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				title: chart_template,
 				fields: [
 					{'fieldname': 'expand_all', 'label': __('Expand All'), 'fieldtype': 'Button',

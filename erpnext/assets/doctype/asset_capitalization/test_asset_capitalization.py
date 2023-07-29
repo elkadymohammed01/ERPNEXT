@@ -39,6 +39,7 @@ class TestAssetCapitalization(unittest.TestCase):
 
 		total_amount = 103000
 
+<<<<<<< HEAD
 		# Create assets
 		target_asset = create_asset(
 			asset_name="Asset Capitalization Target Asset",
@@ -46,6 +47,8 @@ class TestAssetCapitalization(unittest.TestCase):
 			warehouse="Stores - TCP1",
 			company=company,
 		)
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		consumed_asset = create_asset(
 			asset_name="Asset Capitalization Consumable Asset",
 			asset_value=consumed_asset_value,
@@ -57,7 +60,12 @@ class TestAssetCapitalization(unittest.TestCase):
 		# Create and submit Asset Captitalization
 		asset_capitalization = create_asset_capitalization(
 			entry_type="Capitalization",
+<<<<<<< HEAD
 			target_asset=target_asset.name,
+=======
+			target_item_code="Macbook Pro",
+			target_asset_location="Test Location",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			stock_qty=stock_qty,
 			stock_rate=stock_rate,
 			consumed_asset=consumed_asset.name,
@@ -86,7 +94,11 @@ class TestAssetCapitalization(unittest.TestCase):
 		self.assertEqual(asset_capitalization.target_incoming_rate, total_amount)
 
 		# Test Target Asset values
+<<<<<<< HEAD
 		target_asset.reload()
+=======
+		target_asset = frappe.get_doc("Asset", asset_capitalization.target_asset)
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		self.assertEqual(target_asset.gross_purchase_amount, total_amount)
 		self.assertEqual(target_asset.purchase_receipt_amount, total_amount)
 
@@ -134,6 +146,7 @@ class TestAssetCapitalization(unittest.TestCase):
 
 		total_amount = 103000
 
+<<<<<<< HEAD
 		# Create assets
 		target_asset = create_asset(
 			asset_name="Asset Capitalization Target Asset",
@@ -141,6 +154,8 @@ class TestAssetCapitalization(unittest.TestCase):
 			warehouse="Stores - _TC",
 			company=company,
 		)
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		consumed_asset = create_asset(
 			asset_name="Asset Capitalization Consumable Asset",
 			asset_value=consumed_asset_value,
@@ -152,7 +167,12 @@ class TestAssetCapitalization(unittest.TestCase):
 		# Create and submit Asset Captitalization
 		asset_capitalization = create_asset_capitalization(
 			entry_type="Capitalization",
+<<<<<<< HEAD
 			target_asset=target_asset.name,
+=======
+			target_item_code="Macbook Pro",
+			target_asset_location="Test Location",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			stock_qty=stock_qty,
 			stock_rate=stock_rate,
 			consumed_asset=consumed_asset.name,
@@ -181,7 +201,11 @@ class TestAssetCapitalization(unittest.TestCase):
 		self.assertEqual(asset_capitalization.target_incoming_rate, total_amount)
 
 		# Test Target Asset values
+<<<<<<< HEAD
 		target_asset.reload()
+=======
+		target_asset = frappe.get_doc("Asset", asset_capitalization.target_asset)
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		self.assertEqual(target_asset.gross_purchase_amount, total_amount)
 		self.assertEqual(target_asset.purchase_receipt_amount, total_amount)
 
@@ -343,6 +367,10 @@ def create_asset_capitalization(**args):
 			"posting_time": args.posting_time or now.strftime("%H:%M:%S.%f"),
 			"target_item_code": target_item_code,
 			"target_asset": target_asset.name,
+<<<<<<< HEAD
+=======
+			"target_asset_location": "Test Location",
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			"target_warehouse": target_warehouse,
 			"target_qty": flt(args.target_qty) or 1,
 			"target_batch_no": args.target_batch_no,

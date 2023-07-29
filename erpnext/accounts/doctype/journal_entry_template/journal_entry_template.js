@@ -2,6 +2,24 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Journal Entry Template", {
+<<<<<<< HEAD
+=======
+	onload: function(frm) {
+		if(frm.is_new()) {
+			frappe.call({
+				type: "GET",
+				method: "erpnext.accounts.doctype.journal_entry_template.journal_entry_template.get_naming_series",
+				callback: function(r){
+					if(r.message) {
+						frm.set_df_property("naming_series", "options", r.message.split("\n"));
+						frm.set_value("naming_series", r.message.split("\n")[0]);
+						frm.refresh_field("naming_series");
+					}
+				}
+			});
+		}
+	},
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	refresh: function(frm) {
 		frappe.model.set_default_values(frm.doc);
 
@@ -19,6 +37,7 @@ frappe.ui.form.on("Journal Entry Template", {
 
 			return { filters: filters };
 		});
+<<<<<<< HEAD
 
 		frappe.call({
 			type: "GET",
@@ -31,6 +50,8 @@ frappe.ui.form.on("Journal Entry Template", {
 				}
 			}
 		});
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	},
 	voucher_type: function(frm) {
 		var add_accounts = function(doc, r) {

@@ -891,7 +891,11 @@ class TestWorkOrder(FrappeTestCase):
 		self.assertEqual(se.process_loss_qty, 1)
 
 		wo.load_from_db()
+<<<<<<< HEAD
 		self.assertEqual(wo.status, "In Process")
+=======
+		self.assertEqual(wo.status, "Completed")
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	@timeout(seconds=60)
 	def test_job_card_scrap_item(self):
@@ -1598,6 +1602,123 @@ class TestWorkOrder(FrappeTestCase):
 			self.assertEqual(row.to_time, add_to_date(planned_start_date, minutes=30))
 			self.assertEqual(row.workstation, workstations_to_check[index])
 
+<<<<<<< HEAD
+=======
+	def test_job_card_extra_qty(self):
+		items = [
+			"Test FG Item for Scrap Item Test 1",
+			"Test RM Item 1 for Scrap Item Test 1",
+			"Test RM Item 2 for Scrap Item Test 1",
+		]
+
+		company = "_Test Company with perpetual inventory"
+		for item_code in items:
+			create_item(
+				item_code=item_code,
+				is_stock_item=1,
+				is_purchase_item=1,
+				opening_stock=100,
+				valuation_rate=10,
+				company=company,
+				warehouse="Stores - TCP1",
+			)
+
+		item = "Test FG Item for Scrap Item Test 1"
+		raw_materials = ["Test RM Item 1 for Scrap Item Test 1", "Test RM Item 2 for Scrap Item Test 1"]
+		if not frappe.db.get_value("BOM", {"item": item}):
+			bom = make_bom(
+				item=item, source_warehouse="Stores - TCP1", raw_materials=raw_materials, do_not_save=True
+			)
+			bom.with_operations = 1
+			bom.append(
+				"operations",
+				{
+					"operation": "_Test Operation 1",
+					"workstation": "_Test Workstation 1",
+					"hour_rate": 20,
+					"time_in_mins": 60,
+				},
+			)
+
+			bom.submit()
+
+		wo_order = make_wo_order_test_record(
+			item=item,
+			company=company,
+			planned_start_date=now(),
+			qty=20,
+		)
+		job_card = frappe.db.get_value("Job Card", {"work_order": wo_order.name}, "name")
+		job_card_doc = frappe.get_doc("Job Card", job_card)
+
+		# Make another Job Card for the same Work Order
+		job_card2 = frappe.copy_doc(job_card_doc)
+		self.assertRaises(frappe.ValidationError, job_card2.save)
+
+		frappe.db.set_single_value(
+			"Manufacturing Settings", "overproduction_percentage_for_work_order", 100
+		)
+
+		job_card2 = frappe.copy_doc(job_card_doc)
+		job_card2.time_logs = []
+		job_card2.save()
+
+	def test_make_serial_no_batch_from_work_order_for_serial_no(self):
+		item_code = "Test Serial No Item For Work Order"
+		warehouse = "_Test Warehouse - _TC"
+		raw_materials = [
+			"Test RM Item 1 for Serial No Item In Work Order",
+		]
+
+		make_item(
+			item_code,
+			{
+				"has_stock_item": 1,
+				"has_serial_no": 1,
+				"serial_no_series": "TSNIFWO-.#####",
+			},
+		)
+
+		for rm_item in raw_materials:
+			make_item(
+				rm_item,
+				{
+					"has_stock_item": 1,
+				},
+			)
+
+			test_stock_entry.make_stock_entry(item_code=rm_item, target=warehouse, qty=10, basic_rate=100)
+
+		bom = make_bom(item=item_code, raw_materials=raw_materials)
+
+		frappe.db.set_single_value("Manufacturing Settings", "make_serial_no_batch_from_work_order", 1)
+
+		wo_order = make_wo_order_test_record(
+			item=item_code,
+			bom_no=bom.name,
+			qty=5,
+			skip_transfer=1,
+			from_wip_warehouse=1,
+		)
+
+		serial_nos = frappe.get_all(
+			"Serial No",
+			filters={"item_code": item_code, "work_order": wo_order.name},
+		)
+
+		serial_nos = [d.name for d in serial_nos]
+		self.assertEqual(len(serial_nos), 5)
+
+		stock_entry = frappe.get_doc(make_stock_entry(wo_order.name, "Manufacture", 5))
+
+		stock_entry.submit()
+		for row in stock_entry.items:
+			if row.is_finished_item:
+				self.assertEqual(sorted(get_serial_nos(row.serial_no)), sorted(get_serial_nos(serial_nos)))
+
+		frappe.db.set_single_value("Manufacturing Settings", "make_serial_no_batch_from_work_order", 0)
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 def prepare_data_for_workstation_type_check():
 	from erpnext.manufacturing.doctype.operation.test_operation import make_operation
@@ -1827,6 +1948,10 @@ def make_wo_order_test_record(**args):
 	wo_order.sales_order = args.sales_order or None
 	wo_order.planned_start_date = args.planned_start_date or now()
 	wo_order.transfer_material_against = args.transfer_material_against or "Work Order"
+<<<<<<< HEAD
+=======
+	wo_order.from_wip_warehouse = args.from_wip_warehouse or None
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 	if args.source_warehouse:
 		for item in wo_order.get("required_items"):

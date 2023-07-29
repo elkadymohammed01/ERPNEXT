@@ -75,7 +75,20 @@ class InventoryDimension(Document):
 		self.delete_custom_fields()
 
 	def delete_custom_fields(self):
+<<<<<<< HEAD
 		filters = {"fieldname": self.source_fieldname}
+=======
+		filters = {
+			"fieldname": (
+				"in",
+				[
+					self.source_fieldname,
+					f"to_{self.source_fieldname}",
+					f"from_{self.source_fieldname}",
+				],
+			)
+		}
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		if self.document_type:
 			filters["dt"] = self.document_type
@@ -88,6 +101,11 @@ class InventoryDimension(Document):
 
 	def reset_value(self):
 		if self.apply_to_all_doctypes:
+<<<<<<< HEAD
+=======
+			self.type_of_transaction = ""
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			self.istable = 0
 			for field in ["document_type", "condition"]:
 				self.set(field, None)
@@ -111,12 +129,44 @@ class InventoryDimension(Document):
 	def on_update(self):
 		self.add_custom_fields()
 
+<<<<<<< HEAD
 	def add_custom_fields(self):
 		dimension_fields = [
 			dict(
 				fieldname="inventory_dimension",
 				fieldtype="Section Break",
 				insert_after="warehouse",
+=======
+	@staticmethod
+	def get_insert_after_fieldname(doctype):
+		return frappe.get_all(
+			"DocField",
+			fields=["fieldname"],
+			filters={"parent": doctype},
+			order_by="idx desc",
+			limit=1,
+		)[0].fieldname
+
+	def get_dimension_fields(self, doctype=None):
+		if not doctype:
+			doctype = self.document_type
+
+		label_start_with = ""
+		if doctype in ["Purchase Invoice Item", "Purchase Receipt Item"]:
+			label_start_with = "Target"
+		elif doctype in ["Sales Invoice Item", "Delivery Note Item", "Stock Entry Detail"]:
+			label_start_with = "Source"
+
+		label = self.dimension_name
+		if label_start_with:
+			label = f"{label_start_with} {self.dimension_name}"
+
+		return [
+			dict(
+				fieldname="inventory_dimension",
+				fieldtype="Section Break",
+				insert_after=self.get_insert_after_fieldname(doctype),
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				label="Inventory Dimension",
 				collapsible=1,
 			),
@@ -125,12 +175,17 @@ class InventoryDimension(Document):
 				fieldtype="Link",
 				insert_after="inventory_dimension",
 				options=self.reference_document,
+<<<<<<< HEAD
 				label=self.dimension_name,
+=======
+				label=label,
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 				reqd=self.reqd,
 				mandatory_depends_on=self.mandatory_depends_on,
 			),
 		]
 
+<<<<<<< HEAD
 		custom_fields = {}
 
 		if self.apply_to_all_doctypes:
@@ -143,6 +198,33 @@ class InventoryDimension(Document):
 		if not frappe.db.get_value(
 			"Custom Field", {"dt": "Stock Ledger Entry", "fieldname": self.target_fieldname}
 		) and not field_exists("Stock Ledger Entry", self.target_fieldname):
+=======
+	def add_custom_fields(self):
+		custom_fields = {}
+
+		dimension_fields = []
+		if self.apply_to_all_doctypes:
+			for doctype in get_inventory_documents():
+				if field_exists(doctype[0], self.source_fieldname):
+					continue
+
+				dimension_fields = self.get_dimension_fields(doctype[0])
+				self.add_transfer_field(doctype[0], dimension_fields)
+				custom_fields.setdefault(doctype[0], dimension_fields)
+		elif not field_exists(self.document_type, self.source_fieldname):
+			dimension_fields = self.get_dimension_fields()
+
+			self.add_transfer_field(self.document_type, dimension_fields)
+			custom_fields.setdefault(self.document_type, dimension_fields)
+
+		if (
+			dimension_fields
+			and not frappe.db.get_value(
+				"Custom Field", {"dt": "Stock Ledger Entry", "fieldname": self.target_fieldname}
+			)
+			and not field_exists("Stock Ledger Entry", self.target_fieldname)
+		):
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 			dimension_field = dimension_fields[1]
 			dimension_field["mandatory_depends_on"] = ""
 			dimension_field["reqd"] = 0
@@ -152,6 +234,56 @@ class InventoryDimension(Document):
 		if custom_fields:
 			create_custom_fields(custom_fields)
 
+<<<<<<< HEAD
+=======
+	def add_transfer_field(self, doctype, dimension_fields):
+		if doctype not in [
+			"Stock Entry Detail",
+			"Sales Invoice Item",
+			"Delivery Note Item",
+			"Purchase Invoice Item",
+			"Purchase Receipt Item",
+		]:
+			return
+
+		fieldname_start_with = "to"
+		label_start_with = "Target"
+		display_depends_on = ""
+
+		if doctype in ["Purchase Invoice Item", "Purchase Receipt Item"]:
+			fieldname_start_with = "from"
+			label_start_with = "Source"
+			display_depends_on = "eval:parent.is_internal_supplier == 1"
+		elif doctype != "Stock Entry Detail":
+			display_depends_on = "eval:parent.is_internal_customer == 1"
+		elif doctype == "Stock Entry Detail":
+			display_depends_on = "eval:parent.purpose != 'Material Issue'"
+
+		fieldname = f"{fieldname_start_with}_{self.source_fieldname}"
+		label = f"{label_start_with} {self.dimension_name}"
+
+		if field_exists(doctype, fieldname):
+			return
+
+		dimension_fields.extend(
+			[
+				dict(
+					fieldname="inventory_dimension_col_break",
+					fieldtype="Column Break",
+					insert_after=self.source_fieldname,
+				),
+				dict(
+					fieldname=fieldname,
+					fieldtype="Link",
+					insert_after="inventory_dimension_col_break",
+					options=self.reference_document,
+					label=label,
+					depends_on=display_depends_on,
+				),
+			]
+		)
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 def field_exists(doctype, fieldname) -> str or None:
 	return frappe.db.get_value("DocField", {"parent": doctype, "fieldname": fieldname}, "name")
@@ -185,6 +317,7 @@ def get_evaluated_inventory_dimension(doc, sl_dict, parent_doc=None):
 	dimensions = get_document_wise_inventory_dimensions(doc.doctype)
 	filter_dimensions = []
 	for row in dimensions:
+<<<<<<< HEAD
 		if (
 			row.type_of_transaction == "Inward"
 			if doc.docstatus == 1
@@ -197,6 +330,21 @@ def get_evaluated_inventory_dimension(doc, sl_dict, parent_doc=None):
 			else row.type_of_transaction != "Outward"
 		) and sl_dict.actual_qty > 0:
 			continue
+=======
+		if row.type_of_transaction:
+			if (
+				row.type_of_transaction == "Inward"
+				if doc.docstatus == 1
+				else row.type_of_transaction != "Inward"
+			) and sl_dict.actual_qty < 0:
+				continue
+			elif (
+				row.type_of_transaction == "Outward"
+				if doc.docstatus == 1
+				else row.type_of_transaction != "Outward"
+			) and sl_dict.actual_qty > 0:
+				continue
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 
 		evals = {"doc": doc}
 		if parent_doc:

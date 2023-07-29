@@ -124,6 +124,10 @@ class PurchaseReceipt(BuyingController):
 			self.set_status()
 
 		self.po_required()
+<<<<<<< HEAD
+=======
+		self.validate_items_quality_inspection()
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 		self.validate_with_previous_doc()
 		self.validate_uom_is_integer("uom", ["qty", "received_qty"])
 		self.validate_uom_is_integer("stock_uom", "stock_qty")
@@ -197,6 +201,29 @@ class PurchaseReceipt(BuyingController):
 				if not d.purchase_order:
 					frappe.throw(_("Purchase Order number required for Item {0}").format(d.item_code))
 
+<<<<<<< HEAD
+=======
+	def validate_items_quality_inspection(self):
+		for item in self.get("items"):
+			if item.quality_inspection:
+				qi = frappe.db.get_value(
+					"Quality Inspection",
+					item.quality_inspection,
+					["reference_type", "reference_name", "item_code"],
+					as_dict=True,
+				)
+
+				if qi.reference_type != self.doctype or qi.reference_name != self.name:
+					msg = f"""Row #{item.idx}: Please select a valid Quality Inspection with Reference Type
+						{frappe.bold(self.doctype)} and Reference Name {frappe.bold(self.name)}."""
+					frappe.throw(_(msg))
+
+				if qi.item_code != item.item_code:
+					msg = f"""Row #{item.idx}: Please select a valid Quality Inspection with Item Code
+						{frappe.bold(item.item_code)}."""
+					frappe.throw(_(msg))
+
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	def get_already_received_qty(self, po, po_detail):
 		qty = frappe.db.sql(
 			"""select sum(qty) from `tabPurchase Receipt Item`
@@ -379,8 +406,25 @@ class PurchaseReceipt(BuyingController):
 					)
 
 					outgoing_amount = d.base_net_amount
+<<<<<<< HEAD
 					if self.is_internal_supplier and d.valuation_rate:
 						outgoing_amount = d.valuation_rate * d.stock_qty
+=======
+					if self.is_internal_transfer() and d.valuation_rate:
+						outgoing_amount = abs(
+							frappe.db.get_value(
+								"Stock Ledger Entry",
+								{
+									"voucher_type": "Purchase Receipt",
+									"voucher_no": self.name,
+									"voucher_detail_no": d.name,
+									"warehouse": d.from_warehouse,
+									"is_cancelled": 0,
+								},
+								"stock_value_difference",
+							)
+						)
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 						credit_amount = outgoing_amount
 
 					if credit_amount:

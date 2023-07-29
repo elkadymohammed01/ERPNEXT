@@ -49,7 +49,10 @@ def search_by_term(search_term, warehouse, price_list):
 			)
 
 	item_stock_qty, is_stock_item = get_stock_availability(item_code, warehouse)
+<<<<<<< HEAD
 	item_stock_qty = item_stock_qty // item.get("conversion_factor")
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	item_stock_qty = item_stock_qty // item.get("conversion_factor", 1)
 	item.update({"actual_qty": item_stock_qty})
 
@@ -59,7 +62,11 @@ def search_by_term(search_term, warehouse, price_list):
 			"price_list": price_list,
 			"item_code": item_code,
 		},
+<<<<<<< HEAD
 		fields=["uom", "stock_uom", "currency", "price_list_rate"],
+=======
+		fields=["uom", "currency", "price_list_rate"],
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
 	)
 
 	def __sort(p):

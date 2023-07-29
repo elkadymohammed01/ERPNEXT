@@ -160,4 +160,7 @@ class TestLoanDisbursement(unittest.TestCase):
 		interest = per_day_interest * 15
 
 		self.assertEqual(amounts["pending_principal_amount"], 1500000)
+<<<<<<< HEAD
 		self.assertEqual(amounts["interest_amount"], flt(interest + previous_interest, 2))
+=======
+>>>>>>> d9aa4057d7 (chore(release): Bumped to Version 14.32.1)
